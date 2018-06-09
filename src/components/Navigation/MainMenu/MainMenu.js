@@ -1,15 +1,15 @@
 import React from 'react';
 import classes from './MainMenu.css';
-import NavItem from './NavItem/NavItem';
+import MainNavItem from './MainNavItem/MainNavItem';
 
 
 const mainMenu = () => (
     <ul className={classes.NavItems}>
-        <NavItem link="/" active>Home</NavItem>
-        <NavItem link="/">About</NavItem>
-        <NavItem link="/">Services</NavItem>
-        <NavItem link="/">Our Team</NavItem>
-        <NavItem link="/">Contact</NavItem>
+        <MainNavItem link="/" active>Home</MainNavItem>
+        <MainNavItem link="/">About</MainNavItem>
+        <MainNavItem link="/">Services</MainNavItem>
+        <MainNavItem link="/">Our Team</MainNavItem>
+        <MainNavItem link="/">Contact</MainNavItem>
     </ul>
 );
 
