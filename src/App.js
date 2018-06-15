@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
-import Login from './components/Login/Login'
+import Login from './components/Login/Login';
+import Registration from './components/Registration/Registration'
 
 
 class App extends Component {
@@ -9,6 +10,7 @@ class App extends Component {
       <div>
         <Toolbar/>
         <Login/>
+        <Registration/>
       </div>
     );
   }

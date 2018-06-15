@@ -1,15 +1,17 @@
 .Button {
-    background-color: green;
-    border: 1px solid darkgreen;
+    background-color: #b99847;
+    border: 1px solid #c6b535;
     color: white;
     outline: none;
     cursor: pointer;
     font: inherit;
-    padding: 10px;
-    margin: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 15px;
     font-weight: bold;
     border-radius: 4px;
     float: right;
+    font-size: small;
 
 }
 

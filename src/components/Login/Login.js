@@ -11,12 +11,13 @@ class Login extends Component{
 
     render () {
         return (
-            <div>
+            <div className={classes.Login}>
                 <h4 className={classes.Name}>Login form</h4>
                 <form>
                     <Input  label="Email:"/>
                     <Input label="Password:"/>
                     <Button buttonType="Success">Login</Button>
+                    <p className={classes.Text}>Don't have an account? Click here to register.</p>
                 </form>
             </div>
         )

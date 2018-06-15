@@ -1,4 +1,16 @@
+.Login {
+    width: 100%;
+    padding: 100px;
+
+}
+
 .Name {
-    padding-top: 80px;
+
     text-align: center;
+}
+
+.Text {
+    padding: 10px;
+    text-align: center;
+    font-size: x-small;
 }
