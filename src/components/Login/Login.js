@@ -3,7 +3,7 @@ import Input from '../../components/UI/Input/Input';
 import classes from './Login.css';
 import Button from '../../components/UI/Button/Button';
 
-class Login extends Component{
+class Login extends Component {
     state = {
         email: '',
         password: ''
