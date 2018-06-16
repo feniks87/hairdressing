@@ -7,7 +7,7 @@ import Login from '../../Login/Login';
 
 const additionalMenu = () => (
     <div>
-        <ul className={classes.NavItems}>
+        <ul className="classes.NavItems">
             <AdditionalNavItem><Link to="/login">Login</Link></AdditionalNavItem>
             <AdditionalNavItem><Link to="/registration">Sign Up</Link></AdditionalNavItem>
         </ul>

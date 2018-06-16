@@ -2,10 +2,10 @@ import React from 'react';
 import classes from './Input.css';
 
 const input = ( props ) =>
-    <div className={classes.Input}>
+    <div className="Input">
         <label className={classes.Label}>{props.label}</label>
         <input
-            className={classes.Input}
+            className="Input"
             value={props.value}
             onChange={props.changed} />
     </div>;
