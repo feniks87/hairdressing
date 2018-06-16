@@ -1,9 +1,9 @@
 import React from 'react';
-import classes from './AdditionalNavItem.css'
+import './AdditionalNavItem.css'
 
 
 const additionalNavItem = (props) => (
-    <li className={classes.NavItem}>
+    <li className="NavItem">
         <a href={props.link}> {props.children}</a></li>
 )
 

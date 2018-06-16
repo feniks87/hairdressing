@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Input from '../../components/UI/Input/Input';
-import classes from './Registration.css';
+import './Registration.css';
 import Button from '../../components/UI/Button/Button';
 
 class Registration extends Component{
@@ -15,8 +15,8 @@ class Registration extends Component{
 
     render () {
         return (
-            <div className={classes.Registration}>
-                <h4 className={classes.Name}>Sign up form</h4>
+            <div className="Registration">
+                <h4 className="Name">Sign up form</h4>
                 <form>
                     <Input  label="First name:"/>
                     <Input  label="Last name:"/>
