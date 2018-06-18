@@ -1,4 +1,4 @@
-.NavItem {
+/*.NavItem {
     margin: 0;
     box-sizing: border-box;
     display: flex;
@@ -6,16 +6,17 @@
     align-items: center;
     font-size: small;
     color: black;
-}
+}*/
 
 .NavItem a {
     color: black;
+    font-size: small;
     text-decoration: none;
     height: 100%;
     padding: 10px 10px;
     border-bottom: 4px solid transparent;
     box-sizing: border-box;
-    display: block;
+    display: flex;
 }
 
 .NavItem a:hover,

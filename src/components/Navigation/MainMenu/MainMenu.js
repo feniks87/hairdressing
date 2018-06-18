@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import NavItem from '../../UI/NavItem/NavItem';
 
 
 const mainMenu = () => (
     <div>
         <ul className="navbar-nav">
-            <NavItem link="/" active>Home</NavItem>
+            <NavItem><Link to="/home">Home</Link></NavItem>
             <NavItem link="/">About</NavItem>
             <NavItem link="/">Services</NavItem>
             <NavItem link="/">Book Online</NavItem>

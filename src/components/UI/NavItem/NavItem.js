@@ -3,7 +3,7 @@ import './NavItems.css'
 
 const navItem = (props) => (
     <li className="NavItem nav-item">
-        <a className="nav-link" href={props.link}> {props.children}</a>
+        {props.children}
     </li>
 );
 
