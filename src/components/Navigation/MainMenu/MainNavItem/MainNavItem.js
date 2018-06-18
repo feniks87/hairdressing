@@ -1,11 +1,9 @@
 import React from 'react';
-import classes from './MainNavItem.css'
+import './MainNavItem.css'
 
 const mainNavItem = (props) => (
-    <li className={classes.NavItem}>
-        <a
-            href={props.link}
-            className={props.active ? classes.active : null}> {props.children}</a></li>
+    <li className="nav-item">
+        <a className="nav-link" href={props.link}> {props.children}</a></li>
 );
 
 export default mainNavItem;

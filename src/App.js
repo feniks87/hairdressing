@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
-import HomePage from './components/HomePage/HomePage';
-import { BrowserRouter } from 'react-router-dom';
-
+import { Route, Switch } from 'react-router-dom';
+import Registration from "./components/Registration/Registration";
+import Login from "./components/Login/Login";
+import HomePage from "./components/HomePage/HomePage";
+import Layout from "./hoc/Layout/Layout";
+import Toolbar from './components/Navigation/Toolbar/Toolbar'
 
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
         <div>
-            <HomePage/>
+            <Layout>
+                <Switch>
+                    <Route path="/login" component={Login} />
+                    <Route path="/registration" component={Registration} />
+                </Switch>
+            </Layout>
         </div>
-      </BrowserRouter>
     );
   }
 }
