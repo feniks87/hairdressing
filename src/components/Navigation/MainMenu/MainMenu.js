@@ -1,17 +1,18 @@
 import React from 'react';
-import './MainMenu.css';
-import MainNavItem from './MainNavItem/MainNavItem';
+import NavItem from '../../UI/NavItem/NavItem';
 
 
 const mainMenu = () => (
-    <ul className="navbar-nav">
-        <MainNavItem link="/" active>Home</MainNavItem>
-        <MainNavItem link="/">About</MainNavItem>
-        <MainNavItem link="/">Services</MainNavItem>
-        <MainNavItem link="/">Book Online</MainNavItem>
-        <MainNavItem link="/">Our Team</MainNavItem>
-        <MainNavItem link="/">Contact</MainNavItem>
-    </ul>
+    <div>
+        <ul className="navbar-nav">
+            <NavItem link="/" active>Home</NavItem>
+            <NavItem link="/">About</NavItem>
+            <NavItem link="/">Services</NavItem>
+            <NavItem link="/">Book Online</NavItem>
+            <NavItem link="/">Our Team</NavItem>
+            <NavItem link="/">Contact</NavItem>
+        </ul>
+    </div>
 );
 
 export default mainMenu;
