@@ -1,14 +1,14 @@
 .Button {
-    background-color: #b99847;
-    border: 1px solid #c6b535;
-    color: white;
+    background-color: #c4ae5b;
+    border: 1px solid #a53e1f;
+    color: black;
     outline: none;
     cursor: pointer;
     font: inherit;
     padding-top: 5px;
     padding-bottom: 5px;
     margin-top: 15px;
-    font-weight: bold;
+    font-weight: normal;
     border-radius: 4px;
     float: right;
     font-size: small;

@@ -10,9 +10,9 @@
 
 .NavItem a {
     color: black;
-    font-size: small;
     text-decoration: none;
     height: 100%;
+    font-size: small;
     padding: 10px 10px;
     border-bottom: 4px solid transparent;
     box-sizing: border-box;

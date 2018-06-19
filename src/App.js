@@ -5,14 +5,24 @@ import Login from "./components/Login/Login";
 import HomePage from "./components/HomePage/HomePage";
 import Layout from "./hoc/Layout/Layout";
 import Toolbar from './components/Navigation/Toolbar/Toolbar'
+import AboutPage from "./components/AboutPage/AboutPage";
+import ServicesPage from "./components/Services/ServicesPage";
+import BookingPage from "./components/BookingPage/BookingPage";
+import OurTeamPage from "./components/OurTeamPage/OurTeamPage";
+import ContactPage from "./components/ContactPage/ContactPage";
 
 class App extends Component {
   render() {
     return (
-        <div>
+        <div className="container">
             <Layout>
                 <Switch>
                     <Route path="/home" component={HomePage} />
+                    <Route path="/about" component={AboutPage} />
+                    <Route path="/services" component={ServicesPage} />
+                    <Route path="/book-online" component={BookingPage} />
+                    <Route path="/our-team" component={OurTeamPage} />
+                    <Route path="/contact" component={ContactPage} />
                     <Route path="/login" component={Login} />
                     <Route path="/registration" component={Registration} />
                 </Switch>

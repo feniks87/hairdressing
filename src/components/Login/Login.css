@@ -4,6 +4,9 @@
 
 .Name {
     text-align: center;
+    color: rgba(41, 41, 41, 0.81);
+    padding-bottom: 20px;
+    font-style: normal;
 }
 
 .Text {

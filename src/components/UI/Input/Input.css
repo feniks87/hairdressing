@@ -8,8 +8,14 @@
 }
 
 .Label {
-    font-weight: bold;
+    font-weight: inherit;
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
     margin-top: 8px;
+    font-size: small;
+}
+
+.InputColor {
+    background-color: #944317;
+    border-color: #944317;
 }
