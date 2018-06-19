@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router, Link } from 'react-router-dom';
-import bkLogo from '../../assets/images/1.jpg';
+import bkLogo from '../../assets/images/logo.jpg';
 import './Logo.css'
 
 const logo = (props) => (

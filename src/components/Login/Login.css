@@ -5,12 +5,13 @@
 .Name {
     text-align: center;
     color: rgba(41, 41, 41, 0.81);
-    padding-bottom: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     font-style: normal;
 }
 
 .Text {
     padding: 10px;
     text-align: center;
-    font-size: x-small;
+    font-size: small;
 }

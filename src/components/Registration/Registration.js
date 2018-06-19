@@ -24,8 +24,7 @@ class Registration extends Component{
                     <Input  label="Email:"/>
                     <Input label="Password:"/>
                     <Input label="Confirm Password:"/>
-                    <Button buttonType="Success">Register</Button>
-                </form>
+                    <Button buttonType="Success">Register</Button></form>
             </div>
         )
     }
