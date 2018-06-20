@@ -4,7 +4,6 @@ import Registration from "./components/Registration/Registration";
 import Login from "./components/Login/Login";
 import HomePage from "./components/HomePage/HomePage";
 import Layout from "./hoc/Layout/Layout";
-import Toolbar from './components/Navigation/Toolbar/Toolbar'
 import AboutPage from "./components/AboutPage/AboutPage";
 import ServicesPage from "./components/Services/ServicesPage";
 import BookingPage from "./components/BookingPage/BookingPage";
@@ -17,7 +16,7 @@ class App extends Component {
         <div className="container">
             <Layout>
                 <Switch>
-                    <Route path="/home" component={HomePage} />
+                    <Route path="/" exact component={HomePage} />
                     <Route path="/about" component={AboutPage} />
                     <Route path="/services" component={ServicesPage} />
                     <Route path="/book-online" component={BookingPage} />

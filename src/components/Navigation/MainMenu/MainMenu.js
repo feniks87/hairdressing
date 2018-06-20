@@ -6,7 +6,7 @@ import NavItem from '../../UI/NavItem/NavItem';
 const mainMenu = () => (
     <div>
         <ul className="navbar-nav">
-            <NavItem><Link to="/home">Home</Link></NavItem>
+            <NavItem><Link to="/">Home</Link></NavItem>
             <NavItem><Link to="/about">About</Link></NavItem>
             <NavItem><Link to="/services">Services</Link></NavItem>
             <NavItem><Link to="/book-online">Book Online</Link></NavItem>

@@ -21,7 +21,8 @@
 .NavItem a:hover,
 .NavItem a:active,
 .NavItem a.active {
-    background-color: rgba(174, 132, 48, 0.56);
+    background-color: #E6E1D4;
     border-bottom: 4px solid rgba(156, 26, 16, 0.71);
-    color: white;
+    color: #000000;
+    text-decoration: none;
 }
