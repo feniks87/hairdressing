@@ -3,6 +3,7 @@ import Aux from '../../hoc/_Aux/_Aux'
 import Input from '../../components/UI/Input/Input';
 import './Login.css';
 import Button from '../../components/UI/Button/Button';
+import Header from '../../components/UI/Header/Header';
 
 class Login extends Component {
     state = {
@@ -13,7 +14,7 @@ class Login extends Component {
     render () {
         return (
             <div className="Login">
-                <h4 className="Name">Login form</h4>
+                <Header>Login form</Header>
                 <form>
                     <Input  label="Email:"/>
                     <Input label="Password:"/>

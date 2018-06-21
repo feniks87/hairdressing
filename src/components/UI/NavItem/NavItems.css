@@ -22,7 +22,7 @@
 .NavItem a:active,
 .NavItem a.active {
     background-color: #E6E1D4;
-    border-bottom: 4px solid rgba(156, 26, 16, 0.71);
+    border-bottom: 4px solid rgb(155, 24, 28);
     color: #000000;
     text-decoration: none;
 }
