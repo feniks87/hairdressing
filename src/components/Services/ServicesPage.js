@@ -8,13 +8,49 @@ class ServicesPage extends Component {
     render() {
         const list = [
             {
-                serviceName: 'Haircut (women)',
+                serviceName: 'Women Haircut',
                 price: '35 $',
             },
             {
-                serviceName: 'Haircut (men)',
+                serviceName: 'Men Haircut',
                 price: '25 $',
-            }
+            },
+            {
+                serviceName: 'Kids Haircut',
+                price: '17 $',
+            },
+            {
+                serviceName: 'Blow Dry',
+                price: '10 $',
+            },
+            {
+                serviceName: 'Root Touch Up',
+                price: '60 $',
+            },
+            {
+                serviceName: 'Single Process Color',
+                price: '100 $',
+            },
+            {
+                serviceName: 'Partial Highlighting',
+                price: '125 $',
+            },
+            {
+                serviceName: 'Full Highlighting',
+                price: '150 $',
+            },
+            {
+                serviceName: 'Ombre/Balayage',
+                price: '150 $',
+            },
+            {
+                serviceName: 'Bleach and Tone ',
+                price: '125 $',
+            },
+            {
+                serviceName: 'Toner ',
+                price: '20 $',
+            },
         ];
 
         return (
