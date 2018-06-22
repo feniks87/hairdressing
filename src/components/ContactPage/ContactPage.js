@@ -20,10 +20,9 @@ class ContactPage extends Component {
                         <h5 className="text-center">The Little BK Haidressing</h5>
                         <p className="text-center">1 Raleigh Rd, Northcote,Auckland 0627</p>
                         <p className="text-center">Call (09) 480-1390 for appointments!</p>
-                        <img className="img-fluid img-thumbnail" src={LittleBkLocation} alt="Little BK Location"/>
+                        <img className="image-fluid img-thumbnail" src={LittleBkLocation} alt="Little BK Location"/>
                     </div>
                 </div>
-
             </div>
         )
     }
