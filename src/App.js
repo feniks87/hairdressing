@@ -13,7 +13,7 @@ import ContactPage from "./components/ContactPage/ContactPage";
 class App extends Component {
   render() {
     return (
-        <div >
+        <div>
             <Layout>
                 <Switch>
                     <Route path="/" exact component={HomePage} />
