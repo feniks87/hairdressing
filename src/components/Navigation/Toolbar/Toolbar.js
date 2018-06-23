@@ -6,7 +6,9 @@ import AdditionalMenu from '../AdditionalMenu/AdditionalMenu'
 
 const toolbar = (props) => (
     <header className="Toolbar">
-        <Logo />
+        <nav className="navbar navbar-expand-sm">
+            <Logo/>
+        </nav>
         <nav className="navbar navbar-expand-sm">
             <MainMenu/>
         </nav>

@@ -6,7 +6,7 @@ class HomePage extends Component {
     render() {
         return (
             <div>
-                <img className="img-fluid" src={ImageHair} alt="Hair image"/>
+                <img className="img-fluid" src={ImageHair} alt="Hair"/>
             </div>
         )
     }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Aux from '../../hoc/_Aux/_Aux'
 import Input from '../../components/UI/Input/Input';
 import './Login.css';
 import Button from '../../components/UI/Button/Button';
