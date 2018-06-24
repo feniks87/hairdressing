@@ -35,10 +35,10 @@ class HomePage extends Component {
                     </div>
                     <div className="row">
                         <div className="col-sm-5">
-                            <img className="img-fluid" src={Haircut} alt="Haircut"/>
+                            <img className="img-fluid Image-haircut" src={Haircut} alt="Haircut"/>
                         </div>
                         <div className="col-sm-7">
-                            <p className="text-justify">Some example text. Some example text. Some example text. Some example text. Some example text.
+                            <p className="Text-home text-justify">Some example text. Some example text. Some example text. Some example text. Some example text.
 
                                 Some example text. Some example text. Some example text. Some example text. Some example text.
 

@@ -10,4 +10,15 @@
 .Image-salon {
     margin-top: 40px;
     margin-bottom: 20px;
+    z-index: -1;
+    position: relative;
+}
+
+.Image-haircut {
+    z-index: -1;
+    position: relative;
+}
+
+.Text-home {
+    margin-top: 30px;
 }
