@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ServicesPage.css'
-import Header from '../../components/UI/Header/Header';
+import Heading from '../UI/Heading/Heading';
 import TableItem from '../../components/UI/TableItem/TableItem';
 
 
@@ -54,8 +54,8 @@ class ServicesPage extends Component {
         ];
 
         return (
-            <div className="container table-responsive">
-                <Header>Our Services</Header>
+            <div className="Services table-responsive">
+                <Heading>Our Services</Heading>
                 <table className="table table-striped">
                     <tbody>
                     {list.map(item =>

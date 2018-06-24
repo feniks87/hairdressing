@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Input from '../../components/UI/Input/Input';
 import './Registration.css';
 import Button from '../../components/UI/Button/Button';
-import Header from '../../components/UI/Header/Header';
+import Heading from '../UI/Heading/Heading';
 
 class Registration extends Component{
     state = {
@@ -17,7 +17,7 @@ class Registration extends Component{
     render () {
         return (
             <div className="Registration">
-                <Header>Sign Up Form</Header>
+                <Heading>Sign Up Form</Heading>
                 <form>
                     <Input  label="First name:"/>
                     <Input  label="Last name:"/>

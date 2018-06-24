@@ -1,8 +1,8 @@
 import React from 'react';
-import './Header.css';
+import './Heading.css';
 
-const header = (props) => (
+const heading = (props) => (
     <h4 className="Header">{props.children}</h4>
 );
 
-export default header;
+export default heading;

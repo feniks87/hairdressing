@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Input from '../../components/UI/Input/Input';
 import './Login.css';
 import Button from '../../components/UI/Button/Button';
-import Header from '../../components/UI/Header/Header';
+import Heading from '../UI/Heading/Heading';
 
 class Login extends Component {
     state = {
@@ -13,7 +13,7 @@ class Login extends Component {
     render () {
         return (
             <div className="Login">
-                <Header>Login form</Header>
+                <Heading>Login form</Heading>
                 <form>
                     <Input  label="Email:"/>
                     <Input label="Password:"/>

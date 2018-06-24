@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from '../../components/UI/Header/Header';
+import Heading from '../UI/Heading/Heading';
 import BkLocation from '../../assets/images/location1.jpg';
 import LittleBkLocation from '../../assets/images/location2.jpg';
 
@@ -8,7 +8,7 @@ class ContactPage extends Component {
     render() {
         return (
             <div className="container">
-                <Header>Contact Us</Header>
+                <Heading>Contact Us</Heading>
                 <div className="row">
                     <div className="col-sm-6">
                         <h5 className="text-center">The BK Haidressing</h5>
