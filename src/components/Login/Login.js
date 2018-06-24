@@ -12,7 +12,7 @@ class Login extends Component {
 
     render () {
         return (
-            <div className="Login">
+            <div className="container Login">
                 <Heading>Login form</Heading>
                 <form>
                     <Input  label="Email:"/>

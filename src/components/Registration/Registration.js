@@ -16,7 +16,7 @@ class Registration extends Component{
 
     render () {
         return (
-            <div className="Registration">
+            <div className="container Registration">
                 <Heading>Sign Up Form</Heading>
                 <form>
                     <Input  label="First name:"/>

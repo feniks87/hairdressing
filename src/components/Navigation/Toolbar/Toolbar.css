@@ -11,4 +11,5 @@
     align-items: center;
     box-sizing: border-box;
     overflow: hidden;
+    z-index: 4;
 }

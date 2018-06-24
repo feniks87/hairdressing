@@ -13,7 +13,7 @@ class HomePage extends Component {
                     <div className="row">
                         <div className="col-sm-7">
                             <h4 className="Paragraph-header">About The BK Hairdressing...</h4>
-                            <p className="text-justify">Some example text. Some example text. Some example text. Some example text. Some example text.
+                            <p className="Text-home text-justify">Some example text. Some example text. Some example text. Some example text. Some example text.
 
                                 Some example text. Some example text. Some example text. Some example text. Some example text.
 
@@ -52,9 +52,9 @@ class HomePage extends Component {
                                 Some example text. Some example text. Some example text. Some example text. Some example text.</p>
                         </div>
                     </div>
-
-                    </div>
+                </div>
             </div>
+
 
         )
     }

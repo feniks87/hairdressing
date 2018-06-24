@@ -54,7 +54,7 @@ class ServicesPage extends Component {
         ];
 
         return (
-            <div className="Services table-responsive">
+            <div className="container table-responsive">
                 <Heading>Our Services</Heading>
                 <table className="table table-striped">
                     <tbody>
