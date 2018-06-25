@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Prata');
+
 .Toolbar {
     height: 70px;
     width: 100%;
@@ -12,4 +14,5 @@
     box-sizing: border-box;
     overflow: hidden;
     z-index: 4;
+    font-family: 'Prata', serif;
 }
