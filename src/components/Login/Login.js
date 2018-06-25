@@ -17,7 +17,7 @@ class Login extends Component {
                 <form className="Login">
                     <Input  label="Email:"/>
                     <Input label="Password:"/>
-                    <Button buttonType="Success">Login</Button>
+                    <Button>Login</Button>
                     <p className="Text">Don't have an account? Click here to register.</p>
                 </form>
             </div>

@@ -6,7 +6,9 @@
     "bootstrap": "^4.1.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-modal": "^3.4.5",
     "react-responsive-carousel": "^3.1.41",
+    "react-responsive-modal": "^3.0.3",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4"
   },
