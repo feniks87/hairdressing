@@ -1,7 +1,11 @@
 .Footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     background-color: #020202;
     color: white;
-    margin-top: 100px;
+    margin-top: 125px;
     padding: 10px;
     font-size: small;
     border-top: 4px solid rgb(155, 24, 28);

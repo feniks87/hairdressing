@@ -1,5 +1,9 @@
 .Login {
     width: 100%;
+    padding: 50px;
+    background-color: #ece8df;
+    border: 1px solid #dad2be;
+    border-radius: 5px;
 }
 
 .Text {
