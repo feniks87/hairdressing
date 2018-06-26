@@ -20,6 +20,6 @@
     margin-top: 8px;
 }
 
-.Input:hover {
-
+.Input:focus {
+    outline: 1px solid #b01c21;
 }
