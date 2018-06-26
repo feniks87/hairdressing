@@ -25,11 +25,13 @@ class OurTeamPage extends Component {
 
     render() {
         const { open } = this.state;
+        const images = [
+            {src: {Pic1}}, {src: {Pic2}}, {src: {Pic3}}, {src: {Pic4}}
+        ];
         return (
             <div className="container">
                 <Heading>Our Team</Heading>
                 <div className="row">
-
                     <div className="col-sm-3">
                         <img className="Image-team img-thumbnail img-fluid" src={Pic1} alt="Haidresser 1" onClick={this.onOpenModal}/>
                     </div>

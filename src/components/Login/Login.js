@@ -3,6 +3,7 @@ import Input from '../../components/UI/Input/Input';
 import './Login.css';
 import Button from '../../components/UI/Button/Button';
 import Heading from '../UI/Heading/Heading';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
     state = {
@@ -18,7 +19,7 @@ class Login extends Component {
                     <Input  label="Email:"/>
                     <Input label="Password:"/>
                     <Button>Login</Button>
-                    <p className="Text">Don't have an account? Click here to register.</p>
+                    <p className="Text">Don't have an account? Click here to <span className="Text-link"><Link to="/registration">Register</Link></span>.</p>
                 </form>
             </div>
         )

@@ -4,9 +4,9 @@ import bkLogo from '../../assets/images/logo.jpg';
 import './Logo.css'
 
 const logo = (props) => (
-   <a className="navbar-brand"><Link to="/"></Link>
+   <Link to="/" className="navbar-brand">
        <img className="Logo rounded" src={bkLogo} alt="Logo" />
-   </a>
+   </Link>
 );
 
 export default logo;
