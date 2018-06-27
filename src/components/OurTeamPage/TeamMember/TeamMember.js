@@ -4,7 +4,7 @@ import './TeamMember.css';
 const teamMember = (props) => (
     <div className="row Stylist">
         <div className="col-md-3">
-            <img className="Stylist-image img-fluid"
+            <img className="Stylist-image img-fluid img-thumbnail"
                  src={props.src}
                  alt={props.alt}
             />
