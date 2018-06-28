@@ -6,6 +6,7 @@ const input = ( props ) =>
         <label className="Label">{props.label}</label>
         <input className="Input"
             value={props.value}
+               placeholder={props.placeholder}
             onChange={props.changed} />
     </div>;
 

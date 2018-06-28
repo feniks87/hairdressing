@@ -19,12 +19,12 @@ class Registration extends Component{
             <div className="container">
                 <Heading>Sign Up Form</Heading>
                 <form className="Registration">
-                    <Input  label="First name:"/>
-                    <Input  label="Last name:"/>
-                    <Input  label="Contact phone:"/>
-                    <Input  label="Email:"/>
-                    <Input label="Password:"/>
-                    <Input label="Confirm Password:"/>
+                    <Input  label="First name:" placeholder="Enter first name"/>
+                    <Input  label="Last name:" placeholder="Enter last name"/>
+                    <Input  label="Contact phone:" placeholder="Enter phone number"/>
+                    <Input  label="Email:" placeholder="Enter email"/>
+                    <Input label="Password:" placeholder="Enter password"/>
+                    <Input label="Confirm Password:" placeholder="Repeat password"/>
                     <Button>Register</Button></form>
             </div>
         )

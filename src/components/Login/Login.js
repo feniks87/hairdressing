@@ -16,8 +16,8 @@ class Login extends Component {
             <div className="container ">
                 <Heading>Login form</Heading>
                 <form className="Login">
-                    <Input  label="Email:"/>
-                    <Input label="Password:"/>
+                    <Input  label="Email:" placeholder="Enter email"/>
+                    <Input label="Password:" placeholder="Enter password"/>
                     <Button>Login</Button>
                     <p className="Text">Don't have an account? Click here to <span className="Text-link"><Link to="/registration">Register</Link></span>.</p>
                 </form>
