@@ -25,8 +25,9 @@ class HomePage extends Component {
                 </div>
                 <div className="container">
                     <div className="row">
+                        <div className="col-sm-7">
                             <h4 className="Paragraph-header">About The BK Hairdressing...</h4>
-                            <p className="Text-home text-justify"><img className="img-fluid Image-salon" src={Salon} alt="Salon"/>
+                            <p className="text-justify">
                                 Some example text. Some example text. Some example text. Some example text. Some example text.
                                 Some example text. Some example text. Some example text. Some example text. Some example text.
                                 Some example text. Some example text. Some example text. Some example text. Some example text.
@@ -35,18 +36,28 @@ class HomePage extends Component {
                                 Some example text. Some example text. Some example text. Some example text. Some example text.
                                 Some example text. Some example text. Some example text. Some example text. Some example text.
                                 Some example text. Some example text. Some example text. Some example text. Some example text.</p>
+                        </div>
+                        <div className="col-md-5">
+                            <img className="img-fluid Image-salon" src={Salon} alt="Salon"/>
+                        </div>
+
                     </div>
 
-                    <div className="row">
-                        <p className="Text-home text-justify"><img className="img-fluid Image-haircut" src={Haircut} alt="Haircut"/>
-                            Some example text. Some example text. Some example text. Some example text. Some example text.
-                            Some example text. Some example text. Some example text. Some example text. Some example text.
-                            Some example text. Some example text. Some example text. Some example text. Some example text.
-                            Some example text. Some example text. Some example text. Some example text. Some example text.
-                            Some example text. Some example text. Some example text. Some example text. Some example text.
-                            Some example text. Some example text. Some example text. Some example text. Some example text.
-                            Some example text. Some example text. Some example text. Some example text. Some example text.
-                            Some example text. Some example text. Some example text. Some example text. Some example text.</p>
+                    <div className="row Content-space">
+                        <div className="col-sm-5">
+                            <img className="img-fluid" src={Haircut} alt="Haircut"/>
+                        </div>
+                        <div className="col-sm-7">
+                            <p className="text-justify">
+                                Some example text. Some example text. Some example text. Some example text. Some example text.
+                                Some example text. Some example text. Some example text. Some example text. Some example text.
+                                Some example text. Some example text. Some example text. Some example text. Some example text.
+                                Some example text. Some example text. Some example text. Some example text. Some example text.
+                                Some example text. Some example text. Some example text. Some example text. Some example text.
+                                Some example text. Some example text. Some example text. Some example text. Some example text.
+                                Some example text. Some example text. Some example text. Some example text. Some example text.
+                                Some example text. Some example text. Some example text. Some example text. Some example text.</p>
+                        </div>
                     </div>
                 </div>
             </div>
