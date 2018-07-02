@@ -28,15 +28,18 @@ class HomePage extends Component {
                     <div className="row">
                         <div className="col-sm-7">
                             <h4 className="Paragraph-header">About The BK Hairdressing...</h4>
-                            <p className="text-justify">
-                                Some example text. Some example text. Some example text. Some example text. Some example text.
-                                Some example text. Some example text. Some example text. Some example text. Some example text.
-                                Some example text. Some example text. Some example text. Some example text. Some example text.
-                                Some example text. Some example text. Some example text. Some example text. Some example text.
-                                Some example text. Some example text. Some example text. Some example text. Some example text.
-                                Some example text. Some example text. Some example text. Some example text. Some example text.
-                                Some example text. Some example text. Some example text. Some example text. Some example text.
-                                Some example text. Some example text. Some example text. Some example text. Some example text.</p>
+                            <p className="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Nullam pulvinar risus non risus hendrerit venenatis.
+                                Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Nullam pulvinar risus non risus hendrerit venenatis.
+                                Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Nullam pulvinar risus non risus hendrerit venenatis.
+                                Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Nullam pulvinar risus non risus hendrerit venenatis.
+                                Pellentesque sit amet hendrerit risus, sed porttitor quam.</p>
                         </div>
                         <div className="col-md-5">
                             <img className="img-fluid Image-salon" src={Salon} alt="Salon"/>
@@ -49,15 +52,18 @@ class HomePage extends Component {
                             <img className="img-fluid" src={Haircut} alt="Haircut"/>
                         </div>
                         <div className="col-sm-7">
-                            <p className="text-justify">
-                                Some example text. Some example text. Some example text. Some example text. Some example text.
-                                Some example text. Some example text. Some example text. Some example text. Some example text.
-                                Some example text. Some example text. Some example text. Some example text. Some example text.
-                                Some example text. Some example text. Some example text. Some example text. Some example text.
-                                Some example text. Some example text. Some example text. Some example text. Some example text.
-                                Some example text. Some example text. Some example text. Some example text. Some example text.
-                                Some example text. Some example text. Some example text. Some example text. Some example text.
-                                Some example text. Some example text. Some example text. Some example text. Some example text.</p>
+                            <p className="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Nullam pulvinar risus non risus hendrerit venenatis.
+                                Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Nullam pulvinar risus non risus hendrerit venenatis.
+                                Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Nullam pulvinar risus non risus hendrerit venenatis.
+                                Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Nullam pulvinar risus non risus hendrerit venenatis.
+                                Pellentesque sit amet hendrerit risus, sed porttitor quam.</p>
                         </div>
                     </div>
                 </div>
