@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Aux from '../_Aux/_Aux';
-import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
+import NavMenu from '../../components/Navigation/NavMenu/NavMenu';
 import './Layout.css';
 import Footer from '../../components/Footer/Footer';
 
@@ -8,7 +8,7 @@ class Layout extends Component {
     render () {
         return (
             <Aux>
-                <Toolbar/>
+                <NavMenu/>
                 <main>
                     {this.props.children}
                 </main>

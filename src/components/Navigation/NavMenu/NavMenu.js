@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import './Toolbar.css';
+import './NavMenu.css';
 import Logo from '../../Logo/Logo';
-import MainMenu from '../MainMenu/MainMenu';
-import AdditionalMenu from '../AdditionalMenu/AdditionalMenu'
 import {
     Collapse,
     Navbar,
@@ -11,16 +9,14 @@ import {
     Nav,
     NavItem,
     NavLink} from 'reactstrap';
-import HomePage from "../../HomePage/HomePage";
 
-class Toolbar extends Component {
+class NavMenu extends Component {
     constructor(props) {
         super(props);
-        
+
         this.toggle = this.toggle.bind(this);
         this.state = {
-            isOpen: false,
-
+            isOpen: false
         };
     }
     toggle() {
@@ -32,7 +28,7 @@ class Toolbar extends Component {
     render() {
         return (
             <div>
-                <Navbar className="toolbar" expand="md" fixed="top" dark>
+                <Navbar className="Toolbar" expand="md" fixed="top" dark>
                     <NavbarBrand href="/"><Logo/></NavbarBrand>
                     <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={this.state.isOpen} navbar>
@@ -68,5 +64,4 @@ class Toolbar extends Component {
     }
 }
 
-
-export default Toolbar;
+export default NavMenu;

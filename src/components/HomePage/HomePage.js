@@ -6,7 +6,7 @@ import Londa from '../../assets/images/londa.jpg'
 import Kerastase from '../../assets/images/kerastase.jpg'
 import Keune from '../../assets/images/keune.jpg'
 import './HomePage.css';
-import Toolbar from "../Navigation/Toolbar/Toolbar";
+import NavMenu from "../Navigation/NavMenu/NavMenu";
 
 class HomePage extends Component {
     render() {

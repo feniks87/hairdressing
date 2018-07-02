@@ -1,24 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Prata');
 
 .Toolbar {
-    height: 70px;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: rgb(0, 0, 0);
-    border-bottom: 3px solid white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-    overflow: hidden;
-    z-index: 4;
-    font-family: 'Prata', serif;
-}
-
-.toolbar {
     background-color: rgb(0, 0, 0);
     border-bottom: 3px solid white;
     font-family: 'Prata', serif;
@@ -29,10 +11,10 @@
     color: #eeeeee !important;
     text-decoration: none;
     height: 100%;
+    padding: 20px 20px;
     border-bottom: 4px solid transparent;
     box-sizing: border-box;
-    margin-right: 15px;
-    margin-left: 15px;
+    margin-right: 20px;
 }
 
 .NavItem a:hover,
