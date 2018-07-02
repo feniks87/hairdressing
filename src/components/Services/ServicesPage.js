@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './ServicesPage.css'
+import './ServicesPage.css';
 import Heading from '../UI/Heading/Heading';
 import TableItem from '../../components/UI/TableItem/TableItem';
 
