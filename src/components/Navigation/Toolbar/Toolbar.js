@@ -15,6 +15,7 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem } from 'reactstrap';
+import HomePage from "../../HomePage/HomePage";
 
 class Toolbar extends Component {
     constructor(props) {
@@ -22,12 +23,14 @@ class Toolbar extends Component {
 
         this.toggle = this.toggle.bind(this);
         this.state = {
-            isOpen: false
+            isOpen: false,
+
         };
     }
     toggle() {
         this.setState({
-            isOpen: !this.state.isOpen
+            isOpen: !this.state.isOpen,
+
         });
     }
     render() {
