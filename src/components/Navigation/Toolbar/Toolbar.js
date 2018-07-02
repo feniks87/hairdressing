@@ -10,17 +10,13 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem } from 'reactstrap';
+    NavLink} from 'reactstrap';
 import HomePage from "../../HomePage/HomePage";
 
 class Toolbar extends Component {
     constructor(props) {
         super(props);
-
+        
         this.toggle = this.toggle.bind(this);
         this.state = {
             isOpen: false,
@@ -65,7 +61,6 @@ class Toolbar extends Component {
                                 <NavLink href="/registration">Sign Up</NavLink>
                             </NavItem>
                         </Nav>
-
                     </Collapse>
                 </Navbar>
             </div>

@@ -31,7 +31,8 @@
     height: 100%;
     border-bottom: 4px solid transparent;
     box-sizing: border-box;
-    margin-right: 20px;
+    margin-right: 15px;
+    margin-left: 15px;
 }
 
 .NavItem a:hover,
@@ -40,7 +41,5 @@
     background-color: #E6E1D4;
     border-bottom: 4px solid rgb(155, 24, 28);
     color: #000000 !important;
-    text-decoration: none;
-
 }
 
