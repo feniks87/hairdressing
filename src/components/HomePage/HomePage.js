@@ -6,12 +6,13 @@ import Londa from '../../assets/images/londa.jpg'
 import Kerastase from '../../assets/images/kerastase.jpg'
 import Keune from '../../assets/images/keune.jpg'
 import './HomePage.css';
+import Toolbar from "../Navigation/Toolbar/Toolbar";
 
 class HomePage extends Component {
     render() {
         return (
             <div>
-                <img className="Image img-fluid" src={ImageHair} alt="Hair"/>
+                <img className="ImageHair img-fluid" src={ImageHair} alt="Hair"/>
                 <div className="d-flex flex-wrap justify-content-center bg-white">
                     <div className="p-2">
                         <img className="img-fluid Image-brand" src={Londa} alt="Londa"/>
