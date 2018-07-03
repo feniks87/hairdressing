@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ServiceItem from '../../components/Services/ServiceItem/ServiceItem';
-import { Form, FormGroup, Label } from 'reactstrap';
+import ListItem from '../UI/ListItem/ListItem';
+import { ListGroup } from 'reactstrap';
 import Heading from '../UI/Heading/Heading';
 import Button from '../../components/UI/Button/Button';
 import './BookingPage.css'
@@ -11,60 +11,60 @@ class BookingPage extends Component {
         const list = [
             {
                 serviceName: 'Women Haircut',
-                id: "1"
+                time: "(30min)"
             },
             {
                 serviceName: 'Men Haircut',
-                id: "2"
+                time: "(30min)"
             },
             {
                 serviceName: 'Kids Haircut',
-                id: "3"
+                time: "(30min)"
             },
             {
                 serviceName: 'Blow Dry',
-                id: "4"
+                time: "(20min)"
             },
             {
                 serviceName: 'Root Touch Up',
-                id: "5"
+                time: "(60min)"
             },
             {
                 serviceName: 'Single Process Color',
-                id: "6"
+                time: "(60min)"
             },
             {
                 serviceName: 'Partial Highlighting',
-                id: "7"
+                time: "(60min)"
             },
             {
                 serviceName: 'Full Highlighting',
-                id: "8"
+                time: "(90min)"
             },
             {
                 serviceName: 'Ombre/Balayage',
-                id: "9"
+                time: "(90min)"
             },
             {
                 serviceName: 'Bleach and Tone',
-                id: "10"
+                time: "(90min)"
             },
             {
                 serviceName: 'Toner',
-                id: "11"
+                time: "(30min)"
             }
         ];
         return (
             <div className="container">
                 <Heading>Book Online</Heading>
-                <Form className="Form">
-                    <FormGroup>
-                        <Label for="Checkbox">Select services</Label>
+                <div className="Form">
+                    <ListGroup>
                         {list.map(item =>
-                            <ServiceItem id={item.id} serviceName={item.serviceName} />)}
-                    </FormGroup>
+                            <ListItem>{item.serviceName} {item.time}</ListItem>
+                        )}
+                    </ListGroup>
                     <Button>Submit</Button>
-                </Form>
+                </div>
             </div>
         );
     }
