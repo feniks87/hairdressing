@@ -1,7 +1,10 @@
 .Registration {
-    width: 100%;
+    width: 70%;
     padding: 50px;
     padding-bottom: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     background-color: #ece8df;
     border: 1px solid #dad2be;
     border-radius: 5px;

@@ -63,7 +63,7 @@ class BookingPage extends Component {
                             <ListItem>{item.serviceName} {item.time}</ListItem>
                         )}
                     </ListGroup>
-                    <Button>Submit</Button>
+                    <Button>Next</Button>
                 </div>
             </div>
         );

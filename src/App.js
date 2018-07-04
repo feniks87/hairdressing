@@ -5,10 +5,11 @@ import Registration from "./components/Registration/Registration";
 import Login from "./components/Login/Login";
 import HomePage from "./components/HomePage/HomePage";
 import Layout from "./hoc/Layout/Layout";
-import ServicesPage from "./components/Services/ServicesPage";
+import ServicesPage from "./components/ServicesPage/ServicesPage";
 import BookingPage from "./components/BookingPage/BookingPage";
 import OurTeamPage from "./components/OurTeamPage/OurTeamPage";
 import ContactPage from "./components/ContactPage/ContactPage";
+
 
 class App extends Component {
   render() {
