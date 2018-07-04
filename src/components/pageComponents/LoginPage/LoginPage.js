@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Input from '../../components/UI/Input/Input';
-import './Login.css';
-import Button from '../../components/UI/Button/Button';
-import Heading from '../UI/Heading/Heading';
+import Input from '../../UI/Input/Input';
+import './LoginPage.css';
+import Button from '../../../components/UI/Button/Button';
+import Heading from '../../UI/Heading/Heading';
 import { Link } from 'react-router-dom';
 
-class Login extends Component {
+class LoginPage extends Component {
     state = {
         email: '',
         password: ''
@@ -26,4 +26,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default LoginPage;

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import ListItem from '../UI/ListItem/ListItem';
+import ListItem from '../../UI/ListItem/ListItem';
 import { ListGroup } from 'reactstrap';
-import Heading from '../UI/Heading/Heading';
-import Button from '../../components/UI/Button/Button';
+import Heading from '../../UI/Heading/Heading';
+import Button from '../../UI/Button/Button';
 import './BookingPage.css'
 
 class BookingPage extends Component {

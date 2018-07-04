@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import Registration from "./components/Registration/Registration";
-import Login from "./components/Login/Login";
-import HomePage from "./components/HomePage/HomePage";
-import Layout from "./hoc/Layout/Layout";
+import SignUpPage from "./components/SignUpPage/SignUpPage";
+import LoginPage from "./components/pageComponents/LoginPage/LoginPage";
+import HomePage from "./components/pageComponents/HomePage/HomePage";
+import Layout from "./components/Layout/Layout";
 import ServicesPage from "./components/ServicesPage/ServicesPage";
-import BookingPage from "./components/BookingPage/BookingPage";
-import OurTeamPage from "./components/OurTeamPage/OurTeamPage";
-import ContactPage from "./components/ContactPage/ContactPage";
+import BookingPage from "./components/pageComponents/BookingPage/BookingPage";
+import OurTeamPage from "./components/pageComponents/OurTeamPage/OurTeamPage";
+import ContactPage from "./components/pageComponents/ContactPage/ContactPage";
 
 
 class App extends Component {
@@ -22,8 +22,8 @@ class App extends Component {
                     <Route path="/book-online" component={BookingPage} />
                     <Route path="/our-team" component={OurTeamPage} />
                     <Route path="/contact" component={ContactPage} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/registration" component={Registration} />
+                    <Route path="/login" component={LoginPage} />
+                    <Route path="/registration" component={SignUpPage} />
                 </Switch>
             </Layout>
         </div>

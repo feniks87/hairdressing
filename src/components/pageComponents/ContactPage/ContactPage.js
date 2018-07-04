@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import Heading from '../UI/Heading/Heading';
-import BkLocation from '../../assets/images/location1.jpg';
-import LittleBkLocation from '../../assets/images/location2.jpg';
+import Heading from '../../UI/Heading/Heading';
+import BkLocation from '../../../assets/images/location1.jpg';
+import LittleBkLocation from '../../../assets/images/location2.jpg';
 import './ContactPage.css'
-import ContactInfo from '../../components/ContactInfo/ContactInfo';
-import Hours from '../../components/Hours/Hours';
-
+import ContactInfo from '../../../components/ContactInfo/ContactInfo';
+import Hours from '../../../components/Hours/Hours';
 
 class ContactPage extends Component {
     render() {

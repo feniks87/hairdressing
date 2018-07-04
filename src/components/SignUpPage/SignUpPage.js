@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Input from '../../components/UI/Input/Input';
-import './Registration.css';
+import './SignUpPage.css';
 import Button from '../../components/UI/Button/Button';
 import Heading from '../UI/Heading/Heading';
 
-class Registration extends Component{
+class SignUpPage extends Component{
     state = {
         firstName: '',
         lastName: '',
@@ -32,4 +32,4 @@ class Registration extends Component{
 
 }
 
-export default Registration;
+export default SignUpPage;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Aux from '../_Aux/_Aux';
-import NavMenu from '../../components/Navigation/NavMenu/NavMenu';
+import Aux from '../../hoc/_Aux/_Aux';
+import NavMenu from '../Navigation/NavMenu/NavMenu';
 import './Layout.css';
 import Footer from '../../components/Footer/Footer';
 

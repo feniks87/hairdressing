@@ -29,7 +29,7 @@ class NavMenu extends Component {
         return (
             <div>
                 <Navbar className="Toolbar" expand="md" fixed="top" dark>
-                    <NavbarBrand href="/"><Logo/></NavbarBrand>
+                    <NavbarBrand href="/" className="LogoPadding"><Logo/></NavbarBrand>
                     <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto NavItem" navbar>
