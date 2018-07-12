@@ -3,56 +3,34 @@ import './ServicesPage.css';
 import Heading from '../UI/Heading/Heading';
 import TableItem from '../../components/UI/TableItem/TableItem';
 
+const PATH_SERVICES = 'http://localhost:3000/api/services';
 
 class ServicesPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            result: null,
+        };
+
+        this.setServices = this.setServices.bind(this);
+    }
+
+    setServices(result) {
+        this.setState({ result });
+    }
+
+    componentDidMount() {
+        fetch(`${PATH_SERVICES}`)
+            .then(response => response.json())
+            .then(result => this.setServices(result))
+            .catch(error => console.log(error));
+    }
+
     render() {
-        const PATH_BASE = 'http://localhost:3000/api/services';
-        const list = [
-            {
-                serviceName: 'Women Haircut',
-                price: '35 $',
-            },
-            {
-                serviceName: 'Men Haircut',
-                price: '25 $',
-            },
-            {
-                serviceName: 'Kids Haircut',
-                price: '17 $',
-            },
-            {
-                serviceName: 'Blow Dry',
-                price: '10 $',
-            },
-            {
-                serviceName: 'Root Touch Up',
-                price: '60 $',
-            },
-            {
-                serviceName: 'Single Process Color',
-                price: '100 $',
-            },
-            {
-                serviceName: 'Partial Highlighting',
-                price: '125 $',
-            },
-            {
-                serviceName: 'Full Highlighting',
-                price: '150 $',
-            },
-            {
-                serviceName: 'Ombre/Balayage',
-                price: '150 $',
-            },
-            {
-                serviceName: 'Bleach and Tone ',
-                price: '125 $',
-            },
-            {
-                serviceName: 'Toner ',
-                price: '20 $',
-            },
-        ];
+        const result = this.state.result;
+
+        console.log(result);
+        if (!result) { return null; }
 
         return (
             <div className="container  table-responsive">
@@ -60,8 +38,8 @@ class ServicesPage extends Component {
                 <div className="Services">
                     <table className="table table-striped">
                         <tbody>
-                        {list.map(item =>
-                            <TableItem serviceName={item.serviceName} price={item.price}/>
+                        {result.map(service =>
+                            <TableItem serviceName={service.name} price={service.price}/>
                         )}
                         </tbody>
                     </table>

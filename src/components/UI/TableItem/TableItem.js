@@ -4,7 +4,7 @@ import './TableItem.css';
 const tableItem = (props) => (
         <tr className="TableItem">
             <td>{props.serviceName}</td>
-            <td className="text-right">{props.price}</td>
+            <td className="text-right">{props.price} $</td>
         </tr>
 
 );
