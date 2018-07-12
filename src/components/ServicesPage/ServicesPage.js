@@ -6,6 +6,7 @@ import TableItem from '../../components/UI/TableItem/TableItem';
 
 class ServicesPage extends Component {
     render() {
+        const PATH_BASE = 'http://localhost:3000/api/services';
         const list = [
             {
                 serviceName: 'Women Haircut',

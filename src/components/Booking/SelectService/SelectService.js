@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import ListItem from '../../UI/ListItem/ListItem';
 import { ListGroup } from 'reactstrap';
 import Button from '../../UI/Button/Button';
-import './ChoosingService.css';
+import './SelectService.css';
 
-class ChoosingService extends Component {
+class SelectService extends Component {
 
     render() {
         const list = [
@@ -66,7 +66,7 @@ class ChoosingService extends Component {
     }
 }
 
-export  default ChoosingService;
+export  default SelectService;
 
 
 
