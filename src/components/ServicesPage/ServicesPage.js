@@ -47,7 +47,7 @@ class ServicesPage extends Component {
             </div>
         )
     }
-};
+}
 
 export  default ServicesPage;
 

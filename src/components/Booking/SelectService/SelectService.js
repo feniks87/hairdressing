@@ -4,60 +4,39 @@ import { ListGroup } from 'reactstrap';
 import Button from '../../UI/Button/Button';
 import './SelectService.css';
 
-class SelectService extends Component {
+const PATH_SERVICES = 'http://localhost:3000/api/services';
 
+class SelectService extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            result: null,
+        };
+
+        this.setServices = this.setServices.bind(this);
+    }
+
+    setServices(result) {
+        this.setState({ result });
+    }
+
+    componentDidMount() {
+        fetch(`${PATH_SERVICES}`)
+            .then(response => response.json())
+            .then(result => this.setServices(result))
+            .catch(error => console.log(error));
+    }
     render() {
-        const list = [
-            {
-                serviceName: 'Women Haircut',
-                time: "(30min)"
-            },
-            {
-                serviceName: 'Men Haircut',
-                time: "(30min)"
-            },
-            {
-                serviceName: 'Kids Haircut',
-                time: "(30min)"
-            },
-            {
-                serviceName: 'Blow Dry',
-                time: "(20min)"
-            },
-            {
-                serviceName: 'Root Touch Up',
-                time: "(60min)"
-            },
-            {
-                serviceName: 'Single Process Color',
-                time: "(60min)"
-            },
-            {
-                serviceName: 'Partial Highlighting',
-                time: "(60min)"
-            },
-            {
-                serviceName: 'Full Highlighting',
-                time: "(90min)"
-            },
-            {
-                serviceName: 'Ombre/Balayage',
-                time: "(90min)"
-            },
-            {
-                serviceName: 'Bleach and Tone',
-                time: "(90min)"
-            },
-            {
-                serviceName: 'Toner',
-                time: "(30min)"
-            }
-        ];
+        const result = this.state.result;
+
+        console.log(result);
+        if (!result) { return null; }
+
         return (
                 <div className="Form">
                     <ListGroup>
-                        {list.map(item =>
-                            <ListItem>{item.serviceName} {item.time}</ListItem>
+                        {result.map(service =>
+                            <ListItem>{service.name} ({service.time} min)</ListItem>
                         )}
                     </ListGroup>
                     <Button>Next</Button>
