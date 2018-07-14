@@ -6,7 +6,32 @@ import './ContactPage.css'
 import ContactInfo from '../../../components/ContactInfo/ContactInfo';
 import Hours from '../../../components/Hours/Hours';
 
+const PATH_CONTACT = 'http://localhost:3000/api/contacts';
+
 class ContactPage extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            result: null,
+        };
+
+        this.setContacts = this.setContacts.bind(this);
+    }
+
+    setContacts(result) {
+        this.setState({ result });
+    }
+
+    componentDidMount() {
+        fetch(`${PATH_CONTACT}`)
+            .then(response => response.json())
+            .then(result => this.setContacts(result))
+            .catch(error => console.log(error));
+    }
+
+
+
     render() {
         const bkHours = [
             {

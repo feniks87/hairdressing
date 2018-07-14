@@ -5,7 +5,7 @@ const teamMember = (props) => (
     <div className="row Stylist">
         <div className="col-md-3">
             <img className="Stylist-image img-fluid img-thumbnail"
-                 src={props.src}
+                 src={`data:image/jpeg;base64,${props.src}`}
                  alt={props.alt}
             />
         </div>
