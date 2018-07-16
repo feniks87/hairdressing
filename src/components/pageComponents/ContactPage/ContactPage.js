@@ -33,67 +33,6 @@ class ContactPage extends Component {
 
 
     render() {
-        const bkHours = [
-            {
-                weekDay: 'Monday',
-                hours: '9am ~ 6pm',
-            },
-            {
-                weekDay: 'Tuesday',
-                hours: '9am ~ 6pm',
-            },
-            {
-                weekDay: 'Wednesday',
-                hours: '9am ~ 6pm',
-            },
-            {
-                weekDay: 'Thursday',
-                hours: '9am ~ 6pm',
-            },
-            {
-                weekDay: 'Friday',
-                hours: '9am ~ 7pm',
-            },
-            {
-                weekDay: 'Saturday',
-                hours: '9am ~ 6pm',
-            },
-            {
-                weekDay: 'Sunday',
-                hours: '12am ~ 5pm',
-            },
-        ];
-
-        const littleBkHours = [
-            {
-                weekDay: 'Monday',
-                hours: 'Closed',
-            },
-            {
-                weekDay: 'Tuesday',
-                hours: '9:30am ~ 5:30pm',
-            },
-            {
-                weekDay: 'Wednesday',
-                hours: '9:30am ~ 5:30pm',
-            },
-            {
-                weekDay: 'Thursday',
-                hours: '9:30am ~ 5:30pm',
-            },
-            {
-                weekDay: 'Friday',
-                hours: '9:30am ~ 5:30pm',
-            },
-            {
-                weekDay: 'Saturday',
-                hours: '9:30am ~ 5:30pm',
-            },
-            {
-                weekDay: 'Sunday',
-                hours: 'Closed'
-            },
-        ];
 
         return (
             <div className="container">
@@ -119,15 +58,11 @@ class ContactPage extends Component {
                 <div className="row">
                     <div className="col-sm-6">
                         <h5 className="Heading-hours text-center">Hours</h5>
-                        {bkHours.map(item =>
-                        <Hours weekDay={item.weekDay}  hours={item.hours} />
-                    )}
+                        <Hours/>
                     </div>
                     <div className="col-sm-6">
                         <h5 className="Heading-hours text-center">Hours</h5>
-                        {littleBkHours.map(item =>
-                            <Hours weekDay={item.weekDay}  hours={item.hours} />
-                        )}
+                        <Hours/>
                     </div>
                 </div>
             </div>
