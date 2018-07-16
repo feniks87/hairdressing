@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import Heading from '../../UI/Heading/Heading';
-import BkLocation from '../../../assets/images/location1.jpg';
-import LittleBkLocation from '../../../assets/images/location2.jpg';
 import './ContactPage.css'
 import ContactInfo from '../../../components/ContactInfo/ContactInfo';
 import Hours from '../../../components/Hours/Hours';
 
 const PATH_CONTACT = 'http://localhost:3000/api/contacts';
 
-class ContactPage extends Component {
+    class ContactPage extends Component {
 
     constructor(props) {
         super(props);
@@ -29,39 +27,26 @@ class ContactPage extends Component {
             .then(result => this.setContacts(result))
             .catch(error => console.log(error));
     }
-    
+
     render() {
+
+        const result = this.state.result;
+        if (!result) { return null; }
 
         return (
             <div className="container">
                 <Heading>Contact Us</Heading>
                 <div className="row">
-                    <ContactInfo
-                        name="The BK Haidressing"
-                        address="7/329 Albany Hwy, Rosedale, Auckland 0632"
-                        phone="(09) 950-9994" />
-                    <ContactInfo
-                        name="The Little BK Haidressing"
-                        address="1 Raleigh Rd, Northcote,Auckland 0627"
-                        phone="(09) 480-1390"/>
-                </div>
-                <div className="row">
+                    {result.map(contactInfo =>
                     <div className="col-sm-6">
-                        <img className="Image-map img-fluid img-thumbnail" src={BkLocation} alt="BK Location"/>
-                    </div>
-                    <div className="col-sm-6">
-                        <img className="Image-map img-fluid img-thumbnail" src={LittleBkLocation} alt="Little BK Location"/>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-sm-6">
+                        <ContactInfo name={contactInfo.name} address={contactInfo.address} phone={contactInfo.phone}/>
+                        <img className="Image-map img-fluid img-thumbnail"
+                             src={`data:image/jpeg;base64,${contactInfo.mapImage}`}
+                             alt={contactInfo.alt}/>
                         <h5 className="Heading-hours text-center">Hours</h5>
-                        <Hours/>
+                        <Hours locationId={contactInfo.id} />
                     </div>
-                    <div className="col-sm-6">
-                        <h5 className="Heading-hours text-center">Hours</h5>
-                        <Hours/>
-                    </div>
+                    )}
                 </div>
             </div>
         )
