@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import HourItem from '../Hours/HourItem/HourItem'
 
 const PATH_HOURS = 'http://localhost:3000/api/hours';
 
@@ -22,16 +23,24 @@ class Hours extends Component {
             .then(result => this.setHours(result))
             .catch(error => console.log(error));
     }
-}
-    render(){
 
-    return (
-        <p className="text-center"> {props.weekDay} : {props.hours}</p>
-    );
+    render(){
+        const result = this.state.result;
+
+        console.log(result);
+        if (!result) { return null; }
+
+        return (
+            <div>
+            {result.map(hourItem =>
+                <HourItem day={hourItem.day} startTime={hourItem.startTime}finishTime={hourItem.finishTime}/>
+            )}
+            </div>
+        );
 
     }
 }
 
 
 
-export default hours;
+export default Hours;

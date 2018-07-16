@@ -29,9 +29,7 @@ class ContactPage extends Component {
             .then(result => this.setContacts(result))
             .catch(error => console.log(error));
     }
-
-
-
+    
     render() {
 
         return (
