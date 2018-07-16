@@ -37,7 +37,7 @@ class OurTeamPage extends Component {
            <div className="container">
                <Heading>Our Team</Heading>
                {result.map(stylist =>
-                   <TeamMember src={stylist.image} alt="Stylist" name={stylist.name} description={stylist.description}/>
+                   <TeamMember src={stylist.image} alt={stylist.alt} name={stylist.name} description={stylist.description}/>
                )}
 
            </div>
