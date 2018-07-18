@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import SignUpPage from "./components/SignUpPage/SignUpPage";
+import SignUpPage from "./components/pageComponents/SignUpPage/SignUpPage";
 import LoginPage from "./components/pageComponents/LoginPage/LoginPage";
 import HomePage from "./components/pageComponents/HomePage/HomePage";
 import Layout from "./components/Layout/Layout";
-import ServicesPage from "./components/ServicesPage/ServicesPage";
+import ServicesPage from "./components/pageComponents/ServicesPage/ServicesPage";
 import BookingPage from "./components/pageComponents/BookingPage/BookingPage";
 import OurTeamPage from "./components/pageComponents/OurTeamPage/OurTeamPage";
 import ContactPage from "./components/pageComponents/ContactPage/ContactPage";
