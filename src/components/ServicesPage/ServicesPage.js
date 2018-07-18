@@ -3,7 +3,7 @@ import './ServicesPage.css';
 import Heading from '../UI/Heading/Heading';
 import TableItem from '../../components/UI/TableItem/TableItem';
 
-const PATH_SERVICES = 'http://localhost:3000/api/services';
+const PATH_SERVICES = process.env.API_PATH || 'http://localhost:3000/api';
 
 class ServicesPage extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class ServicesPage extends Component {
     }
 
     componentDidMount() {
-        fetch(`${PATH_SERVICES}`)
+        fetch(`${PATH_SERVICES}/services`)
             .then(response => response.json())
             .then(result => this.setServices(result))
             .catch(error => console.log(error));

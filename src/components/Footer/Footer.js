@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './Footer.css';
 import ContactInfo from '../../components/ContactInfo/ContactInfo';
 
-const PATH_CONTACT = 'http://localhost:3000/api/contacts';
+const PATH_CONTACT = process.env.API_PATH || 'http://localhost:3000/api';
 
 class Footer extends Component {
 
@@ -20,7 +20,7 @@ class Footer extends Component {
     }
 
     componentDidMount() {
-        fetch(`${PATH_CONTACT}`)
+        fetch(`${PATH_CONTACT}/contacts`)
             .then(response => response.json())
             .then(result => this.setContacts(result))
             .catch(error => console.log(error));

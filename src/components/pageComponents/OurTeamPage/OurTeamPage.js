@@ -3,7 +3,7 @@ import Heading from '../../UI/Heading/Heading'
 import './OurTeamPage.css';
 import TeamMember from '../../pageComponents/OurTeamPage/TeamMember/TeamMember';
 
-const PATH_STYLISTS = 'http://localhost:3000/api/stylists';
+const PATH_STYLISTS = process.env.API_PATH || 'http://localhost:3000/api';
 
 class OurTeamPage extends Component {
 
@@ -21,7 +21,7 @@ class OurTeamPage extends Component {
     }
 
     componentDidMount() {
-        fetch(`${PATH_STYLISTS}`)
+        fetch(`${PATH_STYLISTS}/stylists`)
             .then(response => response.json())
             .then(result => this.setStylists(result))
             .catch(error => console.log(error));

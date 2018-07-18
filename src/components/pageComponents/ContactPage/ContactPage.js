@@ -4,7 +4,7 @@ import './ContactPage.css'
 import ContactInfo from '../../../components/ContactInfo/ContactInfo';
 import Hours from '../../../components/Hours/Hours';
 
-const PATH_CONTACT = 'http://localhost:3000/api/contacts';
+const PATH_CONTACT = process.env.API_PATH || 'http://localhost:3000/api';
 
     class ContactPage extends Component {
 
@@ -22,7 +22,7 @@ const PATH_CONTACT = 'http://localhost:3000/api/contacts';
     }
 
     componentDidMount() {
-        fetch(`${PATH_CONTACT}`)
+        fetch(`${PATH_CONTACT}/contacts`)
             .then(response => response.json())
             .then(result => this.setContacts(result))
             .catch(error => console.log(error));

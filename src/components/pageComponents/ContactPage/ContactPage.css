@@ -6,6 +6,12 @@
     margin-bottom: 20px;
 }
 
+.Image-map:hover {
+    -ms-transform: scale(1.6); /* IE 9 */
+    -webkit-transform: scale(1.6); /* Safari 3-8 */
+    transform: scale(1.6);
+}
+
 .Heading-hours {
     margin-top: 110px;
 
