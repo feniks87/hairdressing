@@ -20,6 +20,7 @@ class ServicesPage extends Component {
     }
 
     componentDidMount() {
+        console.log(PATH_SERVICES);
         fetch(`${PATH_SERVICES}/services`)
             .then(response => response.json())
             .then(result => this.setServices(result))
