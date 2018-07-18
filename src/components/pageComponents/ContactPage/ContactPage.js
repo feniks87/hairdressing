@@ -36,18 +36,22 @@ const PATH_CONTACT = 'http://localhost:3000/api/contacts';
         return (
             <div className="container">
                 <Heading>Contact Us</Heading>
-                <div className="row">
                     {result.map(contactInfo =>
-                    <div className="col-sm-6">
-                        <ContactInfo name={contactInfo.name} address={contactInfo.address} phone={contactInfo.phone}/>
-                        <img className="Image-map img-fluid img-thumbnail"
-                             src={`data:image/jpeg;base64,${contactInfo.mapImage}`}
-                             alt={contactInfo.alt}/>
-                        <h5 className="Heading-hours text-center">Hours</h5>
-                        <Hours locationId={contactInfo.id} />
-                    </div>
+                        <div className="row">
+                            <div className="col-sm-6">
+                                <ContactInfo name={contactInfo.name} address={contactInfo.address} phone={contactInfo.phone}/>
+                                <img className="Image-map img-fluid img-thumbnail"
+                                     src={`data:image/jpeg;base64,${contactInfo.mapImage}`}
+                                     alt={contactInfo.alt}/>
+
+                            </div>
+                            <div className="col-sm-6">
+                                <h5 className="Heading-hours text-center">Hours</h5>
+                                <Hours locationId={contactInfo.id} />
+                            </div>
+                        </div>
                     )}
-                </div>
+
             </div>
         )
     }
