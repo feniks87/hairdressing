@@ -3,7 +3,7 @@ import Heading from '../../UI/Heading/Heading'
 import './OurTeamPage.css';
 import TeamMember from '../../pageComponents/OurTeamPage/TeamMember/TeamMember';
 
-const PATH_STYLISTS = process.env.REACT_APP_API_PATH || 'http://localhost:3000/api';
+const PATH_STYLISTS = process.env.REACT_APP_API_PATH;
 
 class OurTeamPage extends Component {
 

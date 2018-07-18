@@ -4,7 +4,7 @@ import './ContactPage.css'
 import ContactInfo from '../../../components/ContactInfo/ContactInfo';
 import Hours from '../../../components/Hours/Hours';
 
-const PATH_CONTACT = process.env.REACT_APP_API_PATH || 'http://localhost:3000/api';
+const PATH_CONTACT = process.env.REACT_APP_API_PATH;
 
     class ContactPage extends Component {
 

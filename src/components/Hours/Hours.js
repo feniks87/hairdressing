@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import HourItem from '../Hours/HourItem/HourItem'
 
-const PATH_HOURS = process.env.REACT_APP_API_PATH || 'http://localhost:3000/api';
+const PATH_HOURS = process.env.REACT_APP_API_PATH;
 
 class Hours extends Component {
     constructor(props) {

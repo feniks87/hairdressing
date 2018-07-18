@@ -4,7 +4,7 @@ import { ListGroup } from 'reactstrap';
 import Button from '../../UI/Button/Button';
 import './SelectService.css';
 
-const PATH_SERVICES = process.env.REACT_APP_API_PATH || 'http://localhost:3000/api';
+const PATH_SERVICES = process.env.REACT_APP_API_PATH;
 
 class SelectService extends Component {
     constructor(props) {
