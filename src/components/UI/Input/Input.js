@@ -4,10 +4,10 @@ import './Input.css';
 const input = ( props ) =>
     <div className="form-group">
         <label className="Label">{props.label}</label>
-        <input className="Input"
+        <input type="text" className="Input"
             value={props.value}
                placeholder={props.placeholder}
-            onChange={props.changed} />
+            onChange={props.onChange} />
     </div>;
 
 export default input;

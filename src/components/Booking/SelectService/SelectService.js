@@ -4,7 +4,7 @@ import { ListGroup } from 'reactstrap';
 import Button from '../../UI/Button/Button';
 import './SelectService.css';
 
-const PATH_SERVICES = process.env.REACT_APP_API_PATH;
+const BASE_URL = process.env.REACT_APP_API_PATH;
 
 class SelectService extends Component {
     constructor(props) {
@@ -21,7 +21,7 @@ class SelectService extends Component {
     }
 
     componentDidMount() {
-        fetch(`${PATH_SERVICES}/services`)
+        fetch(`${BASE_URL}/services`)
             .then(response => response.json())
             .then(result => this.setServices(result))
             .catch(error => console.log(error));

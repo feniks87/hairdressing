@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import HourItem from '../Hours/HourItem/HourItem'
 
-const PATH_HOURS = process.env.REACT_APP_API_PATH;
+const BASE_URL = process.env.REACT_APP_API_PATH;
 
 class Hours extends Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class Hours extends Component {
     }
 
     componentDidMount() {
-        fetch(`${PATH_HOURS}/contacts/${this.state.locationId}/getHours`)
+        fetch(`${BASE_URL}/contacts/${this.state.locationId}/getHours`)
             .then(response => response.json())
             .then(result => this.setHours(result))
             .catch(error => console.log(error));

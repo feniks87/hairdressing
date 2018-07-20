@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './Footer.css';
 import ContactInfo from '../../components/ContactInfo/ContactInfo';
 
-const PATH_CONTACT = process.env.REACT_APP_API_PATH;
+const BASE_URL = process.env.REACT_APP_API_PATH;
 
 class Footer extends Component {
 
@@ -20,7 +20,7 @@ class Footer extends Component {
     }
 
     componentDidMount() {
-        fetch(`${PATH_CONTACT}/contacts`)
+        fetch(`${BASE_URL}/contacts`)
             .then(response => response.json())
             .then(result => this.setContacts(result))
             .catch(error => console.log(error));
@@ -37,7 +37,7 @@ class Footer extends Component {
                 <div className="container">
                     <div className="row">
                         {result.map(contactInfo =>
-                            <div className="col-sm-6">
+                            <div className="col-sm-12">
                                 <ContactInfo name={contactInfo.name} address={contactInfo.address} phone={contactInfo.phone}/>
                             </div>
                         )}
