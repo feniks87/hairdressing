@@ -10,82 +10,83 @@ class SignUpPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            phone: '',
-            email: '',
-            password: '',
-            confirmPassword: ''
+            user: {
+                name: '',
+                phone: '',
+                email: '',
+                password: '',
+                confirmPassword: ''
+            },
+            submitted: false,
         };
 
-        this.handleNameChange = this.handleNameChange.bind(this);
-        this.handlePhoneChange = this.handlePhoneChange.bind(this);
-        this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handlePassChange = this.handlePassChange.bind(this);
-        this.handleConfirmPassChange = this.handleConfirmPassChange.bind(this);
-
+        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleNameChange(event) {
-        this.setState (
-            {name: event.target.value}
-        );
-    }
-
-    handlePhoneChange(event) {
-        this.setState (
-            {phone: event.target.value}
-        );
-    }
-
-    handleEmailChange(event) {
-        this.setState (
-            {email: event.target.value}
-        );
-    }
-
-    handlePassChange(event) {
-        this.setState (
-            {password: event.target.value}
-        );
-    }
-
-    handleConfirmPassChange(event) {
-        this.setState (
-            {confirmPassword: event.target.value}
-        );
+    handleChange(event) {
+        const { name, value } = event.target;
+        const { user } = this.state;
+        this.setState({
+            user: {
+                ...user,
+                [name]: value
+            }
+        });
     }
 
     handleSubmit(event) {
-        alert('You are registered successfully!');
         event.preventDefault();
-        fetch(`${BASE_URL}/clients`, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: this.state.name,
-                phone: this.state.phone,
-                email: this.state.email,
-                password: this.state.password
-            }),
-        })
+        this.setState({ submitted: true });
+        const { user } = this.state;
+        if (user.name && user.email && user.phone && user.password) {
+            fetch(`${BASE_URL}/clients`, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: this.state.user.name,
+                    phone: this.state.user.phone,
+                    email: this.state.user.email,
+                    password: this.state.user.password
+                }),
+            })
+        }
     }
 
     render () {
-        const { registering  } = this.props;
         const { user, submitted } = this.state;
         return (
             <div className="container">
                 <Heading>Sign Up Form</Heading>
                 <form className="Registration" onSubmit={this.handleSubmit}>
-                    <Input label="Name:" placeholder="Enter name" value={this.state.name} onChange={this.handleNameChange} showError={submitted && !this.state.name}/>
-                    <Input label="Contact phone:" placeholder="Enter phone number" value={this.state.phone} onChange={this.handlePhoneChange}/>
-                    <Input label="Email:" placeholder="Enter email" value={this.state.email} onChange={this.handleEmailChange}/>
-                    <Input label="Password:" placeholder="Enter password" value={this.state.password} onChange={this.handlePassChange}/>
-                    <Input label="Confirm Password:" placeholder="Repeat password" value={this.state.confirmPassword} onChange={this.handleConfirmPassChange}/>
+                    <Input label="Name:" placeholder="Enter name" value={user.name}
+                           onChange={this.handleChange}
+                           showError={submitted && !user.name}
+                           name="name"
+                           errorMessage="Name is required"/>
+                    <Input label="Contact phone:" placeholder="Enter phone number" value={user.phone}
+                           onChange={this.handleChange}
+                           showError={submitted && !user.phone}
+                           name="phone"
+                           errorMessage="Name is required"/>
+                    <Input label="Email:" placeholder="Enter email" value={user.email}
+                           onChange={this.handleChange}
+                           showError={submitted && !user.email}
+                           name="email"
+                           errorMessage="Email is required"/>
+                    <Input label="Password:" placeholder="Enter password" value={user.password}
+                           onChange={this.handleChange}
+                           showError={submitted && !user.password}
+                           name="password"
+                           errorMessage="Password is required"/>
+                    <Input label="Confirm Password:" placeholder="Repeat password" value={user.confirmPassword}
+                           onChange={this.handleChange}
+                           showError={submitted && !user.confirmPassword}
+                           name="confirmPassword"
+                           errorMessage="Confirm password is required"/>
                     <Button type="Submit">Register</Button></form>
             </div>
         )

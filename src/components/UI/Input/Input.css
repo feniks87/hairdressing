@@ -23,3 +23,13 @@
 .Input:focus {
     outline: 3px solid #eed590;
 }
+
+
+.Invalid {
+    border: 1px solid red;
+}
+
+.Error-message {
+    color: red;
+    font-size: small;
+}
