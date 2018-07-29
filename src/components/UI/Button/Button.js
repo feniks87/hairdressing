@@ -5,7 +5,7 @@ const button = (props) => (
     <button
         className="Button"
         type={props.type}
-        onClick={props.clicked}>{props.children}
+        onClick={props.onClick}>{props.children}
     </button>
 );
 

@@ -29,7 +29,6 @@ class SelectService extends Component {
     render() {
         const result = this.state.result;
 
-        console.log(result);
         if (!result) { return null; }
 
         return (

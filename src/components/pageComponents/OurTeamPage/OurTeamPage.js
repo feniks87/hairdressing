@@ -18,14 +18,14 @@ class OurTeamPage extends Component {
         if (!teamMembers) { return null; }
 
         return (
-            <div className="container">
-                <Heading>Our Team</Heading>
-                {teamMembers.map(stylist =>
-                    <TeamMember src={stylist.image} alt={stylist.alt} name={stylist.name}
-                                description={stylist.description} key={stylist.id}/>
-                )}
+           <div className="container">
+               <Heading>Our Team</Heading>
+               {teamMembers.map(stylist =>
+                   <TeamMember src={stylist.image} alt={stylist.alt} name={stylist.name} 
+                               description={stylist.description} key={stylist.id}/>
+               )}
 
-            </div>
+           </div>
         )
     }
 }
@@ -41,3 +41,5 @@ function mapStateToProps(state) {
 const connectedOurTeamPage = connect(mapStateToProps)(OurTeamPage);
 
 export { connectedOurTeamPage as OurTeamPage };
+
+

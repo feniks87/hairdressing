@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import './NavMenu.css';
-import Logo from '../../Logo/Logo';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Aux from '../../../hoc/Auxiliary/_Aux'
+import './NavMenu.css';
+import Logo from '../../Logo/Logo';
 import {
     Collapse,
     Navbar,
@@ -32,7 +31,7 @@ class NavMenu extends Component {
         const isLoggedIn = this.props.authentication && this.props.authentication.loggedIn;
         let authSection;
         if (isLoggedIn) {
-            authSection =
+            authSection = 
                 <Nav className="ml-auto NavItem" navbar>
                     <NavItem>
                         <NavLink tag={Link} to="/logout">Logout</NavLink>
@@ -41,7 +40,7 @@ class NavMenu extends Component {
                         <NavLink tag={Link} to="/account">My Account</NavLink>
                     </NavItem>
                 </Nav>;
-        } else {
+          } else {
             authSection =
                 <Nav className="ml-auto NavItem" navbar>
                     <NavItem>
@@ -51,11 +50,11 @@ class NavMenu extends Component {
                         <NavLink tag={Link} to="/registration">Sign Up</NavLink>
                     </NavItem>
                 </Nav>;
-        }
+          }
         return (
             <div>
                 <Navbar className="Toolbar" expand="md" fixed="top" dark>
-                    <NavbarBrand href="/" className="LogoPadding"><Logo/></NavbarBrand>
+                    <NavbarBrand tag={Link} to="/" className="LogoPadding"><Logo/></NavbarBrand>
                     <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto NavItem" navbar>

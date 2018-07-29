@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Heading from '../../UI/Heading/Heading';
 import SelectService from '../../Booking/SelectService/SelectService';
-import SelectStylist from '../../Booking/SelectStylist/SelectStylist';
 
 class BookingPage extends Component {
 
