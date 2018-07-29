@@ -1,43 +1,27 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import './Footer.css';
 import ContactInfo from '../../components/ContactInfo/ContactInfo';
+import { contactActions } from '../../_actions/contact.actions';
 
-const BASE_URL = process.env.REACT_APP_API_PATH;
 
 class Footer extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            result: null,
-        };
-
-        this.setContacts = this.setContacts.bind(this);
-    }
-
-    setContacts(result) {
-        this.setState({ result });
-    }
-
     componentDidMount() {
-        fetch(`${BASE_URL}/contacts`)
-            .then(response => response.json())
-            .then(result => this.setContacts(result))
-            .catch(error => console.log(error));
+        const { dispatch } = this.props;
+        dispatch(contactActions.getContacts());
     }
 
     render() {
 
-        const result = this.state.result;
-        console.log("contact" + result);
-        if (!result) { return null; }
+        const contacts = this.props.contacts;
+        if (!contacts) { return null; }
 
         return (
             <footer className="Footer text-muted">
                 <div className="container">
                     <div className="row">
-                        {result.map(contactInfo =>
-                            <div className="col-sm-12">
+                        {contacts.map(contactInfo =>
+                            <div className="col-sm-12" key={contactInfo.id}>
                                 <ContactInfo name={contactInfo.name} address={contactInfo.address} phone={contactInfo.phone}/>
                             </div>
                         )}
@@ -53,4 +37,14 @@ class Footer extends Component {
     }
 }
 
-export default Footer;
+function mapStateToProps(state) {
+    const { contacts, fetching } = state.contactsInfo;
+    return {
+        contacts: contacts,
+        fetching: fetching,
+    };
+}
+
+const connectedFooter = connect(mapStateToProps)(Footer);
+
+export { connectedFooter as Footer };

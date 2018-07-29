@@ -1,0 +1,7 @@
+export const contactConstants = {
+    FETCH_REQUEST: 'FETCH_CONTACTS_REQUEST',
+    FETCH_SUCCESS: 'FETCH_CONTACTS_SUCCESS',
+    FETCH_FAILURE: 'FETCH_CONTACTS_FAILURE',
+  };
+  
+  

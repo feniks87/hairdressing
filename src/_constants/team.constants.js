@@ -1,0 +1,7 @@
+export const teamConstants = {
+    FETCH_REQUEST: 'FETCH_TEAM_REQUEST',
+    FETCH_SUCCESS: 'FETCH_TEAM_SUCCESS',
+    FETCH_FAILURE: 'FETCH_TEAM_FAILURE',
+  };
+  
+  

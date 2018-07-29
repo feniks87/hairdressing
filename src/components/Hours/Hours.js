@@ -1,41 +1,24 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import HourItem from '../Hours/HourItem/HourItem'
+import { hoursActions } from '../../_actions/hours.actions';
 
-const BASE_URL = process.env.REACT_APP_API_PATH;
 
 class Hours extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            locationId: props.locationId,
-            result: null,
-        };
-        console.log( props);
-        this.setHours = this.setHours.bind(this);
-    }
-
-    setHours(result) {
-        this.setState({ result });
-    }
-
     componentDidMount() {
-        fetch(`${BASE_URL}/contacts/${this.state.locationId}/getHours`)
-            .then(response => response.json())
-            .then(result => this.setHours(result))
-            .catch(error => console.log(error));
+        const { dispatch } = this.props;
+        dispatch(hoursActions.getWorkingHours(this.props.locationId));
     }
 
     render(){
-        const result = this.state.result;
-        console.log(this.state.locationId);
-        console.log(result);
-        if (!result) { return null; }
+        const hours = this.props.hours.filter(e => e.locationId === this.props.locationId);
+        if (!hours) { return null; }
 
         return (
             <div>
 
-                {result.workingHours.map(hourItem =>
-                    <HourItem day={hourItem.day} startTime={hourItem.startTime} finishTime={hourItem.finishTime}/>
+                {hours.map(hourItem =>
+                    <HourItem day={hourItem.day} startTime={hourItem.startTime} finishTime={hourItem.finishTime} key={hourItem.id}/>
                 )}
             </div>
         );
@@ -45,4 +28,14 @@ class Hours extends Component {
 
 
 
-export default Hours;
+function mapStateToProps(state) {
+    const { hours, fetching } = state.workingHours;
+    return {
+        hours: hours,
+        fetching: fetching,
+    };
+}
+
+const connectedHours = connect(mapStateToProps)(Hours);
+
+export { connectedHours as Hours };

@@ -1,0 +1,7 @@
+export const hoursConstants = {
+    FETCH_REQUEST: 'FETCH_HOURS_REQUEST',
+    FETCH_SUCCESS: 'FETCH_HOURS_SUCCESS',
+    FETCH_FAILURE: 'FETCH_HOURS_FAILURE',
+  };
+  
+  

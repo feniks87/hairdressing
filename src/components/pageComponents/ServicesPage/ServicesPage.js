@@ -1,37 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './ServicesPage.css';
 import Heading from '../../UI/Heading/Heading';
-import TableItem from '../../../components/UI/TableItem/TableItem';
+import TableItem from '../../UI/TableItem/TableItem';
+import { serviceActions } from '../../../_actions/service.actions';
 
-const BASE_URL = process.env.REACT_APP_API_PATH;
 
 class ServicesPage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            result: null,
-        };
-
-        this.setServices = this.setServices.bind(this);
-    }
-
-    setServices(result) {
-        this.setState({ result });
-    }
-
     componentDidMount() {
-        console.log(BASE_URL);
-        fetch(`${BASE_URL}/services`)
-            .then(response => response.json())
-            .then(result => this.setServices(result))
-            .catch(error => console.log(error));
+        const { dispatch } = this.props;
+        dispatch(serviceActions.getAllServices());
     }
 
     render() {
-        const result = this.state.result;
-
-        console.log(result);
-        if (!result) { return null; }
+        const services = this.props.services;
+        if (!services) { return null; }
 
         return (
             <div className="container  table-responsive">
@@ -39,8 +22,8 @@ class ServicesPage extends Component {
                 <div className="Services">
                     <table className="table table-striped">
                         <tbody>
-                        {result.map(service =>
-                            <TableItem serviceName={service.name} price={service.price}/>
+                        {services.map(service =>
+                            <TableItem serviceName={service.name} price={service.price} key={service.id}/>
                         )}
                         </tbody>
                     </table>
@@ -50,6 +33,17 @@ class ServicesPage extends Component {
     }
 }
 
-export  default ServicesPage;
+function mapStateToProps(state) {
+    const { services, fetching } = state.servicesInfo;
+    return {
+        services: services,
+        fetching: fetching,
+    };
+}
+
+const connectedServicesPage = connect(mapStateToProps)(ServicesPage);
+
+export { connectedServicesPage as ServicesPage };
+
 
 

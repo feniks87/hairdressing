@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './NavMenu.css';
 import Logo from '../../Logo/Logo';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Aux from '../../../hoc/Auxiliary/_Aux'
 import {
     Collapse,
     Navbar,
@@ -26,6 +29,29 @@ class NavMenu extends Component {
         });
     }
     render() {
+        const isLoggedIn = this.props.authentication && this.props.authentication.loggedIn;
+        let authSection;
+        if (isLoggedIn) {
+            authSection =
+                <Nav className="ml-auto NavItem" navbar>
+                    <NavItem>
+                        <NavLink tag={Link} to="/logout">Logout</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink tag={Link} to="/account">My Account</NavLink>
+                    </NavItem>
+                </Nav>;
+        } else {
+            authSection =
+                <Nav className="ml-auto NavItem" navbar>
+                    <NavItem>
+                        <NavLink tag={Link} to="/login">Login</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink tag={Link} to="/registration">Sign Up</NavLink>
+                    </NavItem>
+                </Nav>;
+        }
         return (
             <div>
                 <Navbar className="Toolbar" expand="md" fixed="top" dark>
@@ -34,29 +60,22 @@ class NavMenu extends Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto NavItem" navbar>
                             <NavItem>
-                                <NavLink href="/">Home</NavLink>
+                                <NavLink tag={Link} to="/">Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/services">Services</NavLink>
+                                <NavLink tag={Link} to="/services">Services</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/book-online">Book Online</NavLink>
+                                <NavLink tag={Link} to="/book-online">Book Online</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/our-team">Our Team</NavLink>
+                                <NavLink tag={Link} to="/our-team">Our Team</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/contact">Contact</NavLink>
+                                <NavLink tag={Link} to="/contact">Contact</NavLink>
                             </NavItem>
                         </Nav>
-                        <Nav className="ml-auto NavItem" navbar>
-                            <NavItem>
-                                <NavLink href="/login">Login</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="/registration">Sign Up</NavLink>
-                            </NavItem>
-                        </Nav>
+                        {authSection}
                     </Collapse>
                 </Navbar>
             </div>
@@ -64,4 +83,12 @@ class NavMenu extends Component {
     }
 }
 
-export default NavMenu;
+function mapStateToProps(state) {
+    const { authentication } = state;
+    return {
+        authentication
+    };
+}
+
+const connectedNavMenu = connect(mapStateToProps)(NavMenu);
+export { connectedNavMenu as NavMenu };

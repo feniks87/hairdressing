@@ -1,0 +1,7 @@
+export const serviceConstants = {
+    GET_ALL_REQUEST: 'SERVICE_GET_ALL_REQUEST',
+    GET_ALL_SUCCESS: 'SERVICE_GET_ALL_SUCCESS',
+    GET_ALL_FAILURE: 'SERVICE_GET_ALL_FAILURE',
+  };
+  
+  
