@@ -7,7 +7,7 @@ import { LogoutPage } from "./components/pageComponents/LogoutPage/LogoutPage";
 import HomePage from "./components/pageComponents/HomePage/HomePage";
 import Layout from "./hoc/Layout/Layout";
 import { ServicesPage } from "./components/pageComponents/ServicesPage/ServicesPage";
-import BookingPage from "./components/pageComponents/BookingPage/BookingPage";
+import { BookingPage } from "./components/pageComponents/BookingPage/BookingPage";
 import { OurTeamPage } from "./components/pageComponents/OurTeamPage/OurTeamPage";
 import { ContactPage } from "./components/pageComponents/ContactPage/ContactPage";
 

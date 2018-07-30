@@ -45,7 +45,7 @@ class LoginPage extends Component {
                 <Heading>Login form</Heading>
                 <form  name="form" className="Login" onSubmit={this.handleSubmit}>
                     {alert.message &&
-                    <div className={`alert ${alert.type}`}>{alert.message}</div>
+                    <div className={`text-center alert ${alert.type}`}>{alert.message}</div>
                     }
                     <Input  label="Email:"
                             placeholder="Enter email"
