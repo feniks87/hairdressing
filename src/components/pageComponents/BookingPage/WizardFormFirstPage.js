@@ -16,25 +16,22 @@ import Button from '../../UI/Button/Button';
 class WizardFormFirstPage extends Component {
 
     constructor(props) {
-        super(props);       
+        super(props);
         this.state = {
-          selectedServices: [],
+          selectedServices: props.data ? [...props.data] : [props.services[0].id],
         };
 
         this.toggleService = this.toggleService.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
       }
 
-    componentDidMount() {
-        const { dispatch } = this.props;
-        dispatch(serviceActions.getAllServices());
-    }
-
     toggleService(serviceId) {
         if (this.state.selectedServices.includes(serviceId)) {
-            this.setState((prevState, props) => ({
-                selectedServices: prevState.selectedServices.filter(id => id !== serviceId),
-              }));
+            if (this.state.selectedServices.length > 1) {
+                this.setState((prevState, props) => ({
+                    selectedServices: prevState.selectedServices.filter(id => id !== serviceId),
+                }));
+            }
         }
         else {
             this.setState((prevState, props) => ({

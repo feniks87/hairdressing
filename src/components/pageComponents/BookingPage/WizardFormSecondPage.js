@@ -16,38 +16,37 @@ import Button from '../../UI/Button/Button';
 class WizardFormSecondPage extends Component {
 
     constructor(props) {
-        super(props);       
+        super(props);
+        console.log(props.teamMembers);
+
+        let value = null;
+
+        if (props.data) {
+            value = props.data;
+        }
+        else {
+            if (props.teamMembers && props.teamMembers.length > 0) {
+                value = props.teamMembers[0].id;
+            }
+        }
         this.state = {
-          selectedStylists: [],
+          selectedStylist: value,
         };
 
         this.toggleStylist = this.toggleStylist.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
       }
 
-      
-    componentDidMount() {
-      const { dispatch } = this.props;
-      dispatch(teamActions.getTeam());
-  }
-
     toggleStylist(stylistId) {
-        if (this.state.selectedStylists.includes(stylistId)) {
-            this.setState((prevState, props) => ({
-              selectedStylists: prevState.selectedStylists.filter(id => id !== stylistId),
-              }));
-        }
-        else {
-            this.setState((prevState, props) => ({
-              selectedStylists: [...prevState.selectedStylists, stylistId],
-              }));
+        if (this.state.selectedStylist !== stylistId) {
+            this.setState({selectedStylist: stylistId });
         }
     }
 
     onSubmit(e) {
       e.preventDefault();
-      this.props.onSubmit(this.state.selectedStylists, 'stylists')
-  }
+      this.props.onSubmit(this.state.selectedStylist, 'stylist')
+    }
 
     render() {
 
@@ -60,7 +59,7 @@ class WizardFormSecondPage extends Component {
                   <ListGroup>
                       {team.map(stylist =>
                           <ListItem itemId={stylist.id} 
-                          selected={this.state.selectedStylists.includes(stylist.id)}
+                          selected={this.state.selectedStylist === stylist.id}
                           onClick={this.toggleStylist}
                           key={stylist.id}
                           >{stylist.name}</ListItem>
@@ -68,9 +67,10 @@ class WizardFormSecondPage extends Component {
                   </ListGroup>
                     <div>
                         <Button type="submit">Next</Button>
+                        <Button type="button" onClick={() => this.props.previousPage(this.state.selectedStylist, 'stylist')}>Back</Button>
                     </div>
                 </form>
-        </div>
+            </div>
     );
   }
 }
