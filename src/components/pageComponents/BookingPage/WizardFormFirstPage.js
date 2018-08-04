@@ -9,8 +9,6 @@ import { ListGroup } from 'reactstrap';
 
 import ListItem from '../../UI/ListItem/ListItem';
 
-import {serviceActions} from '../../../_actions/service.actions';
-
 import Button from '../../UI/Button/Button';
 
 class WizardFormFirstPage extends Component {
@@ -18,12 +16,12 @@ class WizardFormFirstPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          selectedServices: props.data ? [...props.data] : [props.services[0].id],
+            selectedServices: props.data ? [...props.data] : [props.services[0].id],
         };
 
         this.toggleService = this.toggleService.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-      }
+    }
 
     toggleService(serviceId) {
         if (this.state.selectedServices.includes(serviceId)) {
@@ -36,7 +34,7 @@ class WizardFormFirstPage extends Component {
         else {
             this.setState((prevState, props) => ({
                 selectedServices: [...prevState.selectedServices, serviceId],
-              }));
+            }));
         }
     }
 
@@ -49,26 +47,26 @@ class WizardFormFirstPage extends Component {
         const services = this.props.services;
         if (!services) { return null; }
         return (
-            <div className="container ">
+            <div className="Form">
                 <Heading>Choose services</Heading>
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     <ListGroup>
                         {services.map(service =>
-                            <ListItem itemId={service.id} 
-                            selected={this.state.selectedServices.includes(service.id)}
-                            onClick={this.toggleService}
-                            key={service.id}
+                            <ListItem itemId={service.id}
+                                      selected={this.state.selectedServices.includes(service.id)}
+                                      onClick={this.toggleService}
+                                      key={service.id}
                             >
-                            {service.name} ({service.time} min)
+                                {service.name} ({service.time} min)
                             </ListItem>)}
                     </ListGroup>
                     <div>
                         <Button type="submit">Next</Button>
                     </div>
                 </form>
-        </div>
-    );
-  }
+            </div>
+        );
+    }
 }
 
 function mapStateToProps(state) {

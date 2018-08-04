@@ -7,15 +7,17 @@ import { servicesInfo } from './servicesInfo.reducer';
 import { team } from './team.reducer';
 import { contactsInfo } from './contact.reducer';
 import { workingHours } from './hours.reducer';
+import { bookingInfo } from './booking.reducer';
 
 const rootReducer = combineReducers({
-  authentication,
-  registration,
-  alert,
-  servicesInfo,
-  team,
-  contactsInfo,
-  workingHours,
+    authentication,
+    registration,
+    alert,
+    servicesInfo,
+    team,
+    contactsInfo,
+    workingHours,
+    bookingInfo,
 });
 
 export default rootReducer;

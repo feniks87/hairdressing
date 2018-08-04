@@ -5,12 +5,14 @@ import './ContactPage.css'
 import ContactInfo from '../../../components/ContactInfo/ContactInfo';
 import { Hours } from '../../../components/Hours/Hours';
 import { contactActions } from '../../../_actions/contact.actions';
+import { hoursActions } from '../../../_actions/hours.actions';
 
 
 class ContactPage extends Component {
     componentDidMount() {
         const { dispatch } = this.props;
         dispatch(contactActions.getContacts());
+        dispatch(hoursActions.getAllWorkingHours());
     }
 
     render() {

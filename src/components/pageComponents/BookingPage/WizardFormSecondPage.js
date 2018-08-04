@@ -9,8 +9,6 @@ import { ListGroup } from 'reactstrap';
 
 import ListItem from '../../UI/ListItem/ListItem';
 
-import {teamActions} from '../../../_actions/team.actions';
-
 import Button from '../../UI/Button/Button';
 
 class WizardFormSecondPage extends Component {
@@ -30,12 +28,12 @@ class WizardFormSecondPage extends Component {
             }
         }
         this.state = {
-          selectedStylist: value,
+            selectedStylist: value,
         };
 
         this.toggleStylist = this.toggleStylist.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-      }
+    }
 
     toggleStylist(stylistId) {
         if (this.state.selectedStylist !== stylistId) {
@@ -44,41 +42,41 @@ class WizardFormSecondPage extends Component {
     }
 
     onSubmit(e) {
-      e.preventDefault();
-      this.props.onSubmit(this.state.selectedStylist, 'stylist')
+        e.preventDefault();
+        this.props.onSubmit(this.state.selectedStylist, 'stylist')
     }
 
     render() {
 
-      const team = this.props.teamMembers;
+        const team = this.props.teamMembers;
         if (!team) { return null; }
         return (
-            <div className="container ">
+            <div className="Form">
                 <Heading>Choose stylist</Heading>
                 <form onSubmit={(e) => this.onSubmit(e)}>
-                  <ListGroup>
-                      {team.map(stylist =>
-                          <ListItem itemId={stylist.id} 
-                          selected={this.state.selectedStylist === stylist.id}
-                          onClick={this.toggleStylist}
-                          key={stylist.id}
-                          >{stylist.name}</ListItem>
-                      )}
-                  </ListGroup>
+                    <ListGroup>
+                        {team.map(stylist =>
+                            <ListItem itemId={stylist.id}
+                                      selected={this.state.selectedStylist === stylist.id}
+                                      onClick={this.toggleStylist}
+                                      key={stylist.id}
+                            >{stylist.name}</ListItem>
+                        )}
+                    </ListGroup>
                     <div>
                         <Button type="submit">Next</Button>
                         <Button type="button" onClick={() => this.props.previousPage(this.state.selectedStylist, 'stylist')}>Back</Button>
                     </div>
                 </form>
             </div>
-    );
-  }
+        );
+    }
 }
 
 function mapStateToProps(state) {
     const { teamMembers, fetching } = state.team;
     return {
-      teamMembers: teamMembers,
+        teamMembers: teamMembers,
         fetching: fetching,
     };
 }
