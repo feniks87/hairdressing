@@ -134,7 +134,7 @@ class WizardFormThirdPage extends Component {
 
         const allTimes = this.generateTimeRange(startTime, step, endTime);
 
-        let availableTime = allTimes.filter(x => !excludeTime.includes(x));
+        let availableTime = allTimes.filter(x => !excludeTime.some(e => e.isSame(x)));
         availableTime.sort();
 
         let periods = [];
