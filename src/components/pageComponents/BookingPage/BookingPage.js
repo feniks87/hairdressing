@@ -95,6 +95,9 @@ class BookingPage extends Component {
                 <WizardFormThirdPage
                     previousPage={this.previousPage}
                     onSubmit={this.onSubmit}
+                    time={this.state.time}
+                    stylist={this.state.stylist}
+                    servicesIds={this.state.services}
                 />}
             </div>
         );

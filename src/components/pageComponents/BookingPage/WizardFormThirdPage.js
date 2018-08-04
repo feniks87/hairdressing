@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-import {alertActions} from '../../../_actions/alert.actions';
 import Heading from '../../UI/Heading/Heading';
 
 import Button from '../../UI/Button/Button';
@@ -19,37 +18,172 @@ class WizardFormThirdPage extends Component {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.generateExcludeTime = this.generateExcludeTime.bind(this);
+        this.generateTimeRange = this.generateTimeRange.bind(this);
+        this.getServicesDuration = this.getServicesDuration.bind(this);
+        this.calculateDays = this.calculateDays.bind(this);
+        this.calculateDay = this.calculateDay.bind(this);
 
-        const weekDay = moment().format('dddd').toUpperCase();
-        const hoursInfo = props.hours.find((h) => h.day.toUpperCase() === weekDay);
+        const today = moment().hours(0).minutes(0).seconds(0).milliseconds(0);
+        const yesterday = today.clone().subtract(1, 'days');
+
+        const lastDay = today.clone().add(1, 'months');
+
+        const step = 30;
+
+        const duration = this.getServicesDuration(props.servicesIds);
+
+        const daysInfo = this.calculateDays(today, lastDay, step, duration);
+
+        const excludeDays = daysInfo.filter(d => d.isFullyBookedOrPast === true).map(d => d.date);
+
+        let selectedTime = props.time;
+
+        if (!selectedTime) {
+            let freeDate = daysInfo.find(d => d.isFullyBookedOrPast === false);
+            selectedTime = freeDate ? freeDate.availableTime[0] : null;
+        }
+
+        let currentDayInfo = daysInfo.find(d => d.date.isSame(selectedTime, 'day'));
+
+        if (selectedTime && !currentDayInfo.availableTime.some(t => t.isSame(selectedTime))) {
+            selectedTime = currentDayInfo.availableTime[0];
+        }
+
+        let actualBookings = props.bookings.filter(b => b.stylistId === props.stylist);
 
         this.state = {
-            selectedTime: null,
-            startTime: moment().hours(hoursInfo.startHour).minutes(hoursInfo.startMinutes).seconds(0).milliseconds(0),
-            endTime: moment().hours(hoursInfo.finishHour).minutes(hoursInfo.finishMinutes).seconds(0).milliseconds(0),
-            step: 30,
+            bookings: actualBookings,
+            stylist: props.stylist,
+            selectedTime: selectedTime,
+            step: step,
+            daysInfo: daysInfo,
+            excludeDays: excludeDays,
+            firstDay: today,
+            lastDay: lastDay,
+            excludeTime: currentDayInfo ? currentDayInfo.excludeTime : [],
+            startTime: currentDayInfo ? currentDayInfo.startTime : null,
+            endTime: currentDayInfo ? currentDayInfo.endTime : null,
+            serviceDuration: duration,
+            allBusy: selectedTime ? false : true,
         };
     }
 
-    componentDidMount() {
-        this.handleChange(moment());
+    calculateDays(startDate, endDate, step, serviceDuration) {
+
+        let testDate = startDate.clone().hours(0).minutes(0).seconds(0).milliseconds(0);
+        const lastDate = endDate.clone().hours(0).minutes(0).seconds(0).milliseconds(0);
+        let daysInfo = [];
+
+        while (!testDate.isAfter(lastDate)) {
+            daysInfo.push(this.calculateDay(testDate, step, serviceDuration));
+            testDate.add(1, 'days');
+        }
+
+        return daysInfo;
     }
 
-    generateExcludeTime(startTime, step, endTime) {
+    calculateDay(testDate, step, serviceDuration) {
+        const now = moment();
+        // find all bookings for selected stylist and this date
+        const currentBookings = this.props.bookings.filter(b => b.stylistId === this.props.stylist
+            && moment(b.time).isSame(testDate, 'day'));
+
+        // detect a week day for this date
+        const weekDay = testDate.format('dddd').toUpperCase();
+        // find schedule (working hours) for this week day
+        const hoursInfo = this.props.hours.find(h => h.day.toUpperCase() === weekDay);
+
+        // start time for this day of the week from schedule
+        const startTime = testDate.clone().hours(hoursInfo.startHour).minutes(hoursInfo.startMinutes);
+
+        // end of working hours for this day of the week from schedule
+        const endTime = testDate.clone().hours(hoursInfo.finishHour).minutes(hoursInfo.finishMinutes);
+
+        // this date is today and it is already after working hours
+        if (testDate.isSame(now, 'day') && testDate.isAfter(endTime)) {
+            return {
+                date: testDate.clone(),
+                bookings: currentBookings,
+                startTime: startTime.clone(),
+                endTime: endTime.clone().subtract(30, 'minutes'),
+                excludeTime: [],
+                isFullyBookedOrPast: true,
+                availableTime: [],
+                periods: [],
+            };
+        }
+
+        let excludeTime = [];
+
+        // calculate times which need to be excluded according to existing bookings
+        currentBookings.forEach(b => {
+            // calculate the duration of all services for this booking
+            const duration = this.getServicesDuration(b.services);
+            const bookedTime = moment(b.time);
+            const endBookingTime = bookedTime.clone().add(duration, 'minutes');
+            const exclude = this.generateTimeRange(bookedTime, step, endBookingTime);
+            excludeTime = [...excludeTime, ...exclude];
+        });
+
+        // if the selected day is today and time is later than starting time from shedule - we need to exclude past time
+        if (testDate.isSame(now, 'day') && testDate.isAfter(startTime)) {
+            let exclude = this.generateTimeRange(startTime, step, now);
+            excludeTime = [...excludeTime, ...exclude];
+        }
+
+
+        const allTimes = this.generateTimeRange(startTime, step, endTime);
+
+        let availableTime = allTimes.filter(x => !excludeTime.includes(x));
+        availableTime.sort();
+
+        let periods = [];
+
+        availableTime.forEach(t => {
+
+            const firstBusyTime = excludeTime.length === 0 || !excludeTime.some(e => e.isAfter(t))
+                ? endTime
+                : excludeTime.find(et => et.isAfter(t));
+
+            const duration = moment.duration(firstBusyTime.diff(t)).asMinutes();
+            periods.push({
+                time: t.clone(),
+                duration: duration
+            });
+        });
+
+        periods.filter(p => p.duration < serviceDuration).forEach(p => excludeTime.push(p.time));
+
+        excludeTime.sort();
+
+        availableTime = periods.filter(p => p.duration >= serviceDuration).map(p => p.time);
+        availableTime.sort();
+
+        return {
+            date: testDate.clone(),
+            bookings: currentBookings,
+            startTime: startTime.clone(),
+            endTime: endTime.clone().subtract(30, 'minutes'),
+            excludeTime: excludeTime,
+            isFullyBookedOrPast: availableTime.length === 0,
+            availableTime: availableTime,
+            periods: periods,
+        };
+    }
+
+    generateTimeRange(startTime, step, endTime) {
+        // if date is not set or if start date equals to end date - return just empty array
         if (startTime == null || step == null || endTime == null
             || (startTime.get('hour') === endTime.get('hour') && startTime.get('minute') === endTime.get('minute'))) {
             return [];
         }
 
         let result = [];
-
         let currentTime = startTime.clone();
 
-        while (currentTime < endTime) {
-            console.log(currentTime.toString());
+        while (!currentTime.isSameOrAfter(endTime)) {
             result.push(currentTime.clone());
-            currentTime.add(step, 'minutes');
+            currentTime = currentTime.add(step, 'minutes');
         }
 
         return result;
@@ -61,99 +195,96 @@ class WizardFormThirdPage extends Component {
     }
 
     handleChange(date) {
-        const weekDay = date.format('dddd').toUpperCase();
-        const hoursInfo = this.props.hours.find((h) => h.day.toUpperCase() === weekDay);
+        let currentDate = date.clone();
 
-        let excludeTime = [];
+        let currentDayInfo = this.state.daysInfo.find(d => d.date.isSame(currentDate, 'day'));
 
-        let selectedDateBookings = this.props.bookings.filter((b) => {
-            let bookedTime = moment(b.time);
-            return bookedTime.get('year') === date.get('year')
-                && bookedTime.get('month') === date.get('month')
-                && bookedTime.get('date') === date.get('date');
-        });
-
-        console.log(this.props.bookings);
-        console.log(selectedDateBookings);
-        selectedDateBookings.forEach((b) => {
-            const duration = b.services.reduce((accumulator, serviceId) => {
-                let service = this.props.services.find((s) => s.id === serviceId);
-                console.log(service.time);
-                return accumulator + service.time;
-            }, 0);
-            console.log(duration);
-            let bookedTime = moment(b.time);
-
-            let exclude = this.generateExcludeTime(bookedTime, 30, bookedTime.clone().add(duration, 'minutes'));
-            excludeTime = [...excludeTime, ...exclude];
-        });
-        console.log(excludeTime);
+        if (!currentDayInfo.availableTime.some(d => d.isSame(currentDate))) {
+            currentDate = currentDayInfo.availableTime[0];
+        }
 
         this.setState({
-            selectedTime: date,
-            startTime: moment().hours(hoursInfo.startHour).minutes(hoursInfo.startMinutes).seconds(0).milliseconds(0),
-            endTime: moment().hours(hoursInfo.finishHour).minutes(hoursInfo.finishMinutes).seconds(0).milliseconds(0),
-            excludeTime: excludeTime,
+            selectedTime: currentDate,
+            excludeTime: currentDayInfo.excludeTime,
+            startTime: currentDayInfo.startTime,
+            endTime: currentDayInfo.endTime,
         });
     }
+
+    // Calculates duration of all lister services by id
+    getServicesDuration(servicesIds) {
+        return servicesIds.reduce((accumulator, serviceId) => {
+            let service = this.props.services.find((s) => s.id === serviceId);
+            return accumulator + service.time;
+        }, 0);
+    }
+
 
     render() {
         const hours = this.props.hours;
         if (!hours || hours.length === 0) { return null; }
 
+        console.log(this.state);
+
         return (
-            <div className="container ">
+            <div className="Form">
                 <Heading>Choose date and time</Heading>
-                <form onSubmit={(e) => this.onSubmit(e)}>
-                    <div className='text-center'>
-                        <style>
-                            {`.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+                { this.state.allBusy
+                    ? <p>Sorry, all days are busy. You chose {this.state.serviceDuration}min of service in total.
+                        Try to reduce time of the service or visit us tomorrow. </p>
+                    :
+                    <form onSubmit={(e) => this.onSubmit(e)}>
+                        <div className='text-center'>
+                            <style>
+                                {`.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
                             padding-left: 0;
                             padding-right: 0;
                         }`}
-                        </style>
-                        <DatePicker  autoFocus readOnly popperPlacement="bottom-start"
-                                     popperModifiers={{
-                                         offset: {
-                                             enabled: true,
-                                             offset: '0px, 12px'
-                                         },
-                                         preventOverflow: {
-                                             enabled: true,
-                                             escapeWithReference: false,
-                                             boundariesElement: 'viewport'
-                                         }
-                                     }}
-                                     selected={this.state.selectedTime}
-                                     onChange={this.handleChange}
-                                     minDate={moment()}
-                                     maxDate={moment().add(1, "months")}
-                                     minTime={this.state.startTime}
-                                     maxTime={this.state.endTime}
-                                     excludeTimes={this.state.excludeTime}
-                                     showDisabledMonthNavigation
-                                     showTimeSelect
-                                     inline
-                        />
-                        <p> { this.state.selectedTime
-                            ? `Selected date and time: ${this.state.selectedTime.format('MMMM Do YYYY, h:mm a').toString()}`
-                            : 'Please select available time'
-                        }
-                        </p>
-                    </div>
+                            </style>
+                            <DatePicker  autoFocus readOnly popperPlacement="bottom-start"
+                                         popperModifiers={{
+                                             offset: {
+                                                 enabled: true,
+                                                 offset: '0px, 12px'
+                                             },
+                                             preventOverflow: {
+                                                 enabled: true,
+                                                 escapeWithReference: false,
+                                                 boundariesElement: 'viewport'
+                                             }
+                                         }}
+                                         selected={this.state.selectedTime}
+                                         onChange={this.handleChange}
+                                         minDate={this.state.firstDay}
+                                         maxDate={this.state.lastDay}
+                                         minTime={this.state.startTime}
+                                         maxTime={this.state.endTime}
+                                         excludeTimes={this.state.excludeTime}
+                                         excludeDates={this.state.excludeDays}
+                                         dateFormat="LLL"
+                                         showDisabledMonthNavigation
+                                         showTimeSelect
+                                         inline
+                            />
+                            <p> { this.state.selectedTime
+                                ? `Selected date and time: ${this.state.selectedTime.format('MMMM Do YYYY, h:mm a').toString()}`
+                                : 'Please select available time'
+                            }
+                            </p>
+                        </div>
 
-                    <div>
-                        <Button type="submit">Book</Button>
-                        <Button type="button" onClick={() => this.props.previousPage(this.state.selectedTime, 'time')}>Back</Button>
-                    </div>
-                </form>
+                        <div>
+                            <Button type="submit">Book</Button>
+                            <Button type="button" onClick={() => this.props.previousPage(this.state.selectedTime, 'time')}>Back</Button>
+                        </div>
+                    </form>
+                }
             </div>
         );
     }
 }
 
 function mapStateToProps(state) {
-    console.log
     const { hours } = state.workingHours;
     const { contacts } = state.contactsInfo;
     const { bookings } = state.bookingInfo;
