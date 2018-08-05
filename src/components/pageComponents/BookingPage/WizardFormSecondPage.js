@@ -15,7 +15,6 @@ class WizardFormSecondPage extends Component {
 
     constructor(props) {
         super(props);
-        console.log(props.teamMembers);
 
         let value = null;
 
@@ -33,21 +32,27 @@ class WizardFormSecondPage extends Component {
 
         this.toggleStylist = this.toggleStylist.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.back = this.back.bind(this);
     }
 
     toggleStylist(stylistId) {
+        // if user clicks on a stylist which is not selected yet, change selection
+        // otherwise ignore
         if (this.state.selectedStylist !== stylistId) {
-            this.setState({selectedStylist: stylistId });
+            this.setState({selectedStylist: stylistId});
         }
     }
 
     onSubmit(e) {
         e.preventDefault();
-        this.props.onSubmit(this.state.selectedStylist, 'stylist')
+        this.props.onSubmit(this.state.selectedStylist, 'stylist');
+    }
+
+    back() {
+        this.props.previousPage(this.state.selectedStylist, 'stylist');
     }
 
     render() {
-
         const team = this.props.teamMembers;
         if (!team) { return null; }
         return (
@@ -65,7 +70,7 @@ class WizardFormSecondPage extends Component {
                     </ListGroup>
                     <div>
                         <Button type="submit">Next</Button>
-                        <Button type="button" onClick={() => this.props.previousPage(this.state.selectedStylist, 'stylist')}>Back</Button>
+                        <Button type="button" onClick={this.back}>Back</Button>
                     </div>
                 </form>
             </div>

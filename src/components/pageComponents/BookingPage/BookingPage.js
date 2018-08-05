@@ -40,12 +40,13 @@ class BookingPage extends Component {
     }
 
     nextPage(data, name) {
+
         this.setState((prevState, props) => ({
             ...prevState,
             page: this.state.page + 1,
             [name]: data,
         }));
-        console.log(this.state);
+
     }
 
     previousPage(data, name) {
@@ -65,7 +66,6 @@ class BookingPage extends Component {
     }
 
     render() {
-
         if (!this.props.authentication.loggedIn) {
             this.props.history.replace('/login');
             const { dispatch } = this.props;

@@ -10,7 +10,7 @@ class ListItem extends Component {
         const { onClick } = this.props;
         return (
             <ListGroupItem className="ListItem">{this.props.children}
-            <span className="float-left">
+            <span className="float-right">
                 <button type="button" onClick={() => onClick(this.props.itemId)} className={this.props.selected ? "btn btn-sm btn-outline-dark align-top mx-2" : "btn btn-sm btn-outline-light align-top mx-2"}>
                     <FontAwesomeIcon icon={faCheck} />
                 </button>

@@ -29,11 +29,11 @@ class LoginPage extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.setState({ submitted: true });
-        const { email, password } = this.state;
+	        const { email, password } = this.state;
         const { dispatch } = this.props;
         if (email && password) {
             dispatch(userActions.login(email, password));
+            this.setState({ submitted: true });
         }
     }
 

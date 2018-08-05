@@ -34,10 +34,10 @@ class NavMenu extends Component {
             authSection = 
                 <Nav className="ml-auto NavItem" navbar>
                     <NavItem>
-                        <NavLink tag={Link} to="/logout">Logout</NavLink>
+                        <NavLink tag={Link} to="/account">My Account</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to="/account">My Account</NavLink>
+                        <NavLink tag={Link} to="/logout">Logout</NavLink>
                     </NavItem>
                 </Nav>;
           } else {

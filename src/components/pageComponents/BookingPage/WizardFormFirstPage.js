@@ -12,11 +12,10 @@ import ListItem from '../../UI/ListItem/ListItem';
 import Button from '../../UI/Button/Button';
 
 class WizardFormFirstPage extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
-            selectedServices: props.data ? [...props.data] : [props.services[0].id],
+            selectedServices: props.data ? props.data : [props.services[0].id],
         };
 
         this.toggleService = this.toggleService.bind(this);

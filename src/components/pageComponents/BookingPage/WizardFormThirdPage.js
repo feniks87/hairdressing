@@ -24,7 +24,6 @@ class WizardFormThirdPage extends Component {
         this.calculateDay = this.calculateDay.bind(this);
 
         const today = moment().hours(0).minutes(0).seconds(0).milliseconds(0);
-        const yesterday = today.clone().subtract(1, 'days');
 
         const lastDay = today.clone().add(1, 'months');
 
@@ -64,7 +63,7 @@ class WizardFormThirdPage extends Component {
             startTime: currentDayInfo ? currentDayInfo.startTime : null,
             endTime: currentDayInfo ? currentDayInfo.endTime : null,
             serviceDuration: duration,
-            allBusy: selectedTime ? false : true,
+            allBusy: !selectedTime,
         };
     }
 
@@ -88,7 +87,7 @@ class WizardFormThirdPage extends Component {
         const currentBookings = this.props.bookings.filter(b => b.stylistId === this.props.stylist
             && moment(b.time).isSame(testDate, 'day'));
 
-        // detect a week day for this date
+        // detects a week day for this date
         const weekDay = testDate.format('dddd').toUpperCase();
         // find schedule (working hours) for this week day
         const hoursInfo = this.props.hours.find(h => h.day.toUpperCase() === weekDay);
@@ -100,12 +99,12 @@ class WizardFormThirdPage extends Component {
         const endTime = testDate.clone().hours(hoursInfo.finishHour).minutes(hoursInfo.finishMinutes);
 
         // this date is today and it is already after working hours
-        if (testDate.isSame(now, 'day') && testDate.isAfter(endTime)) {
+        if (testDate.isSame(now, 'day') && now.isAfter(endTime)) {
             return {
                 date: testDate.clone(),
                 bookings: currentBookings,
                 startTime: startTime.clone(),
-                endTime: endTime.clone().subtract(30, 'minutes'),
+                endTime: endTime.clone().subtract(step, 'minutes'),
                 excludeTime: [],
                 isFullyBookedOrPast: true,
                 availableTime: [],
@@ -115,7 +114,7 @@ class WizardFormThirdPage extends Component {
 
         let excludeTime = [];
 
-        // calculate times which need to be excluded according to existing bookings
+        // calculates times which need to be excluded according to existing bookings
         currentBookings.forEach(b => {
             // calculate the duration of all services for this booking
             const duration = this.getServicesDuration(b.services);
@@ -125,12 +124,12 @@ class WizardFormThirdPage extends Component {
             excludeTime = [...excludeTime, ...exclude];
         });
 
-        // if the selected day is today and time is later than starting time from shedule - we need to exclude past time
-        if (testDate.isSame(now, 'day') && testDate.isAfter(startTime)) {
+        // excludes time intervals from open time to current time if selected day is today
+        if (testDate.isSame(now, 'day') && now.isAfter(startTime)) {
             let exclude = this.generateTimeRange(startTime, step, now);
             excludeTime = [...excludeTime, ...exclude];
         }
-
+        excludeTime.sort();
 
         const allTimes = this.generateTimeRange(startTime, step, endTime);
 
@@ -139,6 +138,7 @@ class WizardFormThirdPage extends Component {
 
         let periods = [];
 
+        // defines duration for all available intervals
         availableTime.forEach(t => {
 
             const firstBusyTime = excludeTime.length === 0 || !excludeTime.some(e => e.isAfter(t))
@@ -152,10 +152,12 @@ class WizardFormThirdPage extends Component {
             });
         });
 
+        // excludes periods with less intervals than selected services duration
         periods.filter(p => p.duration < serviceDuration).forEach(p => excludeTime.push(p.time));
 
         excludeTime.sort();
 
+        // defines times available for selected services duration
         availableTime = periods.filter(p => p.duration >= serviceDuration).map(p => p.time);
         availableTime.sort();
 
@@ -163,7 +165,7 @@ class WizardFormThirdPage extends Component {
             date: testDate.clone(),
             bookings: currentBookings,
             startTime: startTime.clone(),
-            endTime: endTime.clone().subtract(30, 'minutes'),
+            endTime: endTime.clone().subtract(step, 'minutes'),
             excludeTime: excludeTime,
             isFullyBookedOrPast: availableTime.length === 0,
             availableTime: availableTime,
@@ -208,15 +210,18 @@ class WizardFormThirdPage extends Component {
             excludeTime: currentDayInfo.excludeTime,
             startTime: currentDayInfo.startTime,
             endTime: currentDayInfo.endTime,
+
         });
     }
 
-    // Calculates duration of all lister services by id
+    // Calculates duration of all listed services by id
     getServicesDuration(servicesIds) {
-        return servicesIds.reduce((accumulator, serviceId) => {
-            let service = this.props.services.find((s) => s.id === serviceId);
+        const reducer = (accumulator, serviceId) => {
+            let service = this.props.services.find((service) => service.id === serviceId);
             return accumulator + service.time;
-        }, 0);
+        };
+
+        return servicesIds.reduce(reducer, 0);
     }
 
 
@@ -224,14 +229,12 @@ class WizardFormThirdPage extends Component {
         const hours = this.props.hours;
         if (!hours || hours.length === 0) { return null; }
 
-        console.log(this.state);
-
         return (
             <div className="Form">
                 <Heading>Choose date and time</Heading>
                 { this.state.allBusy
-                    ? <p>Sorry, all days are busy. You chose {this.state.serviceDuration}min of service in total.
-                        Try to reduce time of the service or visit us tomorrow. </p>
+                    ? <p>Sorry, all days are busy. You have chosen {this.state.serviceDuration}min of services in total.
+                        Try to reduce the amount of services or visit us tomorrow. </p>
                     :
                     <form onSubmit={(e) => this.onSubmit(e)}>
                         <div className='text-center'>
@@ -239,7 +242,7 @@ class WizardFormThirdPage extends Component {
                                 {`.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
                             padding-left: 0;
                             padding-right: 0;
-                        }`}
+                                }`}
                             </style>
                             <DatePicker  autoFocus readOnly popperPlacement="bottom-start"
                                          popperModifiers={{
