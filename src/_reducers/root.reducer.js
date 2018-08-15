@@ -8,6 +8,7 @@ import { team } from './team.reducer';
 import { contactsInfo } from './contact.reducer';
 import { workingHours } from './hours.reducer';
 import { bookingInfo } from './booking.reducer';
+import { userInfo } from './user.reducer';
 
 const rootReducer = combineReducers({
     authentication,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
     contactsInfo,
     workingHours,
     bookingInfo,
+    userInfo,
 });
 
 export default rootReducer;

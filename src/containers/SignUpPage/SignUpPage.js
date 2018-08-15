@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Input from '../../UI/Input/Input';
+import Input from '../../components/UI/Input/Input';
 import './SignUpPage.css';
-import Button from '../../UI/Button/Button';
-import Heading from '../../UI/Heading/Heading';
+import Button from '../../components/UI/Button/Button';
+import Heading from '../../components/UI/Heading/Heading';
 
-import { userActions } from '../../../_actions/user.actions';
-
+import { userActions } from '../../_actions/user.actions';
+import { alertActions } from '../../_actions/alert.actions';
 
 class SignUpPage extends Component {
     constructor(props) {
@@ -50,17 +50,29 @@ class SignUpPage extends Component {
         this.setState({ submitted: true });
         const { user, confirmPassword } = this.state;
         const { dispatch } = this.props;
+        if (user.password !== confirmPassword) {
+            dispatch(alertActions.error("Password and confirm password fields do not match"));
+        }
+
+        if (user.password.length < 6) {
+            dispatch(alertActions.error("Password should be at least 6 characters long"));
+        }
+
         if (user.name && user.email && user.phone && user.password && user.password === confirmPassword) {
             dispatch(userActions.register(user));
         }
     }
 
-    render () {
+    render () {        
+        const { alert } = this.props;
         const { user, submitted, confirmPassword } = this.state;
         return (
             <div className="container">
                 <Heading>Sign Up Form</Heading>
                 <form className="Registration" onSubmit={this.handleSubmit}>
+                {alert.message && 
+                        <div className={`text-center alert ${alert.type}`}>{alert.message}</div>
+                        }
                     <Input label="Name:" placeholder="Enter name" value={user.name}
                            onChange={this.handleChange}
                            showError={submitted && !user.name}
@@ -71,7 +83,7 @@ class SignUpPage extends Component {
                            onChange={this.handleChange}
                            showError={submitted && !user.phone}
                            name="phone"
-                           errorMessage="Name is required"
+                           errorMessage="Phone number is required"
                            type="text"/>
                     <Input label="Email:" placeholder="Enter email" value={user.email}
                            onChange={this.handleChange}
@@ -98,9 +110,11 @@ class SignUpPage extends Component {
 }
 
 function mapStateToProps(state) {
+    const { alert } = state;
     const { registering } = state.registration;
     return {
-        registering
+        registering,
+        alert
     };
 }
 

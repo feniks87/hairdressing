@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Route, Switch, Router } from 'react-router-dom';
 import './App.css';
-import { SignUpPage }  from "./components/pageComponents/SignUpPage/SignUpPage";
-import { LoginPage } from "./components/pageComponents/LoginPage/LoginPage";
-import { LogoutPage } from "./components/pageComponents/LogoutPage/LogoutPage";
-import HomePage from "./components/pageComponents/HomePage/HomePage";
+import { SignUpPage }  from "./containers/SignUpPage/SignUpPage";
+import { LoginPage } from "./containers/LoginPage/LoginPage";
+import { LogoutPage } from "./containers/LogoutPage/LogoutPage";
+import { UserAccountPage } from "./containers/UserAccountPage/UserAccountPage";
+import HomePage from "./containers/HomePage/HomePage";
 import Layout from "./hoc/Layout/Layout";
-import { ServicesPage } from "./components/pageComponents/ServicesPage/ServicesPage";
-import { BookingPage } from "./components/pageComponents/BookingPage/BookingPage";
-import { OurTeamPage } from "./components/pageComponents/OurTeamPage/OurTeamPage";
-import { ContactPage } from "./components/pageComponents/ContactPage/ContactPage";
+import { ServicesPage } from "./containers/ServicesPage/ServicesPage";
+import { BookingPage } from "./containers/BookingPage/BookingPage";
+import { OurTeamPage } from "./containers/OurTeamPage/OurTeamPage";
+import { ContactPage } from "./containers/ContactPage/ContactPage";
 
 import { history } from './_helpers/history';
 import { alertActions } from './_actions/alert.actions';
@@ -42,6 +43,7 @@ class App extends Component {
                             <Route path="/login" component={LoginPage} />
                             <Route path="/registration" component={SignUpPage} />
                             <Route path="/logout" component={LogoutPage} />
+                            <Route path="/account" component={UserAccountPage} />
                         </Switch>
                     </Layout>
                 </Router>
@@ -50,13 +52,6 @@ class App extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    const { alert, authentication } = state;
-    return {
-        alert,
-        authentication
-    };
-}
 
-const connectedApp = connect(mapStateToProps)(App);
+const connectedApp = connect()(App);
 export { connectedApp as App };

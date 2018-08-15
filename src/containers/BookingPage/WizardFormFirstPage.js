@@ -3,19 +3,19 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
-import Heading from '../../UI/Heading/Heading';
+import Heading from '../../components/UI/Heading/Heading';
 
 import { ListGroup } from 'reactstrap';
 
-import ListItem from '../../UI/ListItem/ListItem';
+import SelectableListItem from '../../components/UI/SelectableListItem/SelectableListItem';
 
-import Button from '../../UI/Button/Button';
+import Button from '../../components/UI/Button/Button';
 
 class WizardFormFirstPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedServices: props.data ? props.data : [props.services[0].id],
+            selectedServices: props.data ? [...props.data] : ((props.services && props.services.length > 0) ? [props.services[0].id] : null),
         };
 
         this.toggleService = this.toggleService.bind(this);
@@ -42,27 +42,36 @@ class WizardFormFirstPage extends Component {
         this.props.onSubmit(this.state.selectedServices, 'services')
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (!this.state.selectedServices && !this.props.fetching) {
+            this.setState({
+                selectedServices: this.props.services[0],
+            });
+        }
+    }
+
     render() {
         const services = this.props.services;
         if (!services) { return null; }
         return (
             <div className="Form">
                 <Heading>Choose services</Heading>
-                <form onSubmit={(e) => this.onSubmit(e)}>
+                {this.props.fetching ? <h5 className='text-center'>Loading...</h5> :
+                <form className="Wrap" onSubmit={(e) => this.onSubmit(e)}>
                     <ListGroup>
                         {services.map(service =>
-                            <ListItem itemId={service.id}
+                            <SelectableListItem itemId={service.id}
                                       selected={this.state.selectedServices.includes(service.id)}
                                       onClick={this.toggleService}
                                       key={service.id}
                             >
                                 {service.name} ({service.time} min)
-                            </ListItem>)}
+                            </SelectableListItem>)}
                     </ListGroup>
                     <div>
                         <Button type="submit">Next</Button>
                     </div>
-                </form>
+                </form>}
             </div>
         );
     }

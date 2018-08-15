@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import ImageHair from '../../../assets/images/1.jpg';
-import Salon from '../../../assets/images/salon.jpg';
-import Haircut from '../../../assets/images/haircut.jpg';
-import Londa from '../../../assets/images/londa.jpg'
-import Kerastase from '../../../assets/images/kerastase.jpg'
-import Keune from '../../../assets/images/keune.jpg'
+import ImageHair from '../../assets/images/1.jpg';
+import Salon from '../../assets/images/salon.jpg';
+import Haircut from '../../assets/images/haircut.jpg';
+import Londa from '../../assets/images/londa.jpg'
+import Kerastase from '../../assets/images/kerastase.jpg'
+import Keune from '../../assets/images/keune.jpg'
 import './HomePage.css';
 
 class HomePage extends Component {

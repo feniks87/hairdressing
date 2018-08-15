@@ -5,7 +5,9 @@ const BASE_URL = process.env.REACT_APP_API_PATH;
 export const userService = {
     login,
     logout,
-    register
+    register,
+    getClient,
+    updateClient
 };
 
 function register(user) {
@@ -46,6 +48,37 @@ function login(email, password) {
 
             return user;
         });
+}
+
+function getClient(clientId, token) {
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+        },
+    };
+
+    return fetch(`${BASE_URL}/clients/${clientId}?access_token=${token}`, requestOptions)
+        .then(handleResponse);
+}
+
+function updateClient(client, token) {
+    const requestOptions = {
+        method: 'PATCH',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            phone: client.phone,
+            name: client.name,  
+            email: client.email,
+            id: client.id
+           })
+    };
+
+    return fetch(`${BASE_URL}/clients/${client.id}?access_token=${token}`, requestOptions)
+        .then(handleResponse);
 }
 
 function logout(id) {

@@ -10,7 +10,6 @@ class Hours extends Component {
 
         return (
             <div>
-
                 {hours.map(hourItem =>
                     <HourItem
                         day={hourItem.day}

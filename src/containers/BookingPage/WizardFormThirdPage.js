@@ -1,15 +1,10 @@
 
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
-import Heading from '../../UI/Heading/Heading';
-
-import Button from '../../UI/Button/Button';
-
+import Heading from '../../components/UI/Heading/Heading';
+import Button from '../../components/UI/Button/Button';
 import DatePicker from 'react-datepicker';
-
 import moment  from 'moment';
-
 import 'react-datepicker/dist/react-datepicker.css';
 
 class WizardFormThirdPage extends Component {
@@ -193,7 +188,7 @@ class WizardFormThirdPage extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        this.props.onSubmit(this.state.selectedTime);
+        this.props.onSubmit(this.state.selectedTime, 'time');
     }
 
     handleChange(date) {
@@ -226,9 +221,6 @@ class WizardFormThirdPage extends Component {
 
 
     render() {
-        const hours = this.props.hours;
-        if (!hours || hours.length === 0) { return null; }
-
         return (
             <div className="Form">
                 <Heading>Choose date and time</Heading>
@@ -277,7 +269,7 @@ class WizardFormThirdPage extends Component {
                         </div>
 
                         <div>
-                            <Button type="submit">Book</Button>
+                            <Button type="submit">Next</Button>
                             <Button type="button" onClick={() => this.props.previousPage(this.state.selectedTime, 'time')}>Back</Button>
                         </div>
                     </form>

@@ -7,7 +7,9 @@ import { history } from '../_helpers/history';
 export const userActions = {
     login,
     logout,
-    register
+    register, 
+    getClient,
+    updateClient,
 };
 
 function login(email, password) {
@@ -18,6 +20,7 @@ function login(email, password) {
             .then(tokenInfo => {
                     history.push('/');
                     dispatch(success(tokenInfo));
+                    dispatch(userActions.getClient(tokenInfo.userId, tokenInfo.id));
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -60,4 +63,45 @@ function register(user) {
     function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
     function success(registration) { return { type: userConstants.REGISTER_SUCCESS, registration } }
     function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
+}
+
+function getClient(clientId, token) {
+    return dispatch => {
+        dispatch(request(clientId));
+
+        userService.getClient(clientId, token)
+            .then(clientInfo => {
+                    dispatch(success(clientInfo));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+
+    function request(clientId) { return { type: userConstants.FETCH_CLIENT_REQUEST, clientId } }
+    function success(clientInfo) { return { type: userConstants.FETCH_CLIENT_SUCCESS, clientInfo } }
+    function failure(error) { return { type: userConstants.FETCH_CLIENT_FAILURE, error } }
+}
+
+function updateClient(client, token) {
+    return dispatch => {
+        dispatch(request(client.id));
+
+        userService.updateClient(client, token)
+            .then(clientInfo => {
+                    dispatch(success(clientInfo));
+                    dispatch(alertActions.success('Details were successfully updated'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+
+    function request(clientId) { return { type: userConstants.UPDATE_CLIENT_REQUEST, clientId } }
+    function success(clientInfo) { return { type: userConstants.UPDATE_CLIENT_SUCCESS, clientInfo } }
+    function failure(error) { return { type: userConstants.UPDATE_CLIENT_FAILURE, error } }
 }

@@ -14,7 +14,6 @@ function getBookings() {
 
         bookingService.getBookings()
             .then(bookings => {
-                    console.log(bookings);
                     dispatch(success(bookings));
                 },
                 error => {
@@ -34,10 +33,8 @@ function addBooking(booking) {
 
         bookingService.addBooking(booking)
             .then(booking => {
-                    console.log('Booking successful');
-                    console.log(booking);
                     dispatch(success(booking));
-                    dispatch(alertActions.success('Booking successful'));
+                    dispatch(alertActions.success('Booking is successful'));
                 },
                 error => {
                     dispatch(failure(error.toString()));

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Input from '../../UI/Input/Input';
+import Input from '../../components/UI/Input/Input';
 import './LoginPage.css';
-import Button from '../../../components/UI/Button/Button';
-import Heading from '../../UI/Heading/Heading';
+import Button from '../../components/UI/Button/Button';
+import Heading from '../../components/UI/Heading/Heading';
 import { Link } from 'react-router-dom';
 
-import {userActions} from '../../../_actions/user.actions';
+import {userActions} from '../../_actions/user.actions';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -29,10 +29,11 @@ class LoginPage extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-	        const { email, password } = this.state;
+	    const { email, password } = this.state;
         const { dispatch } = this.props;
         if (email && password) {
-            dispatch(userActions.login(email, password));
+            let loginAction = userActions.login(email, password);
+            dispatch(loginAction);
             this.setState({ submitted: true });
         }
     }

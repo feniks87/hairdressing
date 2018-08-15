@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './ServicesPage.css';
-import Heading from '../../UI/Heading/Heading';
-import TableItem from '../../UI/TableItem/TableItem';
-import { serviceActions } from '../../../_actions/service.actions';
+import Heading from '../../components/UI/Heading/Heading';
+import TableItem from '../../components/UI/TableItem/TableItem';
+import { serviceActions } from '../../_actions/service.actions';
 
 
 class ServicesPage extends Component {
@@ -13,21 +13,20 @@ class ServicesPage extends Component {
     }
 
     render() {
-        const services = this.props.services;
-        if (!services) { return null; }
-
         return (
             <div className="container  table-responsive">
                 <Heading>Our Services</Heading>
+                {this.props.fetching ? <h5 className='text-center'>Loading...</h5> :
                 <div className="Services">
                     <table className="table table-striped">
                         <tbody>
-                        {services.map(service =>
+                        {this.props.services.map(service =>
                             <TableItem serviceName={service.name} price={service.price} key={service.id}/>
                         )}
                         </tbody>
                     </table>
                 </div>
+                }
             </div>
         )
     }
@@ -36,8 +35,8 @@ class ServicesPage extends Component {
 function mapStateToProps(state) {
     const { services, fetching } = state.servicesInfo;
     return {
-        services: services,
-        fetching: fetching,
+        services,
+        fetching,
     };
 }
 

@@ -1,33 +1,18 @@
 
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
-
-import Heading from '../../UI/Heading/Heading';
-
+import Heading from '../../components/UI/Heading/Heading';
 import { ListGroup } from 'reactstrap';
-
-import ListItem from '../../UI/ListItem/ListItem';
-
-import Button from '../../UI/Button/Button';
+import SelectableListItem from '../../components/UI/SelectableListItem/SelectableListItem';
+import Button from '../../components/UI/Button/Button';
 
 class WizardFormSecondPage extends Component {
 
     constructor(props) {
         super(props);
 
-        let value = null;
-
-        if (props.data) {
-            value = props.data;
-        }
-        else {
-            if (props.teamMembers && props.teamMembers.length > 0) {
-                value = props.teamMembers[0].id;
-            }
-        }
         this.state = {
-            selectedStylist: value,
+            selectedStylist: props.data ? props.data : ((props.team.teamMembers && props.team.teamMembers.length > 0) ? props.team.teamMembers[0].id : null),
         };
 
         this.toggleStylist = this.toggleStylist.bind(this);
@@ -48,41 +33,53 @@ class WizardFormSecondPage extends Component {
         this.props.onSubmit(this.state.selectedStylist, 'stylist');
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (!this.state.selectedStylist && !this.props.team.fetching) {
+            this.setState({
+                selectedStylist: this.props.team.teamMembers[0].id,
+            });
+        }
+    }
+
     back() {
         this.props.previousPage(this.state.selectedStylist, 'stylist');
     }
 
     render() {
-        const team = this.props.teamMembers;
-        if (!team) { return null; }
+        const team = this.props.team.teamMembers;
         return (
             <div className="Form">
                 <Heading>Choose stylist</Heading>
+                {this.props.fetching 
+                    || this.props.workingHours.fetching 
+                    || this.props.contactsInfo.fetching
+                    || this.props.bookingInfo.fetching ? <h5 className='text-center'>Loading...</h5> :
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     <ListGroup>
                         {team.map(stylist =>
-                            <ListItem itemId={stylist.id}
+                            <SelectableListItem itemId={stylist.id}
                                       selected={this.state.selectedStylist === stylist.id}
                                       onClick={this.toggleStylist}
                                       key={stylist.id}
-                            >{stylist.name}</ListItem>
+                            >{stylist.name}</SelectableListItem>
                         )}
                     </ListGroup>
                     <div>
                         <Button type="submit">Next</Button>
                         <Button type="button" onClick={this.back}>Back</Button>
                     </div>
-                </form>
+                </form>}
             </div>
         );
     }
 }
 
 function mapStateToProps(state) {
-    const { teamMembers, fetching } = state.team;
     return {
-        teamMembers: teamMembers,
-        fetching: fetching,
+        team: state.team,
+        workingHours: state.workingHours,
+        contactsInfo: state.contactsInfo,
+        bookingInfo: state.bookingInfo,
     };
 }
 
