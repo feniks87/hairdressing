@@ -13,10 +13,11 @@ class ServicesPage extends Component {
     }
 
     render() {
+        const services = this.props.services;
         return (
             <div className="container  table-responsive">
                 <Heading>Our Services</Heading>
-                {this.props.fetching ? <h5 className='text-center'>Loading...</h5> :
+                {this.props.fetching && services.length === 0? <h5 className='text-center'>Loading...</h5> :
                 <div className="Services">
                     <table className="table table-striped">
                         <tbody>

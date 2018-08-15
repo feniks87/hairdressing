@@ -21,7 +21,7 @@ class ContactPage extends Component {
         return (
             <div className="container">
                 <Heading>Contact Us</Heading>
-                {this.props.fetching ? <h5 className='text-center'>Loading...</h5> :
+                {this.props.fetching && contacts.length === 0 ? <h5 className='text-center'>Loading...</h5> :
                 <div>
                     {contacts.map(contactInfo =>
                         <div className="row" key={contactInfo.id}>

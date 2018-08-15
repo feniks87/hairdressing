@@ -23,8 +23,17 @@ function login(email, password) {
                     dispatch(userActions.getClient(tokenInfo.userId, tokenInfo.id));
                 },
                 error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    dispatch(failure(error.message));
+                    dispatch(alertActions.error(error.message));
+
+                    if (error.response.status === 401) {
+                        dispatch(failure(error.message));
+                        dispatch(alertActions.error("Email or Password is incorrect"));
+                    }
+                    else {
+                        dispatch(failure(error.message));
+                        dispatch(alertActions.error(error.message));
+                    }
                 }
             );
     };
@@ -54,8 +63,14 @@ function register(user) {
                     dispatch(alertActions.success('You have been registered successfully!'));
                 },
                 error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    if (error.response.status === 422) {
+                        dispatch(failure(error.message));
+                        dispatch(alertActions.error("The email address you have entered is already registered"));
+                    }
+                    else {
+                        dispatch(failure(error.message));
+                        dispatch(alertActions.error(error.message));
+                    }
                 }
             );
     };
@@ -74,8 +89,8 @@ function getClient(clientId, token) {
                     dispatch(success(clientInfo));
                 },
                 error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    dispatch(failure(error.message));
+                    dispatch(alertActions.error(error.message));
                 }
             );
     };
@@ -95,8 +110,8 @@ function updateClient(client, token) {
                     dispatch(alertActions.success('Details were successfully updated'));
                 },
                 error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
+                    dispatch(failure(error.message));
+                    dispatch(alertActions.error(error.message));
                 }
             );
     };

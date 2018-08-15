@@ -67,19 +67,24 @@ class UserAccountPage extends Component {
         const alert = this.props.alert;
 
         const bookings = this.props.bookingInfo.bookings;
+        const teamMembers = this.props.team.teamMembers;
 
-        let userBookings = bookings.filter(b => b.clientId === this.props.authentication.userId)
-        .map((b) => {
-            return {
-            time: moment(b.time), 
-            stylistName: this.props.team.teamMembers.find(t => t.id === b.stylistId).name,
-            id: b.id
-            };
-        });
+        let userBookings = [];
 
-        userBookings.sort((a, b) => {
-            return a.time.isBefore(b.time) ? 1 : a.time.isAfter(b.time) ? -1 : 0;
-        })
+        if (bookings.length !== 0 && teamMembers.length !== 0) {
+            userBookings = bookings.filter(b => b.clientId === this.props.authentication.userId)
+            .map((b) => {
+                return {
+                time: moment(b.time), 
+                stylistName: teamMembers.find(t => t.id === b.stylistId).name,
+                id: b.id
+                };
+            });
+
+            userBookings.sort((a, b) => {
+                return a.time.isBefore(b.time) ? 1 : a.time.isAfter(b.time) ? -1 : 0;
+            })
+        }
 
         return (
             <div className="container">
@@ -87,12 +92,13 @@ class UserAccountPage extends Component {
                 {alert.message && 
                         <div className={`text-center alert ${alert.type}`}>{alert.message}</div>
                         }
-                {this.props.bookingInfo.fetching 
+                {(this.props.bookingInfo.fetching 
                     || this.props.team.fetching 
-                    || this.props.userInfo.fetching ? <h5 className='text-center'>Loading...</h5> :
+                    || this.props.userInfo.fetching)
+                    && (bookings.length === 0 || teamMembers.length === 0) ? <h5 className='text-center'>Loading...</h5> :
                 <div>
                     <h5>Personal info</h5>
-                    <form className="Registration" onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSubmit}>
                         <Input label="Name:" placeholder="Enter name" value={this.state.user.name}
                             onChange={this.handleChange}
                             showError={submitted && !this.state.user.name}

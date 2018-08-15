@@ -50,10 +50,10 @@ class WizardFormSecondPage extends Component {
         return (
             <div className="Form">
                 <Heading>Choose stylist</Heading>
-                {this.props.fetching 
+                {(this.props.fetching 
                     || this.props.workingHours.fetching 
                     || this.props.contactsInfo.fetching
-                    || this.props.bookingInfo.fetching ? <h5 className='text-center'>Loading...</h5> :
+                    || this.props.bookingInfo.fetching) && (team.length === 0) ? <h5 className='text-center'>Loading...</h5> :
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     <ListGroup>
                         {team.map(stylist =>

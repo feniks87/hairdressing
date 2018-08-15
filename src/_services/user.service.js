@@ -109,9 +109,8 @@ function handleResponse(response) {
                 // auto logout if 401 response returned from api
                 //logout();
             }
-
-            const error = (data && data.message) || response.statusText;
-            return Promise.reject(error);
+            const message = (data && data.message) || response.statusText;
+            return Promise.reject({response, data, message});
         }
 
         return data;

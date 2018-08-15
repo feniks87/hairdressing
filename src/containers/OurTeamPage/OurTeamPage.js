@@ -13,10 +13,11 @@ class OurTeamPage extends Component {
     }
 
     render() {
+        const teamMembers = this.props.teamMembers;
         return (
            <div className="container">
                <Heading>Our Team</Heading>
-               {this.props.fetching ? <h5 className='text-center'>Loading...</h5> :
+               {this.props.fetching && teamMembers.length === 0 ? <h5 className='text-center'>Loading...</h5> :
                     <div>
                         {this.props.teamMembers.map(stylist =>
                         <TeamMember src={stylist.image} alt={stylist.alt} name={stylist.name} 

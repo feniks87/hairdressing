@@ -50,20 +50,23 @@ class SignUpPage extends Component {
         this.setState({ submitted: true });
         const { user, confirmPassword } = this.state;
         const { dispatch } = this.props;
-        if (user.password !== confirmPassword) {
-            dispatch(alertActions.error("Password and confirm password fields do not match"));
-        }
 
-        if (user.password.length < 6) {
-            dispatch(alertActions.error("Password should be at least 6 characters long"));
-        }
-
-        if (user.name && user.email && user.phone && user.password && user.password === confirmPassword) {
+        if (user.name === "" 
+            || user.email === "" 
+            || user.phone === "" 
+            || user.password === "" 
+            || confirmPassword === "") {
+            dispatch(alertActions.error("Please fill all the required fields"));
+        } else if (user.password !== confirmPassword) {
+            dispatch(alertActions.error("Password and confirm password do not match"));
+        } else if (user.password.length < 6) {
+            dispatch(alertActions.error("Password should contain at least 6 characters"));
+        } else if (user.name && user.email && user.phone && user.password && user.password === confirmPassword) {
             dispatch(userActions.register(user));
         }
     }
 
-    render () {        
+    render () {
         const { alert } = this.props;
         const { user, submitted, confirmPassword } = this.state;
         return (

@@ -56,7 +56,7 @@ class WizardFormFirstPage extends Component {
         return (
             <div className="Form">
                 <Heading>Choose services</Heading>
-                {this.props.fetching ? <h5 className='text-center'>Loading...</h5> :
+                {this.props.fetching && services.length === 0 ? <h5 className='text-center'>Loading...</h5> :
                 <form className="Wrap" onSubmit={(e) => this.onSubmit(e)}>
                     <ListGroup>
                         {services.map(service =>
