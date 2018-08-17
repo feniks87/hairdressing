@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import HourItem from '../Hours/HourItem/HourItem'
+import HourItem from '../Hours/HourItem/HourItem';
+import Aux from '../../hoc/Auxiliary/_Aux';
 
 
 class Hours extends Component {
@@ -9,7 +10,7 @@ class Hours extends Component {
         if (!hours) { return null; }
 
         return (
-            <div>
+            <Aux>
                 {hours.map(hourItem =>
                     <HourItem
                         day={hourItem.day}
@@ -17,7 +18,7 @@ class Hours extends Component {
                         finishTime={`${hourItem.finishHour}.${hourItem.finishMinutes === 0 ? '00' : hourItem.finishMinutes}`}
                         key={hourItem.id}/>
                 )}
-            </div>
+            </Aux>
         );
 
     }

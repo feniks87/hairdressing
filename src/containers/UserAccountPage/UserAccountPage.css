@@ -1,17 +1,13 @@
-.Form {
-    width: 50%;
-    display: block;
+.Account {
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
 
-.Wrap {
-    padding: 100px;
+.Wrap-info {
     width: 80%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #ece8df;
-    border: 1px solid #dad2be;
-    border-radius: 5px;
+}
+
+.History {
+    margin-top: 90px;
 }

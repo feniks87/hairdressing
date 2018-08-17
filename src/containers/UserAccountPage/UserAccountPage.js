@@ -97,32 +97,39 @@ class UserAccountPage extends Component {
                     || this.props.team.fetching 
                     || this.props.userInfo.fetching)
                     && (bookings.length === 0 || teamMembers.length === 0) ? <h5 className='text-center'>Loading...</h5> :
-                <div classname= "Wrap">
-                    <h5>Personal info</h5>
-                    <form onSubmit={this.handleSubmit}>
-                        <Input label="Name:" placeholder="Enter name" value={this.state.user.name}
-                            onChange={this.handleChange}
-                            showError={submitted && !this.state.user.name}
-                            name="name"
-                            errorMessage="Name is required"
-                            type="text"/>
-                        <Input label="Contact phone:" placeholder="Enter phone number" value={this.state.user.phone}
-                            onChange={this.handleChange}
-                            showError={submitted && !this.state.user.phone}
-                            name="phone"
-                            errorMessage="Phone number is required"
-                            type="text"/>
-                        <Button type="Submit">Save</Button>
-                    </form>
+                <div className="container">
 
-                    <hr/>
-                    <h5>Booking history</h5>
-                    <div>
-                        <ul>
-                            {userBookings.map(booking =>
-                                            <ListItem value={`${booking.stylistName} (${booking.time.format('MMMM Do YYYY dddd, h:mm a').toString()})`} key={booking.id}/>
-                                        )}
-                        </ul>
+                    <div className="row">
+                        <div className="col-sm-6">
+                            <form className="Wrap-info" onSubmit={this.handleSubmit}>
+                                <h5>Personal info</h5>
+                                <Input label="Name:" placeholder="Enter name" value={this.state.user.name}
+                                    onChange={this.handleChange}
+                                    showError={submitted && !this.state.user.name}
+                                    name="name"
+                                    errorMessage="Name is required"
+                                    type="text"/>
+                                <Input label="Contact phone:" placeholder="Enter phone number" value={this.state.user.phone}
+                                    onChange={this.handleChange}
+                                    showError={submitted && !this.state.user.phone}
+                                    name="phone"
+                                    errorMessage="Phone number is required"
+                                    type="text"/>
+                                <Button type="Submit">Save</Button>
+                            </form>
+                        </div>
+                        <div className="col-sm-6">
+                            <h5>Booking history</h5>
+                            <div>
+                                <ul>
+                                    {userBookings.map(booking =>
+                                                    <ListItem value={`${booking.stylistName} (${booking.time.format('MMMM Do YYYY dddd, h:mm a').toString()})`} key={booking.id}/>
+                                                )}
+                                </ul>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
                 }

@@ -6,11 +6,12 @@ import Londa from '../../assets/images/londa.jpg'
 import Kerastase from '../../assets/images/kerastase.jpg'
 import Keune from '../../assets/images/keune.jpg'
 import './HomePage.css';
+import Aux from '../../hoc/Auxiliary/_Aux';
 
 class HomePage extends Component {
     render() {
         return (
-            <div>
+            <Aux>
                 <img className="ImageHair img-fluid" src={ImageHair} alt="Hair"/>
                 <div className="d-flex flex-wrap justify-content-center bg-white">
                     <div className="p-2">
@@ -66,7 +67,7 @@ class HomePage extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Aux>
         )
     }
 }

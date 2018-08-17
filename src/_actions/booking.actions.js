@@ -34,7 +34,7 @@ function addBooking(booking) {
         bookingService.addBooking(booking)
             .then(booking => {
                     dispatch(success(booking));
-                    dispatch(alertActions.success('Booking is successful'));
+                    dispatch(alertActions.success('Your booking was successful!'));
                 },
                 error => {
                     dispatch(failure(error.toString()));

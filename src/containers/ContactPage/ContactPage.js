@@ -21,19 +21,19 @@ class ContactPage extends Component {
         return (
             <div className="container">
                 <Heading>Contact Us</Heading>
-                {this.props.fetching && contacts.length === 0 ? <h5 className='text-center'>Loading...</h5> :
+                {this.props.fetching && contacts.length === 0 ? <h5>Loading...</h5> :
                 <div>
                     {contacts.map(contactInfo =>
                         <div className="row" key={contactInfo.id}>
                             <div className="col-sm-6">
                                 <ContactInfo name={contactInfo.name} address={contactInfo.address} phone={contactInfo.phone}/>
-                                <img className="Image-map img-fluid img-thumbnail"
-                                    src={`data:image/jpeg;base64,${contactInfo.mapImage}`}
-                                    alt={contactInfo.alt}/>
+                                <h5 className="text-center">Hours</h5>
+                                <Hours locationId={contactInfo.id} />
                             </div>
                             <div className="col-sm-6">
-                                <h5 className="Heading-hours text-center">Hours</h5>
-                                <Hours locationId={contactInfo.id} />
+                                <img className="Image-map img-fluid img-thumbnail"
+                                     src={`data:image/jpeg;base64,${contactInfo.mapImage}`}
+                                     alt={contactInfo.alt}/>
                             </div>
                         </div>
                     )}
