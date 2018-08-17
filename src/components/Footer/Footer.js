@@ -17,7 +17,7 @@ class Footer extends Component {
         if (!contacts) { return null; }
 
         return (
-            <footer className="Footer text-muted">
+            <footer className="Footer mb-2 text-muted">
                 <div className="container">
                     <div className="row">
                         {contacts.map(contactInfo =>

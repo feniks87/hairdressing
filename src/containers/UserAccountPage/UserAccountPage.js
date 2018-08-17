@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './UserAccountPage.css'
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import Heading from '../../components/UI/Heading/Heading';
@@ -96,7 +97,7 @@ class UserAccountPage extends Component {
                     || this.props.team.fetching 
                     || this.props.userInfo.fetching)
                     && (bookings.length === 0 || teamMembers.length === 0) ? <h5 className='text-center'>Loading...</h5> :
-                <div>
+                <div classname= "Wrap">
                     <h5>Personal info</h5>
                     <form onSubmit={this.handleSubmit}>
                         <Input label="Name:" placeholder="Enter name" value={this.state.user.name}
@@ -111,7 +112,7 @@ class UserAccountPage extends Component {
                             name="phone"
                             errorMessage="Phone number is required"
                             type="text"/>
-                        <Button type="Submit">Save changes</Button>
+                        <Button type="Submit">Save</Button>
                     </form>
 
                     <hr/>

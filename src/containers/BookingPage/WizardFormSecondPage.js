@@ -54,7 +54,7 @@ class WizardFormSecondPage extends Component {
                     || this.props.workingHours.fetching 
                     || this.props.contactsInfo.fetching
                     || this.props.bookingInfo.fetching) && (team.length === 0) ? <h5 className='text-center'>Loading...</h5> :
-                <form onSubmit={(e) => this.onSubmit(e)}>
+                <form className="Wrap" onSubmit={(e) => this.onSubmit(e)}>
                     <ListGroup>
                         {team.map(stylist =>
                             <SelectableListItem itemId={stylist.id}

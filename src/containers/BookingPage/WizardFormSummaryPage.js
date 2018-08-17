@@ -26,10 +26,11 @@ class WizardFormSummaryPage extends Component {
         const hours = Math.floor(Math.floor(totalDuration/60));
         const minutes = totalDuration % 60;
         return (
-            <div className="container ">
+            <div className="Form">
                 <Heading>Confirm booking</Heading>
-                <p>Stylist name: {stylist.name}</p>
-                <form  name="form" onSubmit={this.onSubmit}>
+                
+                <form className="Wrap" name="form" onSubmit={this.onSubmit}>
+                    <p>Stylist name: {stylist.name}</p>
                     <p>Services:</p>
                     <div>
                         <ul>

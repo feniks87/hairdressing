@@ -228,7 +228,7 @@ class WizardFormThirdPage extends Component {
                     ? <p>Sorry, all days are busy. You have chosen {this.state.serviceDuration}min of services in total.
                         Try to reduce the amount of services or visit us tomorrow. </p>
                     :
-                    <form onSubmit={(e) => this.onSubmit(e)}>
+                    <form className="Wrap" onSubmit={(e) => this.onSubmit(e)}>
                         <div className='text-center'>
                             <style>
                                 {`.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {

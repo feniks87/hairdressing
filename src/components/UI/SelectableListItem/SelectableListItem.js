@@ -15,7 +15,7 @@ class SelectableListItem extends Component {
                     <FontAwesomeIcon icon={faCheck} />
                 </button>
             </span>
-        </ListGroupItem>
+            </ListGroupItem>
         )
     }
 }
