@@ -49,7 +49,7 @@ class WizardFormSecondPage extends Component {
         const team = this.props.team.teamMembers;
         return (
             <div className="Form">
-                <Heading>Choose stylist</Heading>
+                <Heading>Select stylist</Heading>
                 {(this.props.fetching 
                     || this.props.workingHours.fetching 
                     || this.props.contactsInfo.fetching

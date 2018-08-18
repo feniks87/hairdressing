@@ -15,7 +15,7 @@ class WizardFormFirstPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedServices: props.data ? [...props.data] : ((props.services && props.services.length > 0) ? [props.services[0].id] : null),
+            selectedServices: props.data ? [...props.data] : ((props.services && props.services.length > 0) ? [props.services[0].id] : []),
         };
 
         this.toggleService = this.toggleService.bind(this);
@@ -43,20 +43,21 @@ class WizardFormFirstPage extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (!this.state.selectedServices && !this.props.fetching) {
+        if (this.state.selectedServices.length === 0
+            && this.props.services
+            && this.props.services.length > 0) {
             this.setState({
-                selectedServices: this.props.services[0],
+                selectedServices: [this.props.services[0]],
             });
         }
     }
 
     render() {
         const services = this.props.services;
-        if (!services) { return null; }
         return (
             <div className="Form">
-                <Heading>Choose services</Heading>
-                {this.props.fetching && services.length === 0 ? <h5 className='text-center'>Loading...</h5> :
+                <Heading>Select services</Heading>
+                {(this.props.fetching && services.length === 0) || this.state.selectedServices.length === 0 ? <h5 className='text-center'>Loading...</h5> :
                 <form className="Wrap" onSubmit={(e) => this.onSubmit(e)}>
                     <ListGroup>
                         {services.map(service =>

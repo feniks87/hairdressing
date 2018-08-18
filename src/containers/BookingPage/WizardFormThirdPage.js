@@ -223,7 +223,7 @@ class WizardFormThirdPage extends Component {
     render() {
         return (
             <div className="Form">
-                <Heading>Choose date and time</Heading>
+                <Heading>Select date and time</Heading>
                 { this.state.allBusy
                     ? <p>Sorry, all days are busy. You have chosen {this.state.serviceDuration}min of services in total.
                         Try to reduce the amount of services or visit us tomorrow. </p>
@@ -231,10 +231,44 @@ class WizardFormThirdPage extends Component {
                     <form className="Wrap" onSubmit={(e) => this.onSubmit(e)}>
                         <div className='text-center'>
                             <style>
-                                {`.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
-                            padding-left: 0;
-                            padding-right: 0;
-                                }`}
+                                {`
+                                .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+                                    padding-left: 0;
+                                    padding-right: 0;
+                                }
+                                .react-datepicker {
+                                  font-size: 1em;
+                                }
+                                .react-datepicker__header {
+                                  padding-top: 0.8em;
+                                }
+                                .react-datepicker__month {
+                                  margin: 0.4em 1em;
+                                }
+
+                                .react-datepicker__day-name,
+                                .react-datepicker__day {
+                                  width: 2.9em;
+                                  line-height: 2.9em;
+                                  margin: 0.166em;
+                                }
+                                .react-datepicker__current-month {
+                                  font-size: 1em;
+                                }
+                                .react-datepicker__navigation {
+                                  top: 1em;
+                                  line-height: 1.7em;
+                                  border: 0.45em solid transparent;
+                                }
+                                .react-datepicker__navigation--previous {
+                                  border-right-color: #ccc;
+                                  left: 1em;
+                                }
+                                .react-datepicker__navigation--next {
+                                  border-left-color: #ccc;
+                                  right: 1em;
+                                }
+                            `}
                             </style>
                             <DatePicker  autoFocus readOnly popperPlacement="bottom-start"
                                          popperModifiers={{

@@ -29,6 +29,7 @@ class ContactPage extends Component {
                                 <ContactInfo name={contactInfo.name} address={contactInfo.address} phone={contactInfo.phone}/>
                                 <h5 className="text-center">Hours</h5>
                                 <Hours locationId={contactInfo.id} />
+
                             </div>
                             <div className="col-sm-6">
                                 <img className="Image-map img-fluid img-thumbnail"
