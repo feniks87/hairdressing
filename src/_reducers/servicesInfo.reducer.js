@@ -18,7 +18,7 @@ export function servicesInfo(state = initialState, action) {
         services: action.services,
         fetching: false,
       };
-    case serviceConstants.LOGIN_FAILURE:
+    case serviceConstants.GET_ALL_FAILURE:
       return {
         error: action.error
       };
