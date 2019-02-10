@@ -50,7 +50,7 @@ class WizardFormSecondPage extends Component {
         return (
             <div className="Form">
                 <Heading>Select stylist</Heading>
-                {(this.props.fetching 
+                {(this.props.team.fetching
                     || this.props.workingHours.fetching 
                     || this.props.contactsInfo.fetching
                     || this.props.bookingInfo.fetching) && (team.length === 0) ? <h5 className='text-center'>Loading...</h5> :

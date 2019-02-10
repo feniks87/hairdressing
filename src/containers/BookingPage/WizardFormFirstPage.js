@@ -15,7 +15,7 @@ class WizardFormFirstPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedServices: props.data ? [...props.data] : ((props.services && props.services.length > 0) ? [props.services[0].id] : []),
+            selectedServices: props.data ? props.data : ((props.services && props.services.length > 0) ? [props.services[0].id] : []),
         };
 
         this.toggleService = this.toggleService.bind(this);
@@ -64,8 +64,7 @@ class WizardFormFirstPage extends Component {
                             <SelectableListItem itemId={service.id}
                                       selected={this.state.selectedServices.includes(service.id)}
                                       onClick={this.toggleService}
-                                      key={service.id}
-                            >
+                                      key={service.id}>
                                 {service.name} ({service.time} min)
                             </SelectableListItem>)}
                     </ListGroup>
