@@ -1,5 +1,5 @@
 import { serviceConstants } from '../_constants/service.constants';
-import { servicesService } from '../_services/services.service';
+import axios from '../axios-instance';
 
 
 export const serviceActions = {
@@ -10,15 +10,14 @@ function getAllServices() {
     return dispatch => {
         dispatch(request());
 
-        servicesService.getAllServices()
+        axios.get('/services.json')
             .then(services => {
-                    dispatch(success(services));
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                }
-            );
-    };
+                dispatch(success(services.data));
+            })
+            .catch(error => {
+                dispatch(failure(error));
+            })
+        };
 
     function request() { return { type: serviceConstants.GET_ALL_REQUEST } }
     function success(services) { return { type: serviceConstants.GET_ALL_SUCCESS, services } }
