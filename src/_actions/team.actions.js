@@ -12,7 +12,7 @@ function getTeam() {
         axios.get('/stylists.json')
             .then(teamMembers => {
                 dispatch(success(teamMembers.data));
-                })
+            })
             .catch(error => {
                 dispatch(failure(error));
             })

@@ -1,5 +1,5 @@
 import { contactConstants } from '../_constants/contact.constants';
-import { contactService } from '../_services/contact.service';
+import axios from '../axios-instance';
 
 
 export const contactActions = {
@@ -10,14 +10,13 @@ function getContacts() {
     return dispatch => {
         dispatch(request());
 
-        contactService.getContacts()
+        axios.get('/contacts.json')
             .then(contacts => {
-                    dispatch(success(contacts));
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                }
-            );
+                dispatch(success(contacts.data));
+            })
+            .catch(error => {
+                dispatch(failure(error));
+            })
     };
 
     function request() { return { type: contactConstants.FETCH_REQUEST } }
