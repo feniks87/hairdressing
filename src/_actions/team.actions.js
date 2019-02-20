@@ -1,6 +1,5 @@
 import { teamConstants } from '../_constants/team.constants';
-import { teamService } from '../_services/team.service';
-
+import axios from '../axios-instance';
 
 export const teamActions = {
     getTeam,
@@ -10,14 +9,13 @@ function getTeam() {
     return dispatch => {
         dispatch(request());
 
-        teamService.getTeam()
+        axios.get('/stylists.json')
             .then(teamMembers => {
-                    dispatch(success(teamMembers));
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                }
-            );
+                dispatch(success(teamMembers.data));
+                })
+            .catch(error => {
+                dispatch(failure(error));
+            })
     };
 
     function request() { return { type: teamConstants.FETCH_REQUEST } }
