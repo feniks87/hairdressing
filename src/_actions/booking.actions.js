@@ -1,6 +1,7 @@
 import { bookingConstants } from '../_constants/booking.constants';
 import { bookingService } from '../_services/booking.service';
 import { alertActions } from './alert.actions';
+import axios from '../axios-instance';
 
 export const bookingActions = {
     getBookings,
@@ -12,14 +13,21 @@ function getBookings() {
     return dispatch => {
         dispatch(request());
 
-        bookingService.getBookings()
+        axios.get('/bookings.json')
             .then(bookings => {
-                    dispatch(success(bookings));
-                },
-                error => {
-                    dispatch(failure(error.toString()));
+                debugger;
+                const fetchedBookings = [];
+                for (let key in bookings.data) {
+                    fetchedBookings.push( {
+                        ...bookings.data[key],
+                        id: key
+                    });
                 }
-            );
+                dispatch(success(fetchedBookings));
+            })
+            .catch(error => {
+                    dispatch(failure(error.toString()));
+            });
     };
 
     function request() { return { type: bookingConstants.FETCH_BOOKINGS_REQUEST } }
@@ -30,17 +38,16 @@ function getBookings() {
 function addBooking(booking) {
     return dispatch => {
         dispatch(request(booking));
-
-        bookingService.addBooking(booking)
+        debugger;
+        axios.post('/bookings.json', booking)
             .then(booking => {
                     dispatch(success(booking));
                     dispatch(alertActions.success('Your booking was successful!'));
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
-                }
-            );
+                })
+            .catch(error => {
+                dispatch(failure(error.message));
+                dispatch(alertActions.error(error.toString()));
+            });
     };
 
     function request(booking) { return { type: bookingConstants.ADD_BOOKING_REQUEST, booking } }

@@ -32,7 +32,7 @@ class BookingPage extends Component {
         const { dispatch, history } = this.props;
         dispatch(bookingActions.addBooking({
           time: this.state.time,
-          clientId: this.props.authentication.userId,
+          clientId: this.props.authentication.localId,
           stylistId: this.state.stylist,
           services: this.state.services,
         }));
