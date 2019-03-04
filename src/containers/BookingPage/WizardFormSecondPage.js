@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Heading from '../../components/UI/Heading/Heading';
+import Header from '../../components/UI/Header/Header';
 import { ListGroup } from 'reactstrap';
 import SelectableListItem from '../../components/UI/SelectableListItem/SelectableListItem';
 import Button from '../../components/UI/Button/Button';
@@ -49,9 +49,9 @@ class WizardFormSecondPage extends Component {
         const team = this.props.team.teamMembers;
         return (
             <div className="Form">
-                <Heading>Select stylist</Heading>
+                <Header>Select stylist</Header>
                 {(this.props.team.fetching
-                    || this.props.workingHours.fetching 
+                    || this.props.workingHours.fetching
                     || this.props.contactsInfo.fetching
                     || this.props.bookingInfo.fetching) && (team.length === 0) ? <h5 className='text-center'>Loading...</h5> :
                 <form className="Wrap" onSubmit={(e) => this.onSubmit(e)}>

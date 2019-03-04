@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Heading from '../../components/UI/Heading/Heading';
+import Header from '../../components/UI/Header/Header';
 import Button from '../../components/UI/Button/Button';
 import DatePicker from 'react-datepicker';
 import moment  from 'moment';
@@ -211,8 +211,10 @@ class WizardFormThirdPage extends Component {
 
     // Calculates duration of all listed services by id
     getServicesDuration(servicesIds) {
+        debugger;
         const reducer = (accumulator, serviceId) => {
             let service = this.props.services.find((service) => service.id === serviceId);
+
             return accumulator + service.time;
         };
 
@@ -223,7 +225,7 @@ class WizardFormThirdPage extends Component {
     render() {
         return (
             <div className="Form">
-                <Heading>Select date and time</Heading>
+                <Header>Select date and time</Header>
                 { this.state.allBusy
                     ? <p>Sorry, all days are busy. You have chosen {this.state.serviceDuration}min of services in total.
                         Try to reduce the amount of services or visit us tomorrow. </p>

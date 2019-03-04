@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
-import Heading from '../../components/UI/Heading/Heading';
+import Header from '../../components/UI/Header/Header';
 
 import { ListGroup } from 'reactstrap';
 
@@ -14,6 +14,7 @@ import Button from '../../components/UI/Button/Button';
 class WizardFormFirstPage extends Component {
     constructor(props) {
         super(props);
+        debugger;
         this.state = {
             selectedServices: props.data ? props.data : ((props.services && props.services.length > 0) ? [props.services[0].id] : []),
         };
@@ -54,9 +55,10 @@ class WizardFormFirstPage extends Component {
 
     render() {
         const services = this.props.services;
+        debugger;
         return (
             <div className="Form">
-                <Heading>Select services</Heading>
+                <Header>Select services</Header>
                 {(this.props.fetching && services.length === 0) || this.state.selectedServices.length === 0 ? <h5 className='text-center'>Loading...</h5> :
                 <form className="Wrap" onSubmit={(e) => this.onSubmit(e)}>
                     <ListGroup>

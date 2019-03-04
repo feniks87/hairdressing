@@ -7,14 +7,17 @@
     padding: 0 16px !important;
 }
 
+.NavItem {
+    color: #eeeeee;
+}
+
 .NavItem a {
-    color: #eeeeee !important;
     text-decoration: none;
     height: 100%;
     padding: 20px 20px;
     border-bottom: 4px solid transparent;
     box-sizing: border-box;
-    margin-right: 20px;
+    margin: 0 10px;
 }
 
 .NavItem a:hover,
@@ -28,4 +31,3 @@
 .LogoPadding {
     padding: 0 !important;
 }
-

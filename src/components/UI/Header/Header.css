@@ -5,3 +5,10 @@
     padding-bottom: 50px;
     font-style: normal;
 }
+
+@media(max-width: 600px) {
+    .Header {
+        padding-top: 80px;
+        padding-bottom: 20px;
+    }
+}

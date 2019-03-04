@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './ServicesPage.css';
-import Heading from '../../components/UI/Heading/Heading';
+import Header from '../../components/UI/Header/Header';
 import TableItem from '../../components/UI/TableItem/TableItem';
 import { serviceActions } from '../../_actions/service.actions';
+import AddService from './AddService/AddService';
 
 
 class ServicesPage extends Component {
@@ -16,9 +17,10 @@ class ServicesPage extends Component {
         const services = this.props.services;
         return (
             <div className="container  table-responsive">
-                <Heading>Our Services</Heading>
+                <Header>Our Services</Header>
                 {this.props.fetching && services.length === 0? <h5 className='text-center'>Loading...</h5> :
                 <div className="Services">
+                    <AddService/>
                     <table className="table table-striped">
                         <tbody>
                         {this.props.services.map(service =>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './UserAccountPage.css'
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
-import Heading from '../../components/UI/Heading/Heading';
+import Header from '../../components/UI/Header/Header';
 import ListItem from '../../components/UI/ListItem/ListItem';
 import moment  from 'moment';
 
@@ -50,11 +50,11 @@ class UserAccountPage extends Component {
         if (user.name && user.phone) {
             let userToSubmit = {
                 phone: user.phone,
-                name: user.name,  
+                name: user.name,
                 email: this.props.userInfo.email,
                 id: this.props.userInfo.id
             }
-            dispatch(userActions.updateClient(userToSubmit, this.props.authentication.id));
+            dispatch(userActions.updateClient(userToSubmit, this.props.authentication.idToken));
         }
     }
 
@@ -73,10 +73,12 @@ class UserAccountPage extends Component {
         let userBookings = [];
 
         if (bookings.length !== 0 && teamMembers.length !== 0) {
-            userBookings = bookings.filter(b => b.clientId === this.props.authentication.userId)
+            debugger;
+            userBookings = bookings.filter(b => b.clientId === this.props.authentication.localId)
             .map((b) => {
+                debugger;
                 return {
-                time: moment(b.time), 
+                time: moment(b.time),
                 stylistName: teamMembers.find(t => t.id === b.stylistId).name,
                 id: b.id
                 };
@@ -89,12 +91,12 @@ class UserAccountPage extends Component {
 
         return (
             <div className="container">
-                <Heading>My Account</Heading>
-                {alert.message && 
+                <Header>My Account</Header>
+                {alert.message &&
                         <div className={`text-center alert ${alert.type}`}>{alert.message}</div>
                         }
-                {(this.props.bookingInfo.fetching 
-                    || this.props.team.fetching 
+                {(this.props.bookingInfo.fetching
+                    || this.props.team.fetching
                     || this.props.userInfo.fetching)
                     && (bookings.length === 0 || teamMembers.length === 0) ? <h5 className='text-center'>Loading...</h5> :
                 <div className="container">

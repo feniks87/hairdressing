@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Input from '../../components/UI/Input/Input';
 import './SignUpPage.css';
 import Button from '../../components/UI/Button/Button';
-import Heading from '../../components/UI/Heading/Heading';
+import Header from '../../components/UI/Header/Header';
 
 import { userActions } from '../../_actions/user.actions';
 import { alertActions } from '../../_actions/alert.actions';
@@ -51,10 +51,10 @@ class SignUpPage extends Component {
         const { user, confirmPassword } = this.state;
         const { dispatch } = this.props;
 
-        if (user.name === "" 
-            || user.email === "" 
-            || user.phone === "" 
-            || user.password === "" 
+        if (user.name === ""
+            || user.email === ""
+            || user.phone === ""
+            || user.password === ""
             || confirmPassword === "") {
             dispatch(alertActions.error("Please fill all the required fields"));
         } else if (user.password !== confirmPassword) {
@@ -71,36 +71,36 @@ class SignUpPage extends Component {
         const { user, submitted, confirmPassword } = this.state;
         return (
             <div className="container">
-                <Heading>Sign Up Form</Heading>
+                <Header>Sign Up Form</Header>
                 <form className="Registration" onSubmit={this.handleSubmit}>
-                {alert.message && 
+                {alert.message &&
                         <div className={`text-center alert ${alert.type}`}>{alert.message}</div>
                         }
-                    <Input label="Name:" placeholder="Enter name" value={user.name}
+                    <Input placeholder="Enter name" value={user.name}
                            onChange={this.handleChange}
                            showError={submitted && !user.name}
                            name="name"
                            errorMessage="Name is required"
                            type="text"/>
-                    <Input label="Contact phone:" placeholder="Enter phone number" value={user.phone}
+                    <Input placeholder="Enter phone number" value={user.phone}
                            onChange={this.handleChange}
                            showError={submitted && !user.phone}
                            name="phone"
                            errorMessage="Phone number is required"
                            type="text"/>
-                    <Input label="Email:" placeholder="Enter email" value={user.email}
+                    <Input placeholder="Enter email" value={user.email}
                            onChange={this.handleChange}
                            showError={submitted && !user.email}
                            name="email"
                            errorMessage="Email is required"
                            type="text"/>
-                    <Input label="Password:" placeholder="Enter password" value={user.password}
+                    <Input placeholder="Enter password" value={user.password}
                            onChange={this.handleChange}
                            showError={submitted && !user.password}
                            name="password"
                            errorMessage="Password is required"
                            type="password"/>
-                    <Input label="Confirm Password:" placeholder="Repeat password" value={confirmPassword}
+                    <Input placeholder="Repeat password" value={confirmPassword}
                            onChange={this.handleConfirmPasswordChange}
                            showError={submitted && !confirmPassword && confirmPassword === user.password}
                            name="confirmPassword"

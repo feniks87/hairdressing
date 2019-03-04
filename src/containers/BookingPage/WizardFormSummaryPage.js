@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Heading from '../../components/UI/Heading/Heading';
+import Header from '../../components/UI/Header/Header';
 import Button from '../../components/UI/Button/Button';
 import ListItem from '../../components/UI/ListItem/ListItem';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -27,8 +27,8 @@ class WizardFormSummaryPage extends Component {
         const minutes = totalDuration % 60;
         return (
             <div className="Form">
-                <Heading>Confirm booking</Heading>
-                
+                <Header>Confirm booking</Header>
+
                 <form className="Wrap" name="form" onSubmit={this.onSubmit}>
                     <p>Stylist name: {stylist.name}</p>
                     <p>Services:</p>

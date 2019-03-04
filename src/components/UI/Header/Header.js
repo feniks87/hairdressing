@@ -1,5 +1,5 @@
 import React from 'react';
-import './Heading.css';
+import './Header.css';
 
 const heading = (props) => (
     <h4 className="Header">{props.children}</h4>

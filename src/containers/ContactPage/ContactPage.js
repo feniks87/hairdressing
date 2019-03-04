@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Heading from '../../components/UI/Heading/Heading';
+import Header from '../../components/UI/Header/Header';
 import './ContactPage.css'
 import ContactInfo from '../../components/ContactInfo/ContactInfo';
 import { Hours } from '../../components/Hours/Hours';
@@ -20,7 +20,7 @@ class ContactPage extends Component {
 
         return (
             <div className="container">
-                <Heading>Contact Us</Heading>
+                <Header>Contact Us</Header>
                 {this.props.fetching && contacts.length === 0 ? <h5>Loading...</h5> :
                 <div>
                     {contacts.map(contactInfo =>

@@ -17,37 +17,49 @@ class NavMenu extends Component {
         super(props);
 
         this.toggle = this.toggle.bind(this);
+        this.hide = this.hide.bind(this);
+
         this.state = {
             isOpen: false
         };
     }
+
     toggle() {
         this.setState({
-            isOpen: !this.state.isOpen,
-
+            isOpen: !this.state.isOpen
         });
     }
+
+    hide() {
+        if (this.state.isOpen) {
+            this.setState({
+                isOpen: !this.state.isOpen
+            });
+        };
+    }
+
     render() {
+        const linkStyle = {color: 'white', textDecoration: 'none'}
         const isLoggedIn = this.props.authentication && this.props.authentication.loggedIn;
         let authSection;
         if (isLoggedIn) {
-            authSection = 
+            authSection =
                 <Nav className="ml-auto NavItem" navbar>
                     <NavItem>
-                        <NavLink tag={Link} to="/account">My Account</NavLink>
+                        <NavLink tag={Link} to="/account" style={linkStyle}>My Account</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to="/logout">Logout</NavLink>
+                        <NavLink tag={Link} to="/logout" style={linkStyle}>Logout</NavLink>
                     </NavItem>
                 </Nav>;
           } else {
             authSection =
                 <Nav className="ml-auto NavItem" navbar>
                     <NavItem>
-                        <NavLink tag={Link} to="/login">Login</NavLink>
+                        <NavLink tag={Link} to="/login" onClick={this.hide} style={linkStyle}>Login</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to="/registration">Sign Up</NavLink>
+                        <NavLink tag={Link} to="/registration" onClick={this.hide} style={linkStyle}>Sign Up</NavLink>
                     </NavItem>
                 </Nav>;
           }
@@ -59,19 +71,19 @@ class NavMenu extends Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto NavItem" navbar>
                             <NavItem>
-                                <NavLink tag={Link} to="/">Home</NavLink>
+                                <NavLink tag={Link} to="/" onClick={this.hide} style={linkStyle}>Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={Link} to="/services">Services</NavLink>
+                                <NavLink tag={Link} to="/services" onClick={this.hide} style={linkStyle}>Services</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={Link} to="/book-online">Book Online</NavLink>
+                                <NavLink tag={Link} to="/book-online" onClick={this.hide} style={linkStyle}>Book Online</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={Link} to="/our-team">Our Team</NavLink>
+                                <NavLink tag={Link} to="/our-team" onClick={this.hide} style={linkStyle}>Our Team</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={Link} to="/contact">Contact</NavLink>
+                                <NavLink tag={Link} to="/contact" onClick={this.hide} style={linkStyle}>Contact</NavLink>
                             </NavItem>
                         </Nav>
                         {authSection}

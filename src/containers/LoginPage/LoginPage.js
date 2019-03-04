@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Input from '../../components/UI/Input/Input';
 import './LoginPage.css';
 import Button from '../../components/UI/Button/Button';
-import Heading from '../../components/UI/Heading/Heading';
+import Header from '../../components/UI/Header/Header';
 import { Link } from 'react-router-dom';
 
 import {userActions} from '../../_actions/user.actions';
@@ -43,24 +43,25 @@ class LoginPage extends Component {
         const { email, password } = this.state;
         return (
             <div className="container ">
-                <Heading>Login form</Heading>
+                <Header>Login form</Header>
                 <form  name="form" className="Login" onSubmit={this.handleSubmit}>
                     {alert.message &&
                     <div className={`text-center alert ${alert.type}`}>{alert.message}</div>
                     }
-                    <Input  label="Email:"
-                            placeholder="Enter email"
-                            name="email" value={email}
-                            onChange={this.handleChange}
-                            type="text"/>
-                    <Input label="Password:"
-                           placeholder="Enter password"
-                           name="password" value={password}
-                           onChange={this.handleChange}
-                           type="password"/>
+                    <Input
+                        placeholder="Enter email"
+                        name="email" value={email}
+                        onChange={this.handleChange}
+                        type="text"/>
+                    <Input
+
+                        placeholder="Enter password"
+                        name="password" value={password}
+                        onChange={this.handleChange}
+                        type="password"/>
                     <Button type="Submit">Login</Button>
-                    <p className="Text">Don't have an account? Click here to <span className="Text-link"><Link to="/registration">Register</Link></span>.</p>
-                </form>
+
+                </form><p className="Text">Click here to <span className="Text-link"><Link to="/registration">Register</Link></span>.</p>
             </div>
         )
     }
