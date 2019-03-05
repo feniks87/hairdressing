@@ -3,15 +3,25 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+
 }
 
 .Wrap {
-    padding: 70px 70px 70px 70px;
+    padding: 70px;
+    padding-bottom: 60px;
     width: 80%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     background-color: #ece8df;
     border: 1px solid #dad2be;
     border-radius: 5px;
+    box-shadow: 0 2px 3px #ccc;
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    .Wrap, .Form {
+        width: 100%;
+        padding: 5px;
+    }
+
 }

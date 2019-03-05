@@ -106,7 +106,8 @@ class SignUpPage extends Component {
                            name="confirmPassword"
                            errorMessage="Confirm password is required"
                            type="password"/>
-                    <Button type="Submit">Register</Button></form>
+                    <Button type="Submit">Register</Button>
+                    </form>
             </div>
         )
     }

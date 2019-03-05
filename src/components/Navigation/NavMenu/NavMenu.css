@@ -31,3 +31,12 @@
 .LogoPadding {
     padding: 0 !important;
 }
+@media (max-width: 600px) {
+    .NavItem a:hover,
+    .NavItem a:active,
+    .NavItem a.active {
+    background-color: #000000;
+    border-bottom: 4px solid transparent;
+    color: white !important;
+}
+}

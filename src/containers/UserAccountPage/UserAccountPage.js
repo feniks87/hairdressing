@@ -105,13 +105,13 @@ class UserAccountPage extends Component {
                         <div className="col-sm-6">
                             <form className="Wrap-info" onSubmit={this.handleSubmit}>
                                 <h5>Personal info</h5>
-                                <Input label="Name:" placeholder="Enter name" value={this.state.user.name}
+                                <Input label="Name:" value={this.state.user.name}
                                     onChange={this.handleChange}
                                     showError={submitted && !this.state.user.name}
                                     name="name"
                                     errorMessage="Name is required"
                                     type="text"/>
-                                <Input label="Contact phone:" placeholder="Enter phone number" value={this.state.user.phone}
+                                <Input label="Contact phone:" value={this.state.user.phone}
                                     onChange={this.handleChange}
                                     showError={submitted && !this.state.user.phone}
                                     name="phone"
@@ -125,17 +125,14 @@ class UserAccountPage extends Component {
                             <div>
                                 <ul>
                                     {userBookings.map(booking =>
-                                                    <ListItem value={`${booking.stylistName} (${booking.time.format('MMMM Do YYYY dddd, h:mm a').toString()})`} key={booking.id}/>
-                                                )}
+                                        <ListItem value={`${booking.stylistName} (${booking.time.format('MMMM Do YYYY dddd, h:mm a').toString()})`} key={booking.id}/>
+                                    )}
                                 </ul>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
                 }
-
             </div>
         )
     }
