@@ -20,11 +20,11 @@ function login(email, password) {
             .then(tokenInfo => {
                     history.push('/');
                     dispatch(success(tokenInfo.data));
-                    //dispatch(userActions.getClient(tokenInfo.data.localId, tokenInfo.id));In * 1000);
-                    const expirationDate = new Date(new Date().getTime() + tokenInfo.data.expiresIn * 1000);
-                    localStorage.setItem('token', tokenInfo.data.idToken);
-                    localStorage.setItem('expirationDate', expirationDate);
-                    localStorage.setItem('userId', tokenInfo.data.localId);
+                    dispatch(userActions.getClient(tokenInfo.data.localId, tokenInfo.id));
+                    //const expirationDate = new Date(new Date().getTime() + tokenInfo.data.expiresIn * 1000);
+                    //localStorage.setItem('token', tokenInfo.data.idToken);
+                    //localStorage.setItem('expirationDate', expirationDate);
+                    //localStorage.setItem('userId', tokenInfo.data.localId);
                 })
             .catch(error => {
                 dispatch(failure(error.message));
@@ -58,15 +58,23 @@ function logout() {
 function register(user) {
     return dispatch => {
         dispatch(request(user));
+        const authData = {
+            email: user.email,
+            password: user.password
+        }
         const url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyCfBr35UM1khoKnAl0G3JgwxJLujhKh_s8';
-        axios.post(url, user)
+        axios.post(url, authData)
             .then(registration => {
                 dispatch(success(registration.data));
-
-                axios.post(`/users.json?auth=${registration.data.idToken}`, user)
+                const userInformation = {
+                    name: user.name,
+                    phone: user.phone,
+                    userId: registration.data.localId
+                }
+                axios.post(`/users.json?auth=${registration.data.idToken}`, userInformation)
                 .then(userInfo => {
                     dispatch(success(userInfo.data));
-                    history.push('/login');
+                    history.push('/');
                 })
                 .catch(error => {
                     if (error.response.status === 400 && error.response.data.error.message === "EMAIL_EXISTS") {
@@ -82,9 +90,7 @@ function register(user) {
                 dispatch(alertActions.success('You have been registered successfully!'));
             })
             .catch(error => {
-                debugger;
                 if (error.response.status === 400 && error.response.data.error.message === "EMAIL_EXISTS") {
-                    debugger;
                     dispatch(failure(error.message));
                     dispatch(alertActions.error("The email address you have entered is already registered"));
                 }
@@ -100,18 +106,20 @@ function register(user) {
     function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
 }
 
-function getClient(clientId, token) {
+function getClient(userId, token) {
     return dispatch => {
-        dispatch(request(clientId));
-        axios.get('/users.json', clientId, token)
+        dispatch(request(userId));
+        const queryParams = `?orderBy="userId"&equalTo="${userId}"`
+        axios.get('/users.json' + queryParams)
             .then(clientInfo => {
-                dispatch(success(clientInfo.data));
-            },
-            error => {
+                const value = Object.values(clientInfo.data)[0];
+                dispatch(success({...value}));
+            })
+            .catch(error => {
                 dispatch(failure(error.message));
                 dispatch(alertActions.error(error.message));
-            }
-            );
+            });
+
     };
 
     function request(clientId) { return { type: userConstants.FETCH_CLIENT_REQUEST, clientId } }
