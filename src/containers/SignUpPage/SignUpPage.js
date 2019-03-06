@@ -115,9 +115,9 @@ class SignUpPage extends Component {
 
 function mapStateToProps(state) {
     const { alert } = state;
-    const { registering } = state.registration;
+    const { loggingIn } = state.authentication;
     return {
-        registering,
+        loggingIn,
         alert
     };
 }

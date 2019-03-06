@@ -14,17 +14,13 @@ export const userActions = {
 
 function login(email, password) {
     return dispatch => {
-        dispatch(request(email));
+        dispatch(request());
         const url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCfBr35UM1khoKnAl0G3JgwxJLujhKh_s8';
         return axios.post(url, {email, password, returnSecureToken: true})
             .then(tokenInfo => {
                     history.push('/');
                     dispatch(success(tokenInfo.data));
                     dispatch(userActions.getClient(tokenInfo.data.localId, tokenInfo.id));
-                    //const expirationDate = new Date(new Date().getTime() + tokenInfo.data.expiresIn * 1000);
-                    //localStorage.setItem('token', tokenInfo.data.idToken);
-                    //localStorage.setItem('expirationDate', expirationDate);
-                    //localStorage.setItem('userId', tokenInfo.data.localId);
                 })
             .catch(error => {
                 dispatch(failure(error.message));
@@ -40,15 +36,15 @@ function login(email, password) {
             });
     };
 
-    function request(email) { return { type: userConstants.LOGIN_REQUEST, email } }
-    function success(tokenInfo) { return { type: userConstants.LOGIN_SUCCESS, tokenInfo } }
-    function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+    function request() { return { type: userConstants.AUTH_REQUEST } }
+    function success(tokenInfo) { return { type: userConstants.AUTH_SUCCESS, tokenInfo } }
+    function failure(error) { return { type: userConstants.AUTH_FAILURE, error } }
 }
 
 function logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('expirationDate');
-    localStorage.removeItem('userId');
+    //localStorage.removeItem('token');
+    //localStorage.removeItem('expirationDate');
+    //localStorage.removeItem('userId');
     history.push('/login');
     return {
         type: userConstants.LOGOUT
@@ -72,8 +68,8 @@ function register(user) {
                     userId: registration.data.localId
                 }
                 axios.post(`/users.json?auth=${registration.data.idToken}`, userInformation)
-                .then(userInfo => {
-                    dispatch(success(userInfo.data));
+                .then(() => {
+                    dispatch(userDataSaved(userInformation));
                     history.push('/');
                 })
                 .catch(error => {
@@ -101,9 +97,11 @@ function register(user) {
             });
     };
 
-    function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
-    function success(registration) { return { type: userConstants.REGISTER_SUCCESS, registration } }
-    function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
+    function request() { return { type: userConstants.AUTH_REQUEST } }
+    function success(registration) { return { type: userConstants.AUTH_SUCCESS, registration } }
+    function failure(error) { return { type: userConstants.AUTH_FAILURE, error } }
+
+    function userDataSaved(clientInfo) { return { type: userConstants.FETCH_CLIENT_SUCCESS, clientInfo } }
 }
 
 function getClient(userId, token) {

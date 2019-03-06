@@ -5,14 +5,13 @@ const initialState = user ? { loggedIn: true, loggingIn: false, isAdmin: true } 
 
 export function authentication(state = initialState, action) {
   switch (action.type) {
-    case userConstants.LOGIN_REQUEST:
+    case userConstants.AUTH_REQUEST:
       return {
         ...state,
         loggingIn: true,
-        email: action.email,
         loggedIn: false,
       };
-    case userConstants.LOGIN_SUCCESS:
+    case userConstants.AUTH_SUCCESS:
       return {
         ...state,
         ...action.tokenInfo,
@@ -20,10 +19,14 @@ export function authentication(state = initialState, action) {
         loggingIn: false,
         isAdmin: true
       };
-    case userConstants.LOGIN_FAILURE:
+    case userConstants.AUTH_FAILURE:
       return {};
     case userConstants.LOGOUT:
-      return {};
+      return {
+        isAdmin: true,
+        loggingIn: false,
+        loggedIn: false
+      };
     default:
       return state
   }
