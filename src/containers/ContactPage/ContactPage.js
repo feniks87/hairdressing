@@ -6,7 +6,7 @@ import ContactInfo from '../../components/ContactInfo/ContactInfo';
 import { Hours } from '../../components/Hours/Hours';
 import { contactActions } from '../../_actions/contact.actions';
 import { hoursActions } from '../../_actions/hours.actions';
-
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class ContactPage extends Component {
     componentDidMount() {
@@ -21,7 +21,7 @@ class ContactPage extends Component {
         return (
             <div className="container">
                 <Header>Contact Us</Header>
-                {this.props.fetching && contacts.length === 0 ? <h5>Loading...</h5> :
+                {this.props.fetching && contacts.length === 0 ? <Spinner /> :
                 <div>
                     {contacts.map(contactInfo =>
                         <div className="row" key={contactInfo.id}>

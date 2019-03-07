@@ -6,6 +6,7 @@ import Button from '../../components/UI/Button/Button';
 import Header from '../../components/UI/Header/Header';
 import ListItem from '../../components/UI/ListItem/ListItem';
 import moment  from 'moment';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 import {bookingActions} from '../../_actions/booking.actions';
 import { userActions } from '../../_actions/user.actions';
@@ -98,7 +99,7 @@ class UserAccountPage extends Component {
                 {(this.props.bookingInfo.fetching
                     || this.props.team.fetching
                     || this.props.userInfo.fetching)
-                    && (bookings.length === 0 || teamMembers.length === 0) ? <h5 className='text-center'>Loading...</h5> :
+                    && (bookings.length === 0 || teamMembers.length === 0) ? <Spinner /> :
                 <div className="container">
 
                     <div className="row">

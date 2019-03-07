@@ -5,6 +5,7 @@ import Header from '../../components/UI/Header/Header';
 import { ListGroup } from 'reactstrap';
 import SelectableListItem from '../../components/UI/SelectableListItem/SelectableListItem';
 import Button from '../../components/UI/Button/Button';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class WizardFormSecondPage extends Component {
 
@@ -53,7 +54,7 @@ class WizardFormSecondPage extends Component {
                 {(this.props.team.fetching
                     || this.props.workingHours.fetching
                     || this.props.contactsInfo.fetching
-                    || this.props.bookingInfo.fetching) && (team.length === 0) ? <h5 className='text-center'>Loading...</h5> :
+                    || this.props.bookingInfo.fetching) && (team.length === 0) ? <Spinner /> :
                 <form className="Wrap" onSubmit={(e) => this.onSubmit(e)}>
                     <ListGroup>
                         {team.map(stylist =>

@@ -1,15 +1,11 @@
 
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
-
 import Header from '../../components/UI/Header/Header';
-
 import { ListGroup } from 'reactstrap';
-
 import SelectableListItem from '../../components/UI/SelectableListItem/SelectableListItem';
-
 import Button from '../../components/UI/Button/Button';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class WizardFormFirstPage extends Component {
     constructor(props) {
@@ -59,7 +55,7 @@ class WizardFormFirstPage extends Component {
         return (
             <div className="Form">
                 <Header>Select services</Header>
-                {(this.props.fetching && services.length === 0) || this.state.selectedServices.length === 0 ? <h5 className='text-center'>Loading...</h5> :
+                {(this.props.fetching && services.length === 0) || this.state.selectedServices.length === 0 ? <Spinner /> :
                 <form className="Wrap" onSubmit={(e) => this.onSubmit(e)}>
                     <ListGroup>
                         {services.map(service =>
@@ -71,7 +67,7 @@ class WizardFormFirstPage extends Component {
                             </SelectableListItem>)}
                     </ListGroup>
                         <Button type="submit">Next</Button>
-                   
+
                 </form>}
             </div>
         );

@@ -4,7 +4,7 @@ import Header from '../../components/UI/Header/Header'
 import './OurTeamPage.css';
 import TeamMember from '../../components/TeamMember/TeamMember';
 import { teamActions } from '../../_actions/team.actions';
-
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class OurTeamPage extends Component {
     componentDidMount() {
@@ -17,7 +17,7 @@ class OurTeamPage extends Component {
         return (
            <div className="container">
                <Header>Our Team</Header>
-               {this.props.fetching && teamMembers.length === 0 ? <h5 className='text-center'>Loading...</h5> :
+               {this.props.fetching && teamMembers.length === 0 ? <Spinner /> :
                     <div>
                         {this.props.teamMembers.map(stylist =>
                         <TeamMember src={stylist.image} alt={stylist.alt} name={stylist.name}
