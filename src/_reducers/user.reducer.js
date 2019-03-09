@@ -6,10 +6,10 @@ export function userInfo(state={}, action) {
     case userConstants.FETCH_CLIENT_REQUEST:
       return {
         ...state,
-        fetching: true,
-        id: action.clientId,
+        fetching: true
       };
     case userConstants.FETCH_CLIENT_SUCCESS:
+    debugger;
       return {
         ...state,
         ...action.clientInfo,
@@ -23,8 +23,7 @@ export function userInfo(state={}, action) {
       case userConstants.UPDATE_CLIENT_REQUEST:
       return {
         ...state,
-        fetching: true,
-        id: action.clientId,
+        fetching: true
       };
     case userConstants.UPDATE_CLIENT_SUCCESS:
       return {
@@ -36,9 +35,8 @@ export function userInfo(state={}, action) {
       return {
         error: action.error
       };
-      case userConstants.LOGOUT:
+    case userConstants.LOGOUT:
       return {
-
       };
     default:
       return state

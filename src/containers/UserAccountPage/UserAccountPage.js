@@ -52,7 +52,6 @@ class UserAccountPage extends Component {
             let userToSubmit = {
                 phone: user.phone,
                 name: user.name,
-                email: this.props.userInfo.email,
                 id: this.props.userInfo.id
             }
             dispatch(userActions.updateClient(userToSubmit, this.props.authentication.idToken));
@@ -74,10 +73,8 @@ class UserAccountPage extends Component {
         let userBookings = [];
 
         if (bookings.length !== 0 && teamMembers.length !== 0) {
-            debugger;
             userBookings = bookings.filter(b => b.clientId === this.props.authentication.localId)
             .map((b) => {
-                debugger;
                 return {
                 time: moment(b.time),
                 stylistName: teamMembers.find(t => t.id === b.stylistId).name,

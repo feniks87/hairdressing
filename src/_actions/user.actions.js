@@ -53,7 +53,7 @@ function logout() {
 
 function register(user) {
     return dispatch => {
-        dispatch(request(user));
+        dispatch(request());
         const authData = {
             email: user.email,
             password: user.password
@@ -67,9 +67,11 @@ function register(user) {
                     phone: user.phone,
                     userId: registration.data.localId
                 }
+
                 axios.post(`/users.json?auth=${registration.data.idToken}`, userInformation)
-                .then(() => {
-                    dispatch(userDataSaved(userInformation));
+                .then((res) => {
+                    dispatch(userDataSaved({...userInformation, id: res.data.name}));
+                    debugger;
                     history.push('/');
                 })
                 .catch(error => {
@@ -98,7 +100,7 @@ function register(user) {
     };
 
     function request() { return { type: userConstants.AUTH_REQUEST } }
-    function success(registration) { return { type: userConstants.AUTH_SUCCESS, registration } }
+    function success(tokenInfo) { return { type: userConstants.AUTH_SUCCESS, tokenInfo } }
     function failure(error) { return { type: userConstants.AUTH_FAILURE, error } }
 
     function userDataSaved(clientInfo) { return { type: userConstants.FETCH_CLIENT_SUCCESS, clientInfo } }
@@ -110,8 +112,10 @@ function getClient(userId, token) {
         const queryParams = `?orderBy="userId"&equalTo="${userId}"`
         axios.get('/users.json' + queryParams)
             .then(clientInfo => {
+                debugger;
                 const value = Object.values(clientInfo.data)[0];
-                dispatch(success({...value}));
+                const key = Object.keys(clientInfo.data)[0];
+                dispatch(success({...value, id: key}));
             })
             .catch(error => {
                 dispatch(failure(error.message));
@@ -127,21 +131,23 @@ function getClient(userId, token) {
 
 function updateClient(client, token) {
     return dispatch => {
-        dispatch(request(client.id));
-
-        axios.patch('/users.json', client, token)
+        dispatch(request());
+        const clientInfo = {
+            name: client.name,
+            phone: client.phone
+        }
+        axios.patch(`/users/${client.id}.json`, clientInfo)
             .then(clientInfo => {
-                    dispatch(success(clientInfo));
-                    dispatch(alertActions.success('Details were successfully updated'));
-                },
-                error => {
+                dispatch(success(clientInfo.data));
+                dispatch(alertActions.success('Details were successfully updated'));
+            })
+            .catch(error => {
                     dispatch(failure(error.message));
                     dispatch(alertActions.error(error.message));
-                }
-            );
-    };
+            });
+        }
 
-    function request(clientId) { return { type: userConstants.UPDATE_CLIENT_REQUEST, clientId } }
+    function request() { return { type: userConstants.UPDATE_CLIENT_REQUEST } }
     function success(clientInfo) { return { type: userConstants.UPDATE_CLIENT_SUCCESS, clientInfo } }
     function failure(error) { return { type: userConstants.UPDATE_CLIENT_FAILURE, error } }
 }
