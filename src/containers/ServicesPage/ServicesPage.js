@@ -4,9 +4,7 @@ import './ServicesPage.css';
 import Header from '../../components/UI/Header/Header';
 import TableItem from '../../components/UI/TableItem/TableItem';
 import { serviceActions } from '../../_actions/service.actions';
-import AddService from './AddService/AddService';
 import Spinner from '../../components/UI/Spinner/Spinner';
-
 
 class ServicesPage extends Component {
     componentDidMount() {
@@ -21,7 +19,6 @@ class ServicesPage extends Component {
                 <Header>Our Services</Header>
                 {this.props.fetching && services.length === 0? <Spinner /> :
                 <div className="Services">
-                    <AddService/>
                     <table className="table table-striped">
                         <tbody>
                         {this.props.services.map(service =>
