@@ -9,7 +9,6 @@ export function userInfo(state={}, action) {
         fetching: true
       };
     case userConstants.FETCH_CLIENT_SUCCESS:
-    debugger;
       return {
         ...state,
         ...action.clientInfo,

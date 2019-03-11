@@ -39,8 +39,6 @@ class BookingPage extends Component {
         this.setState({
           page: 1,
         });
-
-        history.push('/account');
     }
 
     nextPage(data, name) {

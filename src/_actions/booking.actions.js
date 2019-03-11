@@ -3,6 +3,8 @@ import { bookingService } from '../_services/booking.service';
 import { alertActions } from './alert.actions';
 import axios from '../axios-instance';
 
+import { history } from '../_helpers/history';
+
 export const bookingActions = {
     getBookings,
     addBooking,
@@ -15,7 +17,6 @@ function getBookings() {
 
         axios.get('/bookings.json')
             .then(bookings => {
-                debugger;
                 const fetchedBookings = [];
                 for (let key in bookings.data) {
                     fetchedBookings.push( {
@@ -37,12 +38,12 @@ function getBookings() {
 
 function addBooking(booking) {
     return dispatch => {
-        dispatch(request(booking));
-        debugger;
+        dispatch(request());
         axios.post('/bookings.json', booking)
             .then(booking => {
                     dispatch(success(booking));
                     dispatch(alertActions.success('Your booking was successful!'));
+                    history.push('/account');
                 })
             .catch(error => {
                 dispatch(failure(error.message));
@@ -50,7 +51,7 @@ function addBooking(booking) {
             });
     };
 
-    function request(booking) { return { type: bookingConstants.ADD_BOOKING_REQUEST, booking } }
+    function request() { return { type: bookingConstants.ADD_BOOKING_REQUEST } }
     function success(booking) { return { type: bookingConstants.ADD_BOOKING_SUCCESS, booking } }
     function failure(error) { return { type: bookingConstants.ADD_BOOKING_FAILURE, error } }
 }

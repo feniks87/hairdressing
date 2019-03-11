@@ -71,7 +71,6 @@ function register(user) {
                 axios.post(`/users.json?auth=${registration.data.idToken}`, userInformation)
                 .then((res) => {
                     dispatch(userDataSaved({...userInformation, id: res.data.name}));
-                    debugger;
                     history.push('/');
                 })
                 .catch(error => {
@@ -112,7 +111,6 @@ function getClient(userId, token) {
         const queryParams = `?orderBy="userId"&equalTo="${userId}"`
         axios.get('/users.json' + queryParams)
             .then(clientInfo => {
-                debugger;
                 const value = Object.values(clientInfo.data)[0];
                 const key = Object.keys(clientInfo.data)[0];
                 dispatch(success({...value, id: key}));

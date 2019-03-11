@@ -11,15 +11,13 @@ export function bookingInfo(state = {bookings: []}, action) {
             return {
                 ...state,
                 bookings: action.bookings,
-                fetching: false,
-                'error': null,
+                fetching: false
             };
         case bookingConstants.REGISTER_FAILURE:
             return {
                 ...state,
-                'error': state.error,
+                error: action.error
             };
-
 
 
         case bookingConstants.ADD_BOOKING_REQUEST:
@@ -30,13 +28,12 @@ export function bookingInfo(state = {bookings: []}, action) {
             return {
                 ...state,
                 bookings: [...state.bookings, action.booking],
-                fetching: false,
-                'error': null,
+                fetching: false
             };
         case bookingConstants.ADD_BOOKING_FAILURE:
             return {
                 ...state,
-                'error': state.error,
+                error: action.error
             };
 
 
@@ -47,13 +44,12 @@ export function bookingInfo(state = {bookings: []}, action) {
         case bookingConstants.CANCEL_BOOKING_SUCCESS:
             return {
                 ...state,
-                booking: [state.bookings.filter((b) => b.id !== action.bookingId)],
-                'error': null,
+                booking: [state.bookings.filter((b) => b.id !== action.bookingId)]
             };
         case bookingConstants.CANCEL_BOOKING_FAILURE:
             return {
                 ...state,
-                'error': state.error,
+                error: action.error
             };
         default:
             return state
