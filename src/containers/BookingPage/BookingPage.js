@@ -27,9 +27,8 @@ class BookingPage extends Component {
         };
     }
 
-
     onSubmit() {
-        const { dispatch, history } = this.props;
+        const { dispatch } = this.props;
         dispatch(bookingActions.addBooking({
           time: this.state.time,
           clientId: this.props.authentication.localId,
@@ -80,7 +79,7 @@ class BookingPage extends Component {
         if (!this.props.authentication.loggedIn) {
             this.props.history.replace('/login');
             const { dispatch } = this.props;
-            dispatch(alertActions.unauthorized('Please log in to book online.'));
+            dispatch(alertActions.unauthorized('Please login to book online'));
         }
         const { page } = this.state;
 

@@ -63,7 +63,7 @@ function cancelBooking(bookingId) {
         bookingService.addBooking(bookingId)
             .then(canceled => {
                     dispatch(success(bookingId));
-                    dispatch(alertActions.success('Booking canceled successfully'));
+                    dispatch(alertActions.success('Booking has been successfully cancelled'));
                 },
                 error => {
                     dispatch(failure(error.toString()));

@@ -25,9 +25,9 @@ function login(email, password) {
             .catch(error => {
                 dispatch(failure(error.message));
                 dispatch(alertActions.error(error.message));
-                if (error.response.status === 401) {
+                if (error.response.status === 400) {
                     dispatch(failure(error.message));
-                    dispatch(alertActions.error("Email or Password is incorrect"));
+                    dispatch(alertActions.error("Email or password is incorrect"));
                 }
                 else {
                     dispatch(failure(error.message));
