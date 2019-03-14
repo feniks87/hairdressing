@@ -3,10 +3,9 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-
 }
 
-.Wrap {
+.Wrapper {
     padding: 70px;
     padding-bottom: 60px;
     width: 80%;
@@ -19,7 +18,7 @@
 }
 
 @media (max-width: 600px) {
-    .Wrap, .Form {
+    .Wrapper, .Form {
         width: 100%;
         padding: 5px;
     }

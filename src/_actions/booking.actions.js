@@ -42,8 +42,8 @@ function addBooking(booking) {
         axios.post('/bookings.json', booking)
             .then(booking => {
                     dispatch(success(booking));
-                    dispatch(alertActions.success('Your booking was successful!'));
                     history.push('/account');
+                    dispatch(alertActions.success('Your booking was successful'));
                 })
             .catch(error => {
                 dispatch(failure(error.message));

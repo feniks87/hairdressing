@@ -36,7 +36,6 @@ export function bookingInfo(state = {bookings: []}, action) {
                 error: action.error
             };
 
-
         case bookingConstants.CANCEL_BOOKING_REQUEST:
             return {
                 ...state,

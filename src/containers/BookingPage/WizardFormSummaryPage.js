@@ -29,7 +29,7 @@ class WizardFormSummaryPage extends Component {
             <div className="Form">
                 <Header>Confirm booking</Header>
 
-                <form className="Wrap" name="form" onSubmit={this.onSubmit}>
+                <form className="Wrapper" name="form" onSubmit={this.onSubmit}>
                     <p>Stylist name: {stylist.name}</p>
                     <p>Services:</p>
                     <div>

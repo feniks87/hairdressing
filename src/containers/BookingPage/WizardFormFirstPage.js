@@ -56,7 +56,7 @@ class WizardFormFirstPage extends Component {
             <div className="Form">
                 <Header>Select services</Header>
                 {(this.props.fetching && services.length === 0) || this.state.selectedServices.length === 0 ? <Spinner /> :
-                <form className="Wrap" onSubmit={(e) => this.onSubmit(e)}>
+                <form className="Wrapper" onSubmit={(e) => this.onSubmit(e)}>
                     <ListGroup>
                         {services.map(service =>
                             <SelectableListItem itemId={service.id}

@@ -58,12 +58,11 @@ class WizardFormThirdPage extends Component {
             startTime: currentDayInfo ? currentDayInfo.startTime : null,
             endTime: currentDayInfo ? currentDayInfo.endTime : null,
             serviceDuration: duration,
-            allBusy: !selectedTime,
+            allBusy: !selectedTime
         };
     }
 
     calculateDays(startDate, endDate, step, serviceDuration) {
-
         let testDate = startDate.clone().hours(0).minutes(0).seconds(0).milliseconds(0);
         const lastDate = endDate.clone().hours(0).minutes(0).seconds(0).milliseconds(0);
         let daysInfo = [];
@@ -135,7 +134,6 @@ class WizardFormThirdPage extends Component {
 
         // defines duration for all available intervals
         availableTime.forEach(t => {
-
             const firstBusyTime = excludeTime.length === 0 || !excludeTime.some(e => e.isAfter(t))
                 ? endTime
                 : excludeTime.find(et => et.isAfter(t));
@@ -164,7 +162,7 @@ class WizardFormThirdPage extends Component {
             excludeTime: excludeTime,
             isFullyBookedOrPast: availableTime.length === 0,
             availableTime: availableTime,
-            periods: periods,
+            periods: periods
         };
     }
 
@@ -214,15 +212,17 @@ class WizardFormThirdPage extends Component {
         debugger;
         const reducer = (accumulator, serviceId) => {
             let service = this.props.services.find((service) => service.id === serviceId);
-
             return accumulator + service.time;
         };
-
         return servicesIds.reduce(reducer, 0);
     }
 
-
     render() {
+
+        const selectedDateTimeStyle = {
+            marginTop: '20px',
+            color: 'grey'
+        }
         return (
             <div className="Form">
                 <Header>Select date and time</Header>
@@ -230,80 +230,42 @@ class WizardFormThirdPage extends Component {
                     ? <p>Sorry, all days are busy. You have chosen {this.state.serviceDuration}min of services in total.
                         Try to reduce the amount of services or visit us tomorrow. </p>
                     :
-                    <form className="Wrap" onSubmit={(e) => this.onSubmit(e)}>
+                    <form className="Wrapper" onSubmit={(e) => this.onSubmit(e)}>
                         <div className='text-center'>
                             <style>
                                 {`
-                                .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
-                                    padding-left: 0;
-                                    padding-right: 0;
-                                }
                                 .react-datepicker {
-                                  font-size: 1em;
+                                    left: -60px;
                                 }
-                                .react-datepicker__header {
-                                  padding-top: 0.8em;
-                                }
-                                .react-datepicker__month {
-                                  margin: 0.4em 1em;
+                                .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+                                    padding-left: 6px;
                                 }
 
-                                .react-datepicker__day-name,
-                                .react-datepicker__day {
-                                  width: 2.9em;
-                                  line-height: 2.9em;
-                                  margin: 0.166em;
-                                }
-                                .react-datepicker__current-month {
-                                  font-size: 1em;
-                                }
-                                .react-datepicker__navigation {
-                                  top: 1em;
-                                  line-height: 1.7em;
-                                  border: 0.45em solid transparent;
-                                }
-                                .react-datepicker__navigation--previous {
-                                  border-right-color: #ccc;
-                                  left: 1em;
-                                }
-                                .react-datepicker__navigation--next {
-                                  border-left-color: #ccc;
-                                  right: 1em;
+                                .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle, .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle, .react-datepicker__year-read-view--down-arrow, .react-datepicker__month-read-view--down-arrow, .react-datepicker__month-year-read-view--down-arrow {
+                                    margin-left: 95px;
+                                    position: absolute;
                                 }
                             `}
                             </style>
-                            <DatePicker  autoFocus readOnly popperPlacement="bottom-start"
-                                         popperModifiers={{
-                                             offset: {
-                                                 enabled: true,
-                                                 offset: '0px, 12px'
-                                             },
-                                             preventOverflow: {
-                                                 enabled: true,
-                                                 escapeWithReference: false,
-                                                 boundariesElement: 'viewport'
-                                             }
-                                         }}
-                                         selected={this.state.selectedTime}
-                                         onChange={this.handleChange}
-                                         minDate={this.state.firstDay}
-                                         maxDate={this.state.lastDay}
-                                         minTime={this.state.startTime}
-                                         maxTime={this.state.endTime}
-                                         excludeTimes={this.state.excludeTime}
-                                         excludeDates={this.state.excludeDays}
-                                         dateFormat="LLL"
-                                         showDisabledMonthNavigation
-                                         showTimeSelect
-                                         inline
+                            <DatePicker
+                                 selected={this.state.selectedTime}
+                                 onChange={this.handleChange}
+                                 minDate={this.state.firstDay}
+                                 maxDate={this.state.lastDay}
+                                 minTime={this.state.startTime}
+                                 maxTime={this.state.endTime}
+                                 excludeTimes={this.state.excludeTime}
+                                 excludeDates={this.state.excludeDays}
+                                 dateFormat="LLL"
+                                 showDisabledMonthNavigation
+                                 showTimeSelect
                             />
-                            <p> { this.state.selectedTime
+                            <div style={selectedDateTimeStyle}> { this.state.selectedTime
                                 ? `Selected date and time: ${this.state.selectedTime.format('MMMM Do YYYY, h:mm a').toString()}`
                                 : 'Please select available time'
                             }
-                            </p>
+                            </div>
                         </div>
-
                         <div>
                             <Button type="submit">Next</Button>
                             <Button type="button" onClick={() => this.props.previousPage(this.state.selectedTime, 'time')}>Back</Button>
