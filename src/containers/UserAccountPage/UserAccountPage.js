@@ -96,7 +96,7 @@ class UserAccountPage extends Component {
                 {(this.props.bookingInfo.fetching
                     || this.props.team.fetching
                     || this.props.userInfo.fetching)
-                    && (bookings.length === 0 || teamMembers.length === 0) ? <Spinner /> :
+                    ? <Spinner /> :
                 <div className="container">
 
                     <div className="row">

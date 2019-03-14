@@ -22,13 +22,14 @@ export function bookingInfo(state = {bookings: []}, action) {
 
         case bookingConstants.ADD_BOOKING_REQUEST:
             return {
+                addingBooking: true,
                 ...state,
             };
         case bookingConstants.ADD_BOOKING_SUCCESS:
             return {
                 ...state,
                 bookings: [...state.bookings, action.booking],
-                fetching: false
+                addingBooking: false
             };
         case bookingConstants.ADD_BOOKING_FAILURE:
             return {

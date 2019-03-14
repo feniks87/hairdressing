@@ -36,9 +36,6 @@ class BookingPage extends Component {
           stylistId: this.state.stylist,
           services: this.state.services,
         }));
-        this.setState({
-          page: 1,
-        });
     }
 
     nextPage(data, name) {
@@ -74,6 +71,9 @@ class BookingPage extends Component {
         dispatch(hoursActions.getAllWorkingHours());
         dispatch(bookingActions.getBookings());
         dispatch(contactActions.getContacts());
+        this.setState({
+          page: 1,
+        });
     }
 
     render() {

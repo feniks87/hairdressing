@@ -39,12 +39,12 @@ class WizardFormFirstPage extends Component {
         this.props.onSubmit(this.state.selectedServices, 'services')
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.state.selectedServices.length === 0
+    componentDidUpdate() {
+        if ((!this.state.selectedServices || this.state.selectedServices.length === 0)
             && this.props.services
             && this.props.services.length > 0) {
             this.setState({
-                selectedServices: [this.props.services[0]],
+                selectedServices: [this.props.services[0].id],
             });
         }
     }

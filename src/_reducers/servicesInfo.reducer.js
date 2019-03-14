@@ -1,7 +1,7 @@
 import { serviceConstants } from '../_constants/service.constants';
 
-const initialState = { 
-  fetching: false, 
+const initialState = {
+  fetching: false,
   services:[],
   error: null
 };
