@@ -44,7 +44,6 @@ class BookingPage extends Component {
             page: this.state.page + 1,
             [name]: data,
         }));
-
     }
 
     previousPage(data, name) {
@@ -76,41 +75,40 @@ class BookingPage extends Component {
     }
 
     render() {
-        if (!this.props.authentication.loggedIn) {
-            this.props.history.replace('/login');
-            const { dispatch } = this.props;
-            dispatch(alertActions.unauthorized('Please login to book online'));
-        }
-        const { page } = this.state;
+      if (!this.props.authentication.loggedIn) {
+        this.props.history.replace('/login');
+        const { dispatch } = this.props;
+        dispatch(alertActions.unauthorized('Please login to book online'));
+      }
+      const { page } = this.state;
 
-        return (
-            <div className="container">
-              {page === 1 && <WizardFormFirstPage onSubmit={this.nextPage} data={this.state.services}/>}
-              {page === 2 &&
-                <WizardFormSecondPage
-                  previousPage={this.previousPage}
-                  onSubmit={this.nextPage}
-                  data={this.state.stylist}
-                />}
-              {page === 3 &&
-                <WizardFormThirdPage
-                  previousPage={this.previousPage}
-                  onSubmit={this.nextPage}
-                  time={this.state.time}
-                  stylist={this.state.stylist}
-                  servicesIds={this.state.services}
-                />}
-                 {page === 4 &&
-                <WizardFormSummaryPage
-                  previousPage={this.previousPage}
-                  onSubmit={this.onSubmit}
-                  time={this.state.time}
-                  stylist={this.state.stylist}
-                  servicesIds={this.state.services}
-                />}
-            </div>
-
-        );
+      return (
+        <div className="container">
+          {page === 1 && <WizardFormFirstPage onSubmit={this.nextPage} data={this.state.services}/>}
+          {page === 2 &&
+            <WizardFormSecondPage
+              previousPage={this.previousPage}
+              onSubmit={this.nextPage}
+              data={this.state.stylist}
+          />}
+          {page === 3 &&
+            <WizardFormThirdPage
+              previousPage={this.previousPage}
+              onSubmit={this.nextPage}
+              time={this.state.time}
+              stylist={this.state.stylist}
+              servicesIds={this.state.services}
+          />}
+          {page === 4 &&
+            <WizardFormSummaryPage
+              previousPage={this.previousPage}
+              onSubmit={this.onSubmit}
+              time={this.state.time}
+              stylist={this.state.stylist}
+              servicesIds={this.state.services}
+          />}
+        </div>
+      );
     }
 }
 
@@ -128,6 +126,3 @@ const mapStateToProps = state => {
 const connectedBookingPage = connect(mapStateToProps)(BookingPage);
 
 export { connectedBookingPage as BookingPage };
-
-
-

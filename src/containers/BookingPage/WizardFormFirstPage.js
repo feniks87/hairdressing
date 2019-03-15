@@ -66,8 +66,7 @@ class WizardFormFirstPage extends Component {
                                 {service.name} ({service.time} min)
                             </SelectableListItem>)}
                     </ListGroup>
-                        <Button type="submit">Next</Button>
-
+                    <Button type="submit">Next</Button>
                 </form>}
             </div>
         );

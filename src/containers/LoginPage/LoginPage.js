@@ -5,7 +5,6 @@ import './LoginPage.css';
 import Button from '../../components/UI/Button/Button';
 import Header from '../../components/UI/Header/Header';
 import { Link } from 'react-router-dom';
-
 import {userActions} from '../../_actions/user.actions';
 
 class LoginPage extends Component {
@@ -60,7 +59,6 @@ class LoginPage extends Component {
                         onChange={this.handleChange}
                         type="password"/>
                     <Button type="Submit">Login</Button>
-
                 </form><p className="Text">Click here to <span className="Text-link"><Link to="/registration">Register</Link></span>.</p>
             </div>
         )

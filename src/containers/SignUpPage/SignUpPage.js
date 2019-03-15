@@ -4,7 +4,6 @@ import Input from '../../components/UI/Input/Input';
 import './SignUpPage.css';
 import Button from '../../components/UI/Button/Button';
 import Header from '../../components/UI/Header/Header';
-
 import { userActions } from '../../_actions/user.actions';
 import { alertActions } from '../../_actions/alert.actions';
 

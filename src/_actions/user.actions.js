@@ -1,7 +1,6 @@
 import { userConstants } from '../_constants/user.constants';
 import { alertActions } from './alert.actions';
 import axios from '../axios-instance';
-
 import { history } from '../_helpers/history';
 
 export const userActions = {
@@ -42,9 +41,6 @@ function login(email, password) {
 }
 
 function logout() {
-    //localStorage.removeItem('token');
-    //localStorage.removeItem('expirationDate');
-    //localStorage.removeItem('userId');
     history.push('/login');
     return {
         type: userConstants.LOGOUT
@@ -57,7 +53,7 @@ function register(user) {
         const authData = {
             email: user.email,
             password: user.password
-        }
+        };
         const url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyCfBr35UM1khoKnAl0G3JgwxJLujhKh_s8';
         axios.post(url, authData)
             .then(registration => {

@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../../components/UI/Header/Header';
@@ -28,7 +27,6 @@ class WizardFormSummaryPage extends Component {
         return (
             <div className="Form">
                 <Header>Confirm booking</Header>
-
                 <form className="Wrapper" name="form" onSubmit={this.onSubmit}>
                     <p>Stylist name: {stylist.name}</p>
                     <p>Services:</p>
@@ -39,14 +37,11 @@ class WizardFormSummaryPage extends Component {
                             )}
                         </ul>
                     </div>
-
                     <p>You will spend approximately: {hours === 0 ? "" : hours + " hours"}{minutes === 0 ? "" : " " + minutes + "min"}</p>
                     <p>Total price: {totalPrice}$</p>
                     <p>Selected date and time: {this.props.time.format('MMMM Do dddd, h:mm a').toString()}</p>
-                    <div>
-                        <Button type="submit">Book</Button>
-                        <Button type="button" onClick={() => this.props.previousPage(null, null)}>Back</Button>
-                    </div>
+                    <Button type="submit">Book</Button>
+                    <Button type="button" onClick={() => this.props.previousPage(null, null)}>Back</Button>
                 </form>
             </div>
     );

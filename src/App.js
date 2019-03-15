@@ -11,7 +11,6 @@ import { ServicesPage } from "./containers/ServicesPage/ServicesPage";
 import { BookingPage } from "./containers/BookingPage/BookingPage";
 import { OurTeamPage } from "./containers/OurTeamPage/OurTeamPage";
 import { ContactPage } from "./containers/ContactPage/ContactPage";
-
 import { history } from './_helpers/history';
 import { alertActions } from './_actions/alert.actions';
 import { connect } from 'react-redux';
@@ -29,7 +28,6 @@ class App extends Component {
     }
 
     render() {
-
         return (
             <div>
                 <Router history={history}>

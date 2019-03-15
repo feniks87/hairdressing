@@ -66,7 +66,7 @@ class NavMenu extends Component {
         return (
             <div>
                 <Navbar className="Toolbar" expand="md" fixed="top" dark>
-                    <NavbarBrand tag={Link} to="/" className="LogoPadding"><Logo/></NavbarBrand>
+                    <NavbarBrand tag={Link} to="/" ><Logo/></NavbarBrand>
                     <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto NavItem" navbar>

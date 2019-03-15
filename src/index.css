@@ -3,3 +3,15 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+input {
+  background-color:rgb(250, 248, 244);
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font: inherit;
+  padding: 6px 10px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}

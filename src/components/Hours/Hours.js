@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import HourItem from '../Hours/HourItem/HourItem';
 import Aux from '../../hoc/Auxiliary/_Aux';
 
-
 class Hours extends Component {
     render(){
         const hours = this.props.hours.filter(e => e.locationId === this.props.locationId);

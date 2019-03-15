@@ -33,8 +33,8 @@ class ContactPage extends Component {
                             </div>
                             <div className="col-sm-6">
                                 <img className="Image-map img-fluid img-thumbnail"
-                                     src={`data:image/jpeg;base64,${contactInfo.mapImage}`}
-                                     alt={contactInfo.alt}/>
+                                    src={`data:image/jpeg;base64,${contactInfo.mapImage}`}
+                                    alt={contactInfo.alt}/>
                             </div>
                         </div>
                     )}

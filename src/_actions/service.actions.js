@@ -1,7 +1,6 @@
 import { serviceConstants } from '../_constants/service.constants';
 import axios from '../axios-instance';
 
-
 export const serviceActions = {
     getAllServices,
 };

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import {userActions} from '../../_actions/user.actions';
 
 class LogoutPage extends Component {

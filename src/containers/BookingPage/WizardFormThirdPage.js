@@ -266,10 +266,8 @@ class WizardFormThirdPage extends Component {
                             }
                             </div>
                         </div>
-                        <div>
-                            <Button type="submit">Next</Button>
-                            <Button type="button" onClick={() => this.props.previousPage(this.state.selectedTime, 'time')}>Back</Button>
-                        </div>
+                        <Button type="submit">Next</Button>
+                        <Button type="button" onClick={() => this.props.previousPage(this.state.selectedTime, 'time')}>Back</Button>
                     </form>
                 }
             </div>

@@ -2,7 +2,6 @@ import React from 'react';
 import './Input.css';
 
 const input = ( props ) =>
-
     <div className="form-group">
         <label className="Label">{props.label}</label>
         <input className={ 'form-control' + (props.showError ? ' Invalid' : '')}

@@ -11,11 +11,9 @@ class WizardFormSecondPage extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             selectedStylist: props.data ? props.data : ((props.team.teamMembers && props.team.teamMembers.length > 0) ? props.team.teamMembers[0].id : null),
         };
-
         this.toggleStylist = this.toggleStylist.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.back = this.back.bind(this);
@@ -65,10 +63,8 @@ class WizardFormSecondPage extends Component {
                             >{stylist.name}</SelectableListItem>
                         )}
                     </ListGroup>
-                    <div>
-                        <Button type="submit">Next</Button>
-                        <Button type="button" onClick={this.back}>Back</Button>
-                    </div>
+                    <Button type="submit">Next</Button>
+                    <Button type="button" onClick={this.back}>Back</Button>
                 </form>}
             </div>
         );

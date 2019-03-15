@@ -1,7 +1,6 @@
 import { contactConstants } from '../_constants/contact.constants';
 import axios from '../axios-instance';
 
-
 export const contactActions = {
     getContacts,
 };

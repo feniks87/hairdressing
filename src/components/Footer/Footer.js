@@ -4,7 +4,6 @@ import './Footer.css';
 import ContactInfo from '../../components/ContactInfo/ContactInfo';
 import { contactActions } from '../../_actions/contact.actions';
 
-
 class Footer extends Component {
     componentDidMount() {
         const { dispatch } = this.props;
@@ -28,7 +27,7 @@ class Footer extends Component {
                     </div>
                     <div className="row">
                         <div className="col-sm-12 text-center">
-                            <p>© 2018 The BK Hairdressing</p>
+                            <p>© 2019 The BK Hairdressing</p>
                         </div>
                     </div>
                 </div>

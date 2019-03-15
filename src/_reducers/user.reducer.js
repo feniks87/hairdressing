@@ -12,7 +12,7 @@ export function userInfo(state={}, action) {
       return {
         ...state,
         ...action.clientInfo,
-        fetching: false,
+        fetching: false
       };
     case userConstants.FETCH_CLIENT_FAILURE:
       return {
@@ -28,7 +28,7 @@ export function userInfo(state={}, action) {
       return {
         ...state,
         ...action.clientInfo,
-        fetching: false,
+        fetching: false
       };
     case userConstants.UPDATE_CLIENT_FAILURE:
       return {

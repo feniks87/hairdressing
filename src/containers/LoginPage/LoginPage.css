@@ -10,12 +10,6 @@
     box-sizing: border-box;
 }
 
-@media (min-width: 600px) {
-    .Login {
-        width: 500px;
-    }
-}
-
 .Text {
     padding: 10px;
     text-align: center;
@@ -30,4 +24,10 @@
 .Text-link a:hover{
     color: rgb(155, 24, 28);
     text-decoration: none;
+}
+
+@media (min-width: 600px) {
+    .Login {
+        width: 500px;
+    }
 }

@@ -1,11 +1,9 @@
 import { hoursConstants } from '../_constants/hours.constants';
 import axios from '../axios-instance';
 
-
 export const hoursActions = {
     getAllWorkingHours,
 };
-
 
 function getAllWorkingHours() {
     return dispatch => {

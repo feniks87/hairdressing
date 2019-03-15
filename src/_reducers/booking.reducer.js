@@ -18,8 +18,6 @@ export function bookingInfo(state = {bookings: []}, action) {
                 ...state,
                 error: action.error
             };
-
-
         case bookingConstants.ADD_BOOKING_REQUEST:
             return {
                 addingBooking: true,
@@ -36,7 +34,6 @@ export function bookingInfo(state = {bookings: []}, action) {
                 ...state,
                 error: action.error
             };
-
         case bookingConstants.CANCEL_BOOKING_REQUEST:
             return {
                 ...state,
