@@ -10,11 +10,10 @@ export const bookingActions = {
     cancelBooking,
 };
 
-function getBookings() {
+function getBookings(token) {
     return dispatch => {
         dispatch(request());
-
-        axios.get('/bookings.json')
+        axios.get(`/bookings.json?auth=${token}`)
             .then(bookings => {
                 const fetchedBookings = [];
                 for (let key in bookings.data) {

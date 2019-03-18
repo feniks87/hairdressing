@@ -28,7 +28,7 @@ class UserAccountPage extends Component {
 
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(bookingActions.getBookings());
+        dispatch(bookingActions.getBookings(this.props.authentication.idToken));
         dispatch(teamActions.getTeam());
     }
 

@@ -17,9 +17,9 @@ function login(email, password) {
         const url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCfBr35UM1khoKnAl0G3JgwxJLujhKh_s8';
         return axios.post(url, {email, password, returnSecureToken: true})
             .then(tokenInfo => {
-                    history.push('/');
-                    dispatch(success(tokenInfo.data));
-                    dispatch(userActions.getClient(tokenInfo.data.localId, tokenInfo.id));
+                history.push('/');
+                dispatch(success(tokenInfo.data));
+                dispatch(userActions.getClient(tokenInfo.data.localId, tokenInfo.id));
                 })
             .catch(error => {
                 dispatch(failure(error.message));

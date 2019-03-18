@@ -67,7 +67,7 @@ class BookingPage extends Component {
         dispatch(serviceActions.getAllServices());
         dispatch(teamActions.getTeam());
         dispatch(hoursActions.getAllWorkingHours());
-        dispatch(bookingActions.getBookings());
+        dispatch(bookingActions.getBookings(this.props.authentication.idToken));
         dispatch(contactActions.getContacts());
         this.setState({
           page: 1,
