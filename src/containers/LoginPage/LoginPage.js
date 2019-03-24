@@ -53,7 +53,6 @@ class LoginPage extends Component {
                         onChange={this.handleChange}
                         type="text"/>
                     <Input
-
                         placeholder="Enter password"
                         name="password" value={password}
                         onChange={this.handleChange}

@@ -13,7 +13,7 @@ export function bookingInfo(state = {bookings: []}, action) {
                 bookings: action.bookings,
                 fetching: false
             };
-        case bookingConstants.REGISTER_FAILURE:
+        case bookingConstants.FETCH_BOOKINGS_FAILURE:
             return {
                 ...state,
                 error: action.error

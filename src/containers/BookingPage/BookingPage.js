@@ -28,17 +28,19 @@ class BookingPage extends Component {
     }
 
     onSubmit() {
-        const { dispatch } = this.props;
-        dispatch(bookingActions.addBooking({
-          time: this.state.time,
-          clientId: this.props.authentication.localId,
-          stylistId: this.state.stylist,
-          services: this.state.services,
-        }));
+      const booking = {
+        time: this.state.time,
+        clientId: this.props.authentication.localId,
+        stylistId: this.state.stylist,
+        services: this.state.services
+      };
+      const token = this.props.authentication.idToken;
+
+      const { dispatch } = this.props;
+      dispatch(bookingActions.addBooking(booking, token));
     }
 
     nextPage(data, name) {
-
         this.setState((prevState, props) => ({
             ...prevState,
             page: this.state.page + 1,

@@ -26,6 +26,7 @@ function getBookings(token) {
             })
             .catch(error => {
                     dispatch(failure(error.toString()));
+
             });
     };
 
@@ -34,10 +35,10 @@ function getBookings(token) {
     function failure(error) { return { type: bookingConstants.FETCH_BOOKINGS_FAILURE, error } }
 }
 
-function addBooking(booking) {
+function addBooking(booking, token) {
     return dispatch => {
         dispatch(request());
-        axios.post('/bookings.json', booking)
+        axios.post(`/bookings.json?auth=${token}`, booking)
             .then(booking => {
                     dispatch(success(booking.data));
                     history.push('/account');
@@ -45,7 +46,7 @@ function addBooking(booking) {
                 })
             .catch(error => {
                 dispatch(failure(error.message));
-                dispatch(alertActions.error(error.toString()));
+                dispatch(alertActions.error(error.message));
             });
     };
 
