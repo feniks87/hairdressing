@@ -7,3 +7,13 @@
 .Wrap-info {
     width: 80%;
 }
+
+.ListItem {
+    cursor: pointer;
+}
+
+.ListItem:hover,
+.ListItem:active,
+.ListItem.active {
+    color: #9b181c;
+}

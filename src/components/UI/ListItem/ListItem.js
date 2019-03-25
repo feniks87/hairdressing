@@ -1,7 +1,7 @@
 import React from 'react';
 
 const listItem = ( props ) => (
-    <li>{props.value}</li>
+    <li onClick={props.onClick}>{props.value}</li>
 );
 
 export default listItem;

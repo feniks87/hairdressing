@@ -19,7 +19,6 @@ function login(email, password) {
             .then(tokenInfo => {
                 history.push('/');
                 dispatch(success(tokenInfo.data));
-                dispatch(userActions.getClient(tokenInfo.data.localId, tokenInfo.id));
                 })
             .catch(error => {
                 dispatch(failure(error.message));
@@ -104,7 +103,7 @@ function register(user) {
 function getClient(userId, token) {
     return dispatch => {
         dispatch(request(userId));
-        const queryParams = `?orderBy="userId"&equalTo="${userId}"`
+        const queryParams = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`
         axios.get('/users.json' + queryParams)
             .then(clientInfo => {
                 const value = Object.values(clientInfo.data)[0];
@@ -130,7 +129,7 @@ function updateClient(client, token) {
             name: client.name,
             phone: client.phone
         }
-        axios.patch(`/users/${client.id}.json`, clientInfo)
+        axios.patch(`/users/${client.id}.json?auth=${token}`, clientInfo)
             .then(clientInfo => {
                 dispatch(success(clientInfo.data));
                 dispatch(alertActions.success('Details were successfully updated'));
