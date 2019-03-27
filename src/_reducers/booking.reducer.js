@@ -41,7 +41,7 @@ export function bookingInfo(state = {bookings: []}, action) {
         case bookingConstants.CANCEL_BOOKING_SUCCESS:
             return {
                 ...state,
-                booking: [state.bookings.filter((b) => b.id !== action.bookingId)]
+                bookings: state.bookings.filter((b) => b.id !== action.bookingId)
             };
         case bookingConstants.CANCEL_BOOKING_FAILURE:
             return {

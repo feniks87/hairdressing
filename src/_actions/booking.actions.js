@@ -55,20 +55,18 @@ function addBooking(booking, token) {
     function failure(error) { return { type: bookingConstants.ADD_BOOKING_FAILURE, error } }
 }
 
-function cancelBooking(bookingId) {
+function cancelBooking(bookingId, token) {
     return dispatch => {
         dispatch(request(bookingId));
-
-        bookingService.addBooking(bookingId)
-            .then(canceled => {
-                    dispatch(success(bookingId));
-                    dispatch(alertActions.success('Booking has been successfully cancelled'));
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
-                }
-            );
+        axios.delete(`/bookings/${bookingId}.json?auth=${token}`, bookingId)
+            .then(booking => {
+                dispatch(success(bookingId));
+                dispatch(alertActions.success('Booking has been successfully cancelled'));
+            })
+            .catch(error => {
+                dispatch(failure(error.message));
+                dispatch(alertActions.error(error.message));
+            });
     };
 
     function request(bookingId) { return { type: bookingConstants.CANCEL_BOOKING_REQUEST, bookingId } }

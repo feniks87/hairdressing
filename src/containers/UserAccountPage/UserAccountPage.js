@@ -28,6 +28,7 @@ class UserAccountPage extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.cancelBooking = this.cancelBooking.bind(this);
     }
 
     componentDidMount() {
@@ -71,6 +72,11 @@ class UserAccountPage extends Component {
         this.setState({
           modalId: null
         });
+    }
+
+    cancelBooking(id) {
+        const { dispatch } = this.props;
+        dispatch(bookingActions.cancelBooking(id, this.props.authentication.idToken));
     }
 
     handleSubmit(event) {
@@ -162,7 +168,7 @@ class UserAccountPage extends Component {
                                                     {`${booking.stylistName} (${booking.time.format('MMMM Do YYYY dddd, h:mm a').toString()})`}
                                                 </ModalBody>
                                                 <ModalFooter>
-                                                    <Button type="button" onClick={this.cancelBooking}>Cancel booking</Button>{' '}
+                                                    <Button type="button" onClick={() => this.cancelBooking(booking.id)}>Cancel booking</Button>
                                                     <Button type="button" onClick={this.closeModal}>Close</Button>
                                                 </ModalFooter>
                                             </Modal>
