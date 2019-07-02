@@ -1,18 +1,27 @@
 .Image-map {
-    width: 30rem;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
     margin-bottom: 20px;
+    transition: all .2s;
 }
 
 .Image-map:hover {
-    -ms-transform: scale(1.4); /* IE 9 */
-    -webkit-transform: scale(1.4); /* Safari 3-8 */
-    transform: scale(1.4);
+    -ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Safari 3-8 */
+    transform: scale(1.2);
 }
 
 .Heading-hours {
     margin-top: 110px;
+}
 
+@media only screen and (max-width: 900px) {
+    .Image-map:hover {
+        transform: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .Image-map {
+        margin-top: 20px;
+    }
 }

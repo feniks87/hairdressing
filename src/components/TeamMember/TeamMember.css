@@ -2,8 +2,19 @@
     padding: 20px;
 }
 
+.Stylist-image {
+    width: 100%;
+    transition: all .2s;
+}
+
 .Stylist-image:hover {
-    -ms-transform: scale(1.2); /* IE 9 */
-    -webkit-transform: scale(1.2); /* Safari 3-8 */
-    transform: scale(1.2);
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1);
+}
+
+@media only screen and (max-width: 900px) {
+    .Stylist-image:hover {
+        transform: none;
+    }
 }

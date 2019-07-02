@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Header from '../../components/UI/Header/Header'
-import './OurTeamPage.css';
+import Header from '../../components/UI/Header/Header';
 import TeamMember from '../../components/TeamMember/TeamMember';
 import { teamActions } from '../../_actions/team.actions';
 import Spinner from '../../components/UI/Spinner/Spinner';
