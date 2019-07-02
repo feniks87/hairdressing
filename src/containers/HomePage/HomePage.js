@@ -49,7 +49,7 @@ class HomePage extends Component {
 
                     <div className="row Content-space">
                         <div className="col-sm-5">
-                            <img className="img-fluid" src={Haircut} alt="Haircut"/>
+                            <img className="img-fluid Image-haircut" src={Haircut} alt="Haircut"/>
                         </div>
                         <div className="col-sm-7">
                             <p className="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit.

@@ -3,9 +3,9 @@
 }
 
 .Image-brand {
-    width: 90px;
-    margin-right: 25px;
-    margin-left: 25px;
+    max-height: 3rem;
+    max-width: 100%;
+    margin: 0 25px;
 }
 
 .Paragraph-header {
@@ -17,6 +17,24 @@
     margin-top: 40px;
 }
 
+.Image-haircut {
+    margin-top: 10px;
+}
+
 .Content-space {
     margin-top: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    .Image-brand {
+        max-height: 1.5rem;
+    }
+
+    .Image-salon {
+        margin-top: 0;
+    }
+
+    .Image-haircut {
+        margin-bottom: 20px;
+    }
 }

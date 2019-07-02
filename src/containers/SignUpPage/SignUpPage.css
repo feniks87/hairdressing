@@ -1,7 +1,7 @@
 .Registration {
     padding: 20px;
     padding-bottom: 60px;
-    width: 80%;
+    max-width: 50%;
     margin: auto;
     background-color: #ece8df;
     border: 1px solid #dad2be;
@@ -10,8 +10,15 @@
     box-sizing: border-box;
 }
 
-@media (min-width: 600px) {
+@media only screen and (max-width: 900px) {
     .Registration {
-        width: 500px;
+        max-width: 80%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .Registration {
+        max-width: 100%;
+        margin-bottom: 50px;
     }
 }

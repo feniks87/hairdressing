@@ -1,7 +1,7 @@
 .Login {
     padding: 20px;
     padding-bottom: 60px;
-    width: 80%;
+    max-width: 50%;
     margin: auto;
     background-color: #ece8df;
     border: 1px solid #dad2be;
@@ -26,8 +26,14 @@
     text-decoration: none;
 }
 
-@media (min-width: 600px) {
+@media only screen and (max-width: 900px) {
     .Login {
-        width: 500px;
+        max-width: 80%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .Login {
+        max-width: 100%;
     }
 }
