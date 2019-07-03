@@ -1,5 +1,4 @@
 import { bookingConstants } from '../_constants/booking.constants';
-import { bookingService } from '../_services/booking.service';
 import { alertActions } from './alert.actions';
 import axios from '../axios-instance';
 import { history } from '../_helpers/history';
