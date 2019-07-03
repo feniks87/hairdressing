@@ -7,17 +7,16 @@
     padding: 0 16px !important;
 }
 
-.NavItem {
-    color: #eeeeee;
-}
 
 .NavItem a {
+    color: #ffffff !important;
     text-decoration: none;
     height: 100%;
     padding: 20px 20px;
     border-bottom: 4px solid transparent;
     box-sizing: border-box;
     margin: 0 10px;
+    transition: all .2s;
 }
 
 .NavItem a:hover,
@@ -28,12 +27,12 @@
     color: #000000 !important;
 }
 
-@media (max-width: 600px) {
+@media only screen and (max-width: 770px) {
     .NavItem a:hover,
     .NavItem a:active,
-    .NavItem a.active {
-    background-color: #000000;
-    border-bottom: 4px solid transparent;
-    color: white !important;
+	.NavItem a.active {
+        background-color: #000000;
+        border-bottom: 4px solid transparent;
+        color: white !important;
     }
 }
