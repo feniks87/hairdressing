@@ -6,6 +6,7 @@ import Button from '../../components/UI/Button/Button';
 import Header from '../../components/UI/Header/Header';
 import { Link } from 'react-router-dom';
 import {userActions} from '../../_actions/user.actions';
+import { alertActions } from '../../_actions/alert.actions';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -30,7 +31,9 @@ class LoginPage extends Component {
         e.preventDefault();
 	    const { email, password } = this.state;
         const { dispatch } = this.props;
-        if (email && password) {
+        if (email === "" || password === "") {
+            dispatch(alertActions.error("Please fill all the required fields"));
+        } else if (email && password) {
             let loginAction = userActions.login(email, password);
             dispatch(loginAction);
             this.setState({ submitted: true });
@@ -58,7 +61,7 @@ class LoginPage extends Component {
                         onChange={this.handleChange}
                         type="password"/>
                     <Button type="Submit">Login</Button>
-                </form><p className="Text">Click here to <span className="Text-link"><Link to="/registration">Register</Link></span>.</p>
+                </form><p className="Text">Click here to <span className="Text-link"><Link to="/registration">Register</Link></span></p>
             </div>
         )
     }
