@@ -10,7 +10,6 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 class WizardFormFirstPage extends Component {
     constructor(props) {
         super(props);
-        debugger;
         this.state = {
             selectedServices: props.data ? props.data : ((props.services && props.services.length > 0) ? [props.services[0].id] : []),
         };
@@ -51,7 +50,6 @@ class WizardFormFirstPage extends Component {
 
     render() {
         const services = this.props.services;
-        debugger;
         return (
             <div className="Form">
                 <Header>Select services</Header>

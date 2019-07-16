@@ -208,7 +208,6 @@ class WizardFormThirdPage extends Component {
 
     // Calculates duration of all listed services by id
     getServicesDuration(servicesIds) {
-        debugger;
         const reducer = (accumulator, serviceId) => {
             let service = this.props.services.find((service) => service.id === serviceId);
             return accumulator + service.time;
